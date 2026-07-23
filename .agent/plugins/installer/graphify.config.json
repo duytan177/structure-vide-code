@@ -1,0 +1,11 @@
+{
+  "projectRoot": "./src",
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.php", "**/*.py", "**/*.rb", "**/*.go"],
+  "exclude": ["**/node_modules/**", "**/vendor/**", "**/dist/**", "**/*.test.*"],
+  "graphSettings": {
+    "extractTypes": true,
+    "extractImports": true,
+    "extractExports": true,
+    "trackFunctionCalls": true
+  }
+}

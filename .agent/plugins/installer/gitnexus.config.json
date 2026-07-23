@@ -1,0 +1,11 @@
+{
+  "targetDirectory": "./src",
+  "blastRadiusDepth": 3,
+  "executionFlowTracing": true,
+  "ignorePatterns": [
+    "node_modules",
+    "vendor",
+    "dist",
+    "coverage"
+  ]
+}

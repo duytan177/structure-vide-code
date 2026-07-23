@@ -1,0 +1,14 @@
+{
+  "superpower": {
+    "codeGraph": {
+      "enabled": true,
+      "autoIndex": true,
+      "indexTarget": "./src",
+      "trackSymbols": true
+    },
+    "aiContextEnhancer": {
+      "enabled": true,
+      "maxDepth": 4
+    }
+  }
+}

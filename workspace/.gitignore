@@ -1,0 +1,8 @@
+# =============================================================================
+# WORKSPACE — nơi CLONE source của (các) dự án đích vào đây.
+# Bỏ qua TẤT CẢ nội dung bên trong (base không track source dự án),
+# chỉ giữ lại chính file này và README.md để AI Agent biết nơi đọc source.
+# =============================================================================
+*
+!.gitignore
+!README.md

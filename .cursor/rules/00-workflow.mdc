@@ -1,0 +1,30 @@
+---
+description: Vide-Coder — quy trình 11 bước chuẩn hóa cho mọi task
+globs:
+alwaysApply: true
+---
+
+# Vide-Coder Workflow (Cursor entry-point)
+
+Nguồn chân lý duy nhất: [`.agent/rules/00-ai-workflow.md`](../../.agent/rules/00-ai-workflow.md).
+File này chỉ là pointer — luôn đọc rule gốc trước khi làm.
+
+## BẮT BUỘC
+- Đọc & tuân thủ đủ 11 bước: Discovery → Impact → Architecture → Specification → Planning →
+  Task Breakdown → Implementation → Self Validation → AI Review → Human Review → Knowledge Update.
+- **Không bỏ qua** Discovery, Impact Analysis, Self-Validation.
+- Mỗi task = 1 Git Worktree riêng.
+- Branch `feature|fix|refactor|hotfix/PROJECT-XXX-desc`; commit Conventional Commits + Jira ID.
+- Trước khi coi là Done: xem `docs/DEFINITION-OF-DONE.md`.
+
+## Tài liệu quy tắc bắt buộc đọc
+- `.agent/rules/01-code-style.md`
+- `.agent/rules/02-architecture-principles.md`
+- `.agent/rules/03-git-jira-workflow.md`
+- `.agent/rules/04-testing-qa.md`
+
+## Skills / Personas / Plugins
+- Skills: `.agent/skills/core/`
+- Personas: `.agent/agents/`
+- Plugin & token budgeting: `.agent/plugins/README.md`
+- MCP (Cursor): `.cursor/mcp.json`

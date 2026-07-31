@@ -1,76 +1,127 @@
-# QUY TRÌNH 11 BƯỚC LẬP TRÌNH CHUẨN HÓA CHO AI AGENT (00-ai-workflow.md)
+# QUY TRÌNH LẬP TRÌNH CHUẨN HÓA CHO AI AGENT (00-ai-workflow.md)
 
-Tài liệu này định nghĩa **Quy trình 11 bước lập trình phần mềm chuẩn hóa** mà tất cả các AI Agent (Claude Code, Cursor, Codex, Antigravity, Windsurf) PHẢI tuân thủ 100%.
+Tài liệu này là **NGUỒN CHÂN LÝ DUY NHẤT** về quy trình. Tất cả AI Agent (Claude Code, Cursor, Codex, Antigravity, Windsurf, Copilot) **PHẢI tuân thủ 100%**.
+
+Vide-Coder là **base overlay quy trình** — áp lên bất kỳ repo nào (mới/cũ) mà **không đụng source của dự án đích**.
 
 ---
 
 ## 🛑 NGUYÊN TẮC VÀNG
-1. **TỰ ĐỘNG CÀI PLUGIN MẪU NẾU DỰ ÁN MỚI**: Nếu dự án chưa được cài đặt Plugin, chạy ngay script installer tại `.agent/plugins/installer/install-all-plugins.sh`.
-2. **TUÂN THỦ HOÀN TOÀN QUY TRÌNH 11 BƯỚC**: Không bao giờ bỏ qua các bước Discovery, Impact Analysis hay Self-Validation.
-3. **CÔ LẬP NGHỆ SĨ CODE BẰNG GIT WORKTREE**: Sử dụng Git Worktree khi lập trình song song nhiều task.
-4. **CẬP NHẬT TRI THỨC SAU KHI HOÀN THÀNH**: Luôn chạy re-index Graphify/Superpower và cập nhật `memory/decision-log.md` ở bước cuối cùng.
+
+1. **BASE LÀ OVERLAY**: Chỉ phủ tầng quy trình + tài liệu (`.agent/`, `docs/`, entry-points). **Source dự án đích nằm trong `workspace/<ten-du-an>/`** (gitignore toàn bộ) — AI Agent đọc/sửa code TẠI ĐÂY, không phải ở root.
+2. **DÙNG PLUGIN NGOÀI, KHÔNG REBUILD**: Skill/methodology dùng **Superpowers** làm engine; đồ thị code dùng **Graphify/GitNexus**; tra tài liệu dùng **Context7**; security dùng **Semgrep**. Nếu chưa cài → chạy `.agent/scripts/install-all-plugins.sh`.
+3. **ĐIỂM VÀO LINH HOẠT**: Dự án mới vào từ **BRD/Excel**; dự án cũ vào từ **change request/bug/feature** (sau khi đã chạy **Bước 0 Onboarding**).
+4. **TUÂN THỦ ĐỦ CÁC BƯỚC**: Không bao giờ bỏ qua Discovery, Impact Analysis, Self-Validation.
+5. **CÔ LẬP BẰNG GIT WORKTREE**: Mỗi task chạy trong worktree riêng (skill Superpowers `using-git-worktrees`).
+6. **CẬP NHẬT TRI THỨC CUỐI CÙNG**: Re-index Graphify + cập nhật `.agent/memory/decision-log.md` + `docs/traceability-matrix.md`.
 
 ---
 
-## 🔄 11 BƯỚC THỰC THI CHUẨN (11-STEP OPERATING PROCEDURE)
+## 🧭 PHÂN VAI: SUPERPOWERS (engine) vs VIDE-CODER (enterprise)
+
+Cài Superpowers làm engine → nó lo phần "một dev giỏi". Vide-Coder **bọc tầng doanh nghiệp** lên trên và **điều phối**.
+
+| Bước | Ai lo | Cơ chế / công cụ |
+| :-- | :-- | :-- |
+| 0. Onboarding (chỉ dự án cũ) | **Vide-Coder** | `onboard-existing.sh` + Graphify/GitNexus → `docs/specs/_baseline/`; khởi tạo `docs/CONSTITUTION.md` |
+| 1. Discovery | **Superpowers** `brainstorming` | + ghi vết `docs/discovery/` |
+| 1.5 Clarify | **Vide-Coder** | làm rõ điểm mơ hồ → `docs/discovery/*-clarifications.md` |
+| 2. Impact Analysis | **Vide-Coder** | Graphify / GitNexus (blast radius) |
+| 3. Architecture | **Vide-Coder** | ADR/RFC `docs/adr/` |
+| 4. Specification | **Vide-Coder** | `docs/specs/` (+ Context7) |
+| 5. Planning | **Superpowers** `writing-plans` | + milestone/sprint |
+| 6. Task Breakdown | **Vide-Coder** | `tasks/` + traceability |
+| 6.5 Analyze (GATE) | **Vide-Coder** | soát nhất quán REQ↔SPEC↔ADR↔PLAN↔TASK trước khi code |
+| 7. Implementation | **Superpowers** `using-git-worktrees` + `subagent-driven-development` + `executing-plans` | source tại `workspace/<ten-du-an>/` |
+| 8. Self Validation | **Superpowers** `test-driven-development` + `verification-before-completion` | + typecheck/E2E |
+| 9. AI Review | **Superpowers** `requesting/receiving-code-review` | + Semgrep + CodeRabbit |
+| 10. Human Review | **Vide-Coder** | CODEOWNERS + PR template |
+| 11. Knowledge Update | **Vide-Coder** | ADR + memory + re-index graph + changelog |
+
+> Vide-Coder **không viết lại** bước 1,5,7,8,9 — dùng thẳng skill Superpowers. Chỉ **thêm** bước 0,2,3,4,6,10,11.
+
+---
+
+## 🔄 QUY TRÌNH THỰC THI CHUẨN
 
 ```mermaid
 flowchart TD
-    Req[REQUIREMENT - docs/client-requirements/ & docs/basic-design/] --> S1[1. DISCOVERY - docs/discovery/]
-    S1 --> S2[2. IMPACT ANALYSIS - Graphify & GitNexus]
+    Mode{Dự án mới hay cũ?}
+    Mode -- Cũ --> S0[0. ONBOARDING - index code + sinh baseline docs/specs/_baseline/]
+    Mode -- Mới --> Req[REQUIREMENT - docs/client-requirements/ & docs/basic-design/]
+    S0 --> CR[CHANGE REQUEST / BUG / FEATURE]
+    Req --> S1
+    CR --> S1[1. DISCOVERY - Superpowers brainstorming + docs/discovery/]
+    S1 --> S15[1.5 CLARIFY - làm rõ điểm mơ hồ]
+    S15 --> S2[2. IMPACT ANALYSIS - Graphify & GitNexus]
     S2 --> S3[3. ARCHITECTURE - docs/adr/]
     S3 --> S4[4. SPECIFICATION - docs/specs/]
-    S4 --> S5[5. PLANNING - plans/]
+    S4 --> S5[5. PLANNING - Superpowers writing-plans + plans/]
     S5 --> S6[6. TASK BREAKDOWN - tasks/backlog/]
-    S6 --> S7[7. IMPLEMENTATION - Git Worktree & src/]
-    S7 --> S8[8. SELF VALIDATION - Lint, Typecheck, TDD, E2E]
-    S8 --> S9[9. AI REVIEW - Security Semgrep & CodeRabbit]
-    S9 --> S10[10. HUMAN REVIEW - PR Approval]
-    S10 --> S11[11. KNOWLEDGE UPDATE - Memory, Graph & Decision Log]
+    S6 --> S65[6.5 ANALYZE GATE - soát nhất quán REQ/SPEC/PLAN/TASK]
+    S65 --> S7[7. IMPLEMENTATION - Superpowers worktree/subagent + workspace/ten-du-an/]
+    S7 --> S8[8. SELF VALIDATION - Superpowers TDD + typecheck/E2E]
+    S8 --> S9[9. AI REVIEW - Superpowers review + Semgrep/CodeRabbit]
+    S9 --> S10[10. HUMAN REVIEW - CODEOWNERS/PR]
+    S10 --> S11[11. KNOWLEDGE UPDATE - Memory, Graph, Decision Log]
 ```
 
+### 0. ONBOARDING (chỉ dự án cũ — brownfield)
+- Chạy `.agent/scripts/onboard-existing.sh`: index codebase hiện có bằng Graphify/GitNexus.
+- Sinh **baseline** hiện trạng (kiến trúc, module chính) vào `docs/specs/_baseline/` để làm mốc cho Impact Analysis.
+- Khởi tạo **hiến pháp dự án** `docs/CONSTITUTION.md` (stack, ràng buộc bất biến) — dùng cho gate `/analyze`.
+- Bỏ qua baseline nếu là dự án mới, nhưng vẫn điền `docs/CONSTITUTION.md`.
+
 ### 1. DISCOVERY (Brainstorm / Q&A / Research)
-- Đọc tài liệu yêu cầu ban đầu (`docs/client-requirements/`, `docs/basic-design/`).
-- Đặt câu hỏi phản biện, làm rõ yêu cầu mờ đục và lưu vết vào `docs/discovery/`.
-- Thực thi Skill: [`.agent/skills/core/discovery-brainstorm.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/discovery-brainstorm.md).
+- **Điểm vào linh hoạt**:
+  - *Dự án mới*: đọc `docs/client-requirements/` + `docs/basic-design/`.
+  - *Dự án cũ*: điểm vào là change request/bug/feature; đối chiếu `docs/specs/_baseline/`.
+- Dùng skill Superpowers `brainstorming` để phản biện, làm rõ yêu cầu; ghi vết vào `docs/discovery/` theo `docs/discovery/discovery-template.md`.
+
+### 1.5 CLARIFY (Làm rõ điểm mơ hồ)
+- Bóc tách câu hỏi chặn (edge case, phi chức năng, ranh giới scope) và **hỏi user** trước khi viết Spec.
+- Ghi kết quả vào `docs/discovery/<feature>-clarifications.md`; ràng buộc bất biến mới → `docs/CONSTITUTION.md`.
+- Skill: [`clarify-requirements.md`](../skills/core/clarify-requirements.md). Command: `/clarify`.
 
 ### 2. IMPACT ANALYSIS (Graphify / GitNexus / Dependency Graph)
-- Phân tích Blast Radius và các module bị ảnh hưởng khi thay đổi code.
-- Thực thi Skill: [`.agent/skills/core/impact-analysis.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/impact-analysis.md).
+- Phân tích blast radius & module bị ảnh hưởng qua Graphify/GitNexus.
+- Skill: [`.agent/skills/core/impact-analysis.md`](../skills/core/impact-analysis.md).
 
 ### 3. ARCHITECTURE (ADR / RFC / Decisions)
-- Đánh giá kiến trúc, viết hồ sơ quyết định kiến trúc nếu có thay đổi lớn.
-- Lưu vào `docs/adr/`. Thực thi Subagent: [`architect.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/agents/architect.md).
+- Nếu thay đổi lớn: viết RFC (`docs/adr/rfc-template.md`) rồi chốt ADR (`docs/adr/adr-template.md`). Đăng ký `.agent/memory/decision-log.md`.
+- Subagent: [`architect.md`](../agents/architect.md).
 
-### 4. SPECIFICATION (Functional Spec + Technical Spec)
-- Sinh đặc tả chi tiết trong `docs/specs/SPEC-XXX.md`.
-- Thực thi Skill: [`.agent/skills/core/parse-client-requirements.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/parse-client-requirements.md) hoặc [`.agent/skills/core/parse-basic-design-excel.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/parse-basic-design-excel.md).
+### 4. SPECIFICATION (Functional + Technical Spec)
+- Sinh `docs/specs/SPEC-XXX.md`; tra tài liệu framework bằng Context7 khi cần.
+- Skill: [`parse-client-requirements.md`](../skills/core/parse-client-requirements.md) / [`parse-basic-design-excel.md`](../skills/core/parse-basic-design-excel.md).
 
 ### 5. PLANNING (Milestone / Sprint / Timeline)
-- Lập Implementation Plan chi tiết trong `plans/yyyy-mm-dd-<feature>.md`.
-- Thực thi Subagent: [`planner.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/agents/planner.md).
+- Dùng skill Superpowers `writing-plans`; lưu `plans/yyyy-mm-dd-<feature>.md`. Subagent: [`planner.md`](../agents/planner.md).
 
 ### 6. TASK BREAKDOWN (Epic → Story → Task → Subtask)
-- Chia nhỏ công việc thành các task Jira chuẩn Backlog trong `tasks/backlog/PROJECT-XXX.md`.
-- Thực thi Skill: [`.agent/skills/core/jira-task-breakdown.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/jira-task-breakdown.md).
+- Tạo `tasks/backlog/PROJECT-XXX.md`; cập nhật `docs/traceability-matrix.md`.
+- Skill: [`jira-task-breakdown.md`](../skills/core/jira-task-breakdown.md).
+
+### 6.5 ANALYZE (GATE — soát nhất quán chéo trước khi code)
+- Kiểm tra coverage + traceability + mâu thuẫn REQ↔SPEC↔ADR↔PLAN↔TASK và vi phạm `docs/CONSTITUTION.md`.
+- **Còn 🔴 BLOCKER → DỪNG**, quay lại Spec/Plan/Breakdown để vá; không sang Bước 7.
+- Skill: [`analyze-consistency.md`](../skills/core/analyze-consistency.md). Command: `/analyze`.
 
 ### 7. IMPLEMENTATION (Git Worktree + Coding Agent)
-- Tạo Git Worktree cô lập không gian làm việc.
-- Tiến hành viết code sản phẩm tại `src/`.
-- Thực thi Skill: [`.agent/skills/core/git-worktree-flow.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/git-worktree-flow.md) & [`.agent/skills/core/code-traceability-linkage.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/code-traceability-linkage.md).
+- Dùng skill Superpowers `using-git-worktrees` + `subagent-driven-development`; code trong **`workspace/<ten-du-an>/`**.
+- Skill Vide-Coder: [`git-worktree-flow.md`](../skills/core/git-worktree-flow.md), [`code-traceability-linkage.md`](../skills/core/code-traceability-linkage.md).
 
-### 8. SELF VALIDATION (Lint + Typecheck + Unit Test + E2E)
-- Chạy static linter, typecheck, Unit Test (TDD Workflow) và Playwright E2E test.
-- Thực thi Skill: [`.agent/skills/core/tdd-workflow.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/tdd-workflow.md) & Subagent [`e2e-runner.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/agents/e2e-runner.md).
+### 8. SELF VALIDATION (Lint + Typecheck + Unit + E2E)
+- Dùng skill Superpowers `test-driven-development` + `verification-before-completion`; chạy Semgrep-lint, typecheck, Playwright E2E.
+- Skill: [`tdd-workflow.md`](../skills/core/tdd-workflow.md). Subagent: [`e2e-runner.md`](../agents/e2e-runner.md).
 
-### 9. AI REVIEW (Code Review + Security + Performance)
-- Quét lỗ hổng bảo mật với Semgrep và tự động review code với CodeRabbit/AI Reviewer.
-- Thực thi Subagent: [`security-reviewer.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/agents/security-reviewer.md) & Skill [`.agent/skills/core/code-review.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/code-review.md).
+### 9. AI REVIEW (Code + Security + Performance)
+- Dùng skill Superpowers `requesting-code-review` / `receiving-code-review`; Semgrep (OWASP) + CodeRabbit.
+- Subagent: [`security-reviewer.md`](../agents/security-reviewer.md). Skill: [`code-review.md`](../skills/core/code-review.md).
 
 ### 10. HUMAN REVIEW (PR Approval & Merge Checklist)
-- Đưa Pull Request lên GitHub bằng GitHub MCP, chờ Human Lead/Senior duyệt.
+- Mở PR bằng GitHub MCP (dùng `.github/pull_request_template.md`), chờ CODEOWNER duyệt.
 
 ### 11. KNOWLEDGE UPDATE (ADR + Memory + Graph + Changelog)
-- Re-index Graphify & Superpower Knowledge Graph.
-- Cập nhật nhật ký quyết định vào `.agent/memory/decision-log.md`.
-- Thực thi Skill: [`.agent/skills/core/post-implementation-review.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/post-implementation-review.md).
+- Re-index Graphify/GitNexus; cập nhật `.agent/memory/decision-log.md`, `docs/traceability-matrix.md`, changelog `docs/spec-changes/`.
+- Skill: [`post-implementation-review.md`](../skills/core/post-implementation-review.md).

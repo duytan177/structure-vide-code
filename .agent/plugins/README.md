@@ -21,9 +21,10 @@ Tài liệu này tổng hợp ma trận 10 Plugin/MCP mở rộng và **Quy tắ
 
 | Mức Ưu Tiên | Plugin / MCP | Vai Trò & Chức Năng Chính | File Hướng Dẫn Chi Tiết |
 | :---: | :--- | :--- | :--- |
+| ⭐⭐⭐⭐⭐ | **Superpowers** (methodology) | **Engine skill/quy trình** (brainstorm→plan→impl→TDD→review). Vide-Coder dùng thẳng, KHÔNG rebuild. | [`superpowers.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/superpowers.md) |
 | ⭐⭐⭐⭐⭐ | **Graphify** | Xây dựng Knowledge Graph của codebase, giúp AI hiểu mối quan hệ đồ thị giữa các module. | [`graphify.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/graphify.md) |
 | ⭐⭐⭐⭐⭐ | **GitNexus** | Phân tích blast radius (phạm vi ảnh hưởng), execution flow và dependency sâu khi refactor. | [`gitnexus.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/gitnexus.md) |
-| ⭐⭐⭐⭐⭐ | **Superpower** | Code Graph indexing tốc độ cao cho codebase vừa và lớn. | [`superpower.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/superpower.md) |
+| ⭐⭐⭐⭐☆ | **Superpower** (code-graph) | Code Graph indexing tốc độ cao cho codebase vừa và lớn. ⚠️ KHÁC với *Superpowers* methodology ở trên. | [`superpower.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/superpower.md) |
 | ⭐⭐⭐⭐⭐ | **Playwright MCP** | Tự động hóa kiểm thử E2E giao diện web/mobile sau khi hoàn thành task. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
 | ⭐⭐⭐⭐⭐ | **GitHub MCP** | Quản lý Git branch/worktree, commit, mở PR, review code, tạo issue tự động. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
 | ⭐⭐⭐⭐☆ | **Context7 MCP** | Tra cứu tài liệu chuẩn (documentation) của framework/library đúng phiên bản ngay trong agent. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |

@@ -1,6 +1,8 @@
 # QUY TẮC CODE VÀ PHONG CÁCH LẬP TRÌNH DỰ ÁN (01-code-style.md)
 
-Tài liệu này quy định phong cách viết code (Code Style & Formatting Guidelines) của dự án. File này được tùy chỉnh linh hoạt (flex) tùy theo ngôn ngữ và framework được chọn cho `src/frontend` và `src/backend`.
+Tài liệu này quy định phong cách viết code (Code Style & Formatting Guidelines). File này tùy chỉnh linh hoạt (flex) theo ngôn ngữ/framework của **dự án đích**.
+
+> ℹ️ Vide-Coder là **overlay** — quy tắc dưới áp cho source trong `workspace/<ten-du-an>/` (dù layout là `src/frontend`, `src/backend` hay bất kỳ cấu trúc nào sẵn có).
 
 ---
 

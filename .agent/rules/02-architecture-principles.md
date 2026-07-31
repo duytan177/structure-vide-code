@@ -16,6 +16,9 @@ Tài liệu này quy định các nguyên tắc thiết kế kiến trúc hệ t
 
 ## 🏗️ 2. MÔ HÌNH PHÂN CẤP THƯ MỤC SOURCE CODE (`src/`)
 
+> ℹ️ Vide-Coder là **overlay** — source dự án nằm trong `workspace/<ten-du-an>/` (base không track). Sơ đồ dưới là
+> **guideline khuyến nghị** cho source đó; dự án cũ giữ nguyên layout hiện có, chỉ tham chiếu khi refactor/thêm mới.
+
 ```text
 src/
 ├── frontend/                   # Frontend Client

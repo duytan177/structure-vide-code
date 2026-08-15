@@ -1,18 +1,18 @@
-# HƯỚNG DẪN STATIC ANALYSIS & SECURITY TOOLS (static-analysis.md)
+# STATIC ANALYSIS & SECURITY TOOLS GUIDE (static-analysis.md)
 
-Tài liệu này chi tiết hóa tích hợp Semgrep, CodeRabbit và các Linter phân tích tĩnh theo ngôn ngữ lập trình.
+This document details the integration of Semgrep, CodeRabbit, and static-analysis linters per programming language.
 
 ---
 
 ## 🔒 1. Semgrep (Security & Vulnerability Scanner) (⭐ ⭐ ⭐ ⭐ ☆)
-- **Vai trò**: Quét mã nguồn trong `src/` để phát hiện lỗ hổng bảo mật (SQL Injection, XSS, Hardcoded Tokens, Weak Cryptography).
-- **Lệnh thực thi**:
+- **Role**: Scans the source code in `src/` to detect security vulnerabilities (SQL Injection, XSS, Hardcoded Tokens, Weak Cryptography).
+- **Execution command**:
   - `semgrep scan --config auto src/`
 
 ---
 
 ## 🔍 2. Language Linters & Static Analyzers (⭐ ⭐ ⭐ ⭐ ☆)
-Phân tích cú pháp và quy chuẩn code theo ngôn ngữ:
+Analyzes syntax and code standards per language:
 - **TypeScript / JavaScript**: `npx eslint src/`
 - **PHP / Laravel**: `vendor/bin/phpstan analyse src/backend`
 - **Ruby**: `bundle exec rubocop src/`
@@ -21,5 +21,5 @@ Phân tích cú pháp và quy chuẩn code theo ngôn ngữ:
 ---
 
 ## 🐇 3. CodeRabbit (AI Code Reviewer) (⭐ ⭐ ⭐ ⭐ ☆)
-- **Vai trò**: Tự động review Pull Request trên GitHub, phát hiện code smell, vi phạm DRY/SOLID và đưa ra gợi ý refactor chuyên sâu.
-- **Workflow**: Đã được tích hợp sẵn qua GitHub Webhook / Action khi GitHub MCP mở PR.
+- **Role**: Automatically reviews Pull Requests on GitHub, detecting code smells, DRY/SOLID violations, and providing in-depth refactor suggestions.
+- **Workflow**: Already integrated via GitHub Webhook / Action when the GitHub MCP opens a PR.

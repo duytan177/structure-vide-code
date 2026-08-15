@@ -1,49 +1,60 @@
 #!/usr/bin/env bash
-
 # ==============================================================================
-# SCRIPT TỰ ĐỘNG CÀI ĐẶT & THIẾT LẬP TOÀN BỘ PLUGIN / MCP CHO DỰ ÁN (VIDE-CODER)
+# INSTALL PLUGINS / MCP FOR THE VIDE-CODER BASE (overlay applied onto the target project)
+#   bash .agent/scripts/install-all-plugins.sh
+# Auto-detects whether the project is NEW or EXISTING, installs well-known external plugins (does NOT rebuild).
 # ==============================================================================
-# Script này được gọi tự động bởi AI Agent hoặc chạy trực tiếp bằng lệnh:
-# bash .agent/plugins/installer/install-all-plugins.sh
-# ==============================================================================
+set -u
 
-set -e
-
-echo "🚀 [1/6] Đang kiểm tra môi trường Node.js và Python..."
-if ! command -v node &> /dev/null; then
-    echo "⚠️  Node.js chưa được cài đặt. Vui lòng cài đặt Node.js v18+ trước."
-fi
-
-if ! command -v python3 &> /dev/null; then
-    echo "⚠️  Python3 chưa được cài đặt. Vui lòng cài đặt Python3 trước."
-fi
-
-echo "📦 [2/6] Đang cài đặt Graphify, GitNexus, Superpower & Semgrep CLI..."
-# Cài đặt hoặc update CLI tools
-npm install -g graphify-cli gitnexus-cli superpower-code-graph || true
-pip3 install semgrep || true
-
-echo "⚙️ [3/6] Sao chép các file Cấu Hình Mẫu (Templates) vào Root..."
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PROJECT_ROOT="$( cd "$SCRIPT_DIR/../../.." && pwd )"
+PROJECT_ROOT="$( git rev-parse --show-toplevel 2>/dev/null || cd "$SCRIPT_DIR/../../.." && pwd )"
 
-cp -n "$SCRIPT_DIR/.semgrep.yml" "$PROJECT_ROOT/.semgrep.yml" 2>/dev/null || true
-cp -n "$SCRIPT_DIR/.coderabbit.yaml" "$PROJECT_ROOT/.coderabbit.yaml" 2>/dev/null || true
-cp -n "$SCRIPT_DIR/graphify.config.json" "$PROJECT_ROOT/graphify.config.json" 2>/dev/null || true
-cp -n "$SCRIPT_DIR/gitnexus.config.json" "$PROJECT_ROOT/gitnexus.config.json" 2>/dev/null || true
-cp -n "$SCRIPT_DIR/superpower.config.json" "$PROJECT_ROOT/superpower.config.json" 2>/dev/null || true
+# --- Detect mode (new vs existing) — scan source in workspace/ ---------------
+mode="new (greenfield)"
+if [ -d "$PROJECT_ROOT/workspace" ] && find "$PROJECT_ROOT/workspace" -maxdepth 3 -type f \
+     \( -name package.json -o -name composer.json -o -name pyproject.toml \
+        -o -name go.mod -o -name pom.xml -o -name Cargo.toml \) \
+     -not -path '*/node_modules/*' 2>/dev/null | grep -q .; then
+  mode="existing (brownfield)"
+fi
+echo "🚀 [1/6] Detected environment: $mode project"
 
-echo "🧠 [4/6] Khởi tạo Graphify Knowledge Graph & GitNexus Indexing..."
-if command -v graphify &> /dev/null; then
-    graphify init "$PROJECT_ROOT/src" || true
+command -v node    &>/dev/null || echo "  ⚠️ Node.js v18+ not found."
+command -v python3 &>/dev/null || echo "  ⚠️ Python3 not found."
+
+# --- Install CODE-GRAPH / SECURITY plugins (best-effort, verified package names) ---
+echo "📦 [2/6] Installing Graphify (PyPI), GitNexus (npm) & Semgrep..."
+# Graphify: PyPI package is 'graphifyy'; the CLI command stays 'graphify'.
+pip3 install graphifyy 2>/dev/null && echo "  ✓ graphify (graphifyy)" || echo "  ⚠️ graphify (pip install graphifyy) failed."
+# GitNexus: npm package 'gitnexus'; usable via 'npx gitnexus analyze' or global install.
+npm install -g gitnexus 2>/dev/null && echo "  ✓ gitnexus" || echo "  ⚠️ gitnexus (npm i -g gitnexus) failed — you can also use 'npx gitnexus'."
+# Security scanner.
+pip3 install semgrep 2>/dev/null && echo "  ✓ semgrep" || echo "  ⚠️ Semgrep could not be installed."
+
+# --- Install SUPERPOWERS (methodology engine) — each agent installs separately ---------------
+echo "🦸 [3/6] SUPERPOWERS (skill engine) — install MANUALLY per agent:"
+cat <<'EOS'
+  • Claude Code : /plugin marketplace add obra/superpowers  ->  /plugin install superpowers
+  • Cursor      : Marketplace plugin -> add the obra/superpowers repo
+  • Antigravity : register the github.com/obra/superpowers repo
+  (The plugin does NOT transfer between agents — it must be installed separately per harness.)
+  Details: .agent/plugins/superpowers.md
+EOS
+
+# --- Copy config templates into root ------------------------------------------
+echo "⚙️ [4/6] Copying sample configs into root (does not overwrite if already present)..."
+for f in .semgrep.yml .coderabbit.yaml graphify.config.json gitnexus.config.json superpower.config.json; do
+  cp -n "$SCRIPT_DIR/$f" "$PROJECT_ROOT/$f" 2>/dev/null || true
+done
+
+# --- Onboarding for existing projects -----------------------------------------
+echo "🧠 [5/6] Index / Onboarding..."
+if [ "$mode" = "existing (brownfield)" ]; then
+  echo "  -> Existing project: run 'bash .agent/scripts/onboard-existing.sh workspace/<project-name>' to index + generate a baseline."
+else
+  command -v graphify &>/dev/null && graphify init "$PROJECT_ROOT/workspace" 2>/dev/null || true
 fi
 
-if command -v gitnexus &> /dev/null; then
-    gitnexus index "$PROJECT_ROOT/src" || true
-fi
-
-echo "🔌 [5/6] Hướng dẫn kích hoạt MCP Servers (Model Context Protocol)..."
-echo "Đã sẵn sàng file template MCP tại: .agent/plugins/installer/mcp-config.json.template"
-echo "AI Agent có thể load cấu hình này vào Antigravity / Cursor / Claude Code."
-
-echo "✅ [6/6] TẤT CẢ PLUGIN VÀ MCP TOOLSET ĐÃ ĐƯỢC CÀI ĐẶT & THIẾT LẬP THÀNH CÔNG!"
+echo "🔌 [6/6] MCP: edit .agent/mcp/servers.json + keys in .env, then run 'bash .agent/scripts/setup-mcp.sh'"
+echo "        → syncs .mcp.json (Claude), .cursor/mcp.json (Cursor), .agents/mcp_config.json (Antigravity). Enable per phase (see plugins/README.md)."
+echo "✅ DONE. Run 'bash .agent/scripts/verify-plugins.sh' to check."

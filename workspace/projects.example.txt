@@ -1,0 +1,15 @@
+# Vide-Coder — projects manifest (for workspace-setup.sh)
+# One project per line:  <repo-url-or-local-path>  [name]  [branch]
+#   - repo-url    : git URL (https/ssh) OR a local path to copy
+#   - name        : optional folder under workspace/ (default: derived from URL)
+#   - branch      : optional branch to check out (default: repo default)
+# Lines starting with # and blank lines are ignored.
+#
+# Copy this file to workspace/projects.txt and edit, then run:
+#   bash .agent/scripts/workspace-setup.sh --manifest workspace/projects.txt
+
+# Examples:
+# https://github.com/acme/web-frontend.git      web        main
+# https://github.com/acme/api-service.git        api        develop
+# git@github.com:acme/mobile-app.git             mobile
+# /home/me/local/legacy-monolith                 legacy

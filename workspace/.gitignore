@@ -1,0 +1,10 @@
+# =============================================================================
+# WORKSPACE — CLONE the target project(s) source into here.
+# Ignore ALL contents (the base does not track project source),
+# keeping only this file, README.md, and the example manifest so the AI Agent
+# knows where to read source and how to bootstrap projects.
+# =============================================================================
+*
+!.gitignore
+!README.md
+!projects.example.txt

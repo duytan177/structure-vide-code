@@ -23,3 +23,10 @@ out/
 # AI Agent Temporary Artifacts / Cache
 .agent/cache/
 *.tmp
+
+# Skill mirror for Antigravity — auto-generated from .claude/skills by sync-skills.sh
+# (not tracked to avoid duplication; run 'bash .agent/scripts/sync-skills.sh' or init.sh after cloning)
+.agents/
+
+# MCP activation backups (created by workspace-setup.sh --activate)
+.mcp.json.bak.*

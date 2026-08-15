@@ -1,17 +1,17 @@
-# THƯ MỤC DISCOVERY - RESEARCH & BRAINSTORMING (docs/discovery/)
+# DISCOVERY DIRECTORY - RESEARCH & BRAINSTORMING (docs/discovery/)
 
-Thư mục này chứa các tài liệu ghi chép thuộc **Bước 1: DISCOVERY** trong Quy trình 11 bước lập trình AI:
-- Ghi chép các buổi Brainstorming ý tưởng tính năng.
-- Ghi chép Q&A giải đáp thắc mắc giữa Team phát triển, BA và Khách hàng.
-- Kết quả nghiên cứu công nghệ, thư viện, giải pháp kỹ thuật (Research notes).
+This directory holds the notes belonging to **Step 1: DISCOVERY** in the 11-step AI programming workflow:
+- Notes from feature-idea Brainstorming sessions.
+- Notes from Q&A resolving questions between the development Team, BA, and Client.
+- Results of technology, library, and technical-solution research (Research notes).
 
 ---
 
-## 📌 QUY NĂNG ĐẶT TÊN FILE DISCOVERY
+## 📌 DISCOVERY FILE NAMING CONVENTIONS
 - Brainstorming: `discovery-YYYYMMDD-brainstorm-<feature>.md`
 - Q&A & Research: `discovery-YYYYMMDD-qa-<feature>.md`
 
 ---
 
-## ⚡ HƯỚNG DẪN KÍCH HOẠT SKILL DISCOVERY
-Sử dụng Skill [`.agent/skills/core/discovery-brainstorm.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/discovery-brainstorm.md) để AI Agent tự động hỗ trợ đặt câu hỏi làm rõ yêu cầu, tổng hợp ý kiến họp và chốt các điểm làm mờ trước khi chuyển sang Bước 2 (Impact Analysis) & Bước 3 (Architecture).
+## ⚡ GUIDE TO ACTIVATING THE DISCOVERY SKILL
+Use the Skill [`.claude/skills/discovery-brainstorm/SKILL.md`](.claude/skills/discovery-brainstorm/SKILL.md) so the AI Agent automatically helps ask clarifying questions, synthesize meeting input, and resolve ambiguous points before moving on to Step 2 (Impact Analysis) & Step 3 (Architecture).

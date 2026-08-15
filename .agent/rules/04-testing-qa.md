@@ -1,27 +1,27 @@
-# TIÊU CHUẨN KIỂM THỬ VÀ ĐẢM BẢO CHẤT LƯỢNG (04-testing-qa.md)
+# TESTING AND QUALITY ASSURANCE STANDARDS (04-testing-qa.md)
 
-Tài liệu này quy định quy trình kiểm thử tự động, quét bảo mật và kiểm thử E2E giao diện trước khi bàn giao code.
+This document defines the process for automated testing, security scanning, and E2E UI testing before handing off code.
 
 ---
 
-## 🧪 1. CÁC TẦNG KIỂM THỬ (TESTING PYRAMID)
+## 🧪 1. TESTING LAYERS (TESTING PYRAMID)
 
 1. **Unit Testing**:
-   - Viết test cho tất cả Pure Functions, Utility Methods, Business Logic Services.
-   - Target Coverage tối thiểu: 80%.
+   - Write tests for all Pure Functions, Utility Methods, and Business Logic Services.
+   - Minimum target coverage: 80%.
 2. **Integration Testing**:
-   - Kiểm thử kết nối giữa API Controller - Service - Database layer.
-3. **End-to-End (E2E) Testing với Playwright MCP**:
-   - Sử dụng **Playwright MCP** để giả lập hành vi người dùng trên giao diện web/app (Click, Type, Form Submit, Navigation).
-   - Verify tất cả Acceptance Criteria (AC) của Jira task bằng E2E test scripts.
+   - Test the connections between the API Controller - Service - Database layer.
+3. **End-to-End (E2E) Testing with Playwright MCP**:
+   - Use **Playwright MCP** to simulate user behavior on the web/app interface (Click, Type, Form Submit, Navigation).
+   - Verify all Acceptance Criteria (AC) of the Jira task with E2E test scripts.
 
 ---
 
-## 🛡️ 2. QUÉT BẢO MẬT & PHÂN TÍCH TĨNH (STATIC ANALYSIS & SECURITY SCAN)
+## 🛡️ 2. SECURITY SCAN & STATIC ANALYSIS (STATIC ANALYSIS & SECURITY SCAN)
 
-Trước khi coi một task là hoàn thành (`completed`), AI Agent phải chạy các công cụ tĩnh:
-- **Semgrep**: Quét lỗ hổng bảo mậtOWASP Top 10 (SQL Injection, XSS, Hardcoded Credentials, Insecure Deserialization).
-- **Linter ngôn ngữ**:
+Before considering a task `completed`, the AI Agent must run the static tools:
+- **Semgrep**: Scan for OWASP Top 10 security vulnerabilities (SQL Injection, XSS, Hardcoded Credentials, Insecure Deserialization).
+- **Language linter**:
   - JavaScript/TypeScript: `eslint .`
   - PHP: `vendor/bin/phpstan analyse` / `larastan`
   - Python: `flake8` / `black --check`
@@ -29,9 +29,9 @@ Trước khi coi một task là hoàn thành (`completed`), AI Agent phải ch�
 
 ---
 
-## ✅ 3. CHECKLIST KIỂM TRA TRƯỚC KHI TẠO PULL REQUEST (PR CHECKLIST)
+## ✅ 3. PRE-PULL-REQUEST CHECKLIST (PR CHECKLIST)
 
-- [ ] Code không còn warning hay error từ Linter.
-- [ ] Chạy thành công Semgrep security scan không báo lỗi High/Critical.
-- [ ] Tất cả Unit Tests & E2E Playwright Tests passed.
-- [ ] Đã cập nhật tài liệu spec/ADR/memory nếu có thay đổi logic.
+- [ ] No remaining warnings or errors from the Linter.
+- [ ] Semgrep security scan runs successfully with no High/Critical findings.
+- [ ] All Unit Tests & E2E Playwright Tests passed.
+- [ ] Updated spec/ADR/memory documentation if any logic changed.

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Minimal Step 8 (Self Validation), run locally before commit.
+# Auto-detects the toolchain — does not fail if not installed (only warns), fails when a present tool errors.
+set -u
+
+fail=0
+
+if [ -f package.json ]; then
+  if command -v npm >/dev/null 2>&1; then
+    if npm run | grep -q " lint"; then npm run lint --if-present || fail=1; fi
+    if npm run | grep -q " typecheck"; then npm run typecheck --if-present || fail=1; fi
+  fi
+fi
+
+# Basic block for secrets/hardcoded credentials in staged files
+staged="$(git diff --cached --name-only --diff-filter=ACM)"
+if [ -n "$staged" ]; then
+  if printf '%s\n' "$staged" | xargs -r grep -nEI '(AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|password\s*=\s*["'"'"'][^"'"'"']{6,})' 2>/dev/null; then
+    echo "❌ Potential secret/credential leak detected in staged files. Please remove it before committing."
+    fail=1
+  fi
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo "❌ pre-commit failed. Fix the errors and commit again."
+  exit 1
+fi
+exit 0

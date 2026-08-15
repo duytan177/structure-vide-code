@@ -1,33 +1,38 @@
-# MA TRẬN PLUGIN VÀ QUẢN LÝ CONTEXT WINDOW BUDGETING (README.md)
+# PLUGIN MATRIX AND CONTEXT WINDOW BUDGETING MANAGEMENT (README.md)
 
-Tài liệu này tổng hợp ma trận 10 Plugin/MCP mở rộng và **Quy tắc Quản lý Context Window (Token Budgeting)** bắt buộc cho AI Agent.
+This document consolidates the matrix of 10 extension Plugins/MCPs and the mandatory **Context Window Management Rules (Token Budgeting)** for the AI Agent.
 
 ---
 
-## ⚡ QUY TẮC NGUYÊN TẮC VÀNG: TOKEN CONTEXT BUDGETING
+## ⚡ GOLDEN RULE: TOKEN CONTEXT BUDGETING
 
 > [!WARNING]
-> Kích hoạt quá nhiều MCP Server cùng lúc sẽ làm dung lượng Context Window (200k tokens) bị sụt giảm thảm hại xuống chỉ còn 70k tokens, khiến AI Agent mau bị quên ngữ cảnh dự án!
+> Enabling too many MCP Servers at once will cause the Context Window capacity (200k tokens) to collapse disastrously to just 70k tokens, making the AI Agent quickly forget the project context!
 
-1. **Giới hạn số MCPs hoạt động**: Chỉ giữ tối đa **< 10 MCP Servers** được bật đồng thời trong một dự án.
-2. **Kích hoạt MCP theo Phase**:
-   - **Pha Nghiên cứu**: Chỉ bật `Filesystem MCP`, `Context7 MCP`, `Database MCP`.
-   - **Pha Lập trình**: Chỉ bật `Filesystem MCP`, `Semgrep`.
-   - **Pha E2E Testing & PR**: Chỉ bật `Playwright MCP`, `GitHub MCP`.
+1. **Limit the number of active MCPs**: Keep at most **< 10 MCP Servers** enabled simultaneously in a single project.
+2. **Enable MCPs per Phase**:
+   - **Research Phase**: Enable only `Filesystem MCP`, `Context7 MCP`, `Database MCP`.
+   - **Coding Phase (BE)**: Enable only `Filesystem MCP`, `Semgrep`.
+   - **FE/UI Phase**: Enable only `Figma MCP`, `shadcn/ui MCP`, `Magic MCP`, `Filesystem MCP` (disable when FE is done).
+   - **E2E Testing & PR Phase**: Enable only `Playwright MCP`, `GitHub MCP`.
 
 ---
 
-## 📊 MA TRẬN 10 PLUGIN CHIẾN LƯỢC
+## 📊 THE 10 STRATEGIC PLUGIN MATRIX
 
-| Mức Ưu Tiên | Plugin / MCP | Vai Trò & Chức Năng Chính | File Hướng Dẫn Chi Tiết |
+| Priority Level | Plugin / MCP | Role & Core Function | Detailed Guide File |
 | :---: | :--- | :--- | :--- |
-| ⭐⭐⭐⭐⭐ | **Graphify** | Xây dựng Knowledge Graph của codebase, giúp AI hiểu mối quan hệ đồ thị giữa các module. | [`graphify.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/graphify.md) |
-| ⭐⭐⭐⭐⭐ | **GitNexus** | Phân tích blast radius (phạm vi ảnh hưởng), execution flow và dependency sâu khi refactor. | [`gitnexus.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/gitnexus.md) |
-| ⭐⭐⭐⭐⭐ | **Superpower** | Code Graph indexing tốc độ cao cho codebase vừa và lớn. | [`superpower.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/superpower.md) |
-| ⭐⭐⭐⭐⭐ | **Playwright MCP** | Tự động hóa kiểm thử E2E giao diện web/mobile sau khi hoàn thành task. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐⭐ | **GitHub MCP** | Quản lý Git branch/worktree, commit, mở PR, review code, tạo issue tự động. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Context7 MCP** | Tra cứu tài liệu chuẩn (documentation) của framework/library đúng phiên bản ngay trong agent. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Filesystem MCP** | Đọc/ghi file an toàn và có cấu trúc phân quyền rõ ràng. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Database MCP (PostgreSQL/MySQL)** | Phân tích DB schema, kiểm tra migrations, chạy truy vấn an toàn khi cần. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Semgrep** | Security scan quét lỗ hổng bảo mật OWASP và bug theo ruleset tự định nghĩa. | [`static-analysis.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/static-analysis.md) |
-| ⭐⭐⭐⭐☆ | **CodeRabbit** | AI PR Reviewer tự động quét code smells, nhận xét PR và đề xuất tối ưu hóa. | [`static-analysis.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/static-analysis.md) |
+| ⭐⭐⭐⭐⭐ | **Superpowers** (methodology) | **Skill/workflow engine** (brainstorm→plan→impl→TDD→review). Vide-Coder uses it directly, does NOT rebuild it. | [`superpowers.md`](superpowers.md) |
+| ⭐⭐⭐⭐⭐ | **Graphify** | Builds a Knowledge Graph of the codebase, helping the AI understand the graph relationships between modules. | [`graphify.md`](graphify.md) |
+| ⭐⭐⭐⭐⭐ | **GitNexus** | Analyzes blast radius (impact scope), execution flow, and deep dependencies when refactoring. | [`gitnexus.md`](gitnexus.md) |
+| ⭐⭐⭐⭐☆ | **Superpower** (code-graph) | High-speed Code Graph indexing (medium/large codebases). ⚠️ OPTIONAL — package name unverified; prefer Graphify/GitNexus. DIFFERENT from *Superpowers* methodology above. | [`superpower.md`](superpower.md) |
+| ⭐⭐⭐⭐⭐ | **Playwright MCP** | Automates E2E testing of web/mobile interfaces after a task is completed. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐⭐ | **GitHub MCP** | Manages Git branches/worktrees, commits, opening PRs, code review, and automatic issue creation. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Context7 MCP** | Looks up the standard documentation of a framework/library at the correct version, right inside the agent. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Filesystem MCP** | Reads/writes files safely with a clear permission structure. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Database MCP (PostgreSQL/MySQL)** | Analyzes the DB schema, checks migrations, and runs safe queries when needed. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Semgrep** | Security scan that detects OWASP vulnerabilities and bugs based on a custom ruleset. | [`static-analysis.md`](static-analysis.md) |
+| ⭐⭐⭐⭐☆ | **CodeRabbit** | AI PR Reviewer that automatically scans for code smells, comments on PRs, and suggests optimizations. | [`static-analysis.md`](static-analysis.md) |
+| ⭐⭐⭐⭐⭐ | **Figma MCP** | Design-to-code: extracts design context, tokens (variables), screenshots, and Code Connect for beautiful FE. | [`figma.md`](figma.md) |
+| ⭐⭐⭐⭐☆ | **shadcn/ui MCP** | Registry of beautiful, accessible components (Radix + Tailwind) for adding/keeping UI consistent. | [`figma.md`](figma.md) |
+| ⭐⭐⭐⭐☆ | **Magic MCP (21st.dev)** | Generates beautiful UI components/sections from a description → inspiration for the `ui-ux-promax` polish. | [`figma.md`](figma.md) |

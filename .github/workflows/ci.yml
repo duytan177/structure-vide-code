@@ -1,0 +1,73 @@
+name: CI — Self Validation & AI Review (Steps 8-9)
+
+# Automatically runs Lint + Typecheck + Test + Security Scan on every PR / push.
+# NOTE: the project source lives in workspace/ and is gitignored → the BASE CI does not see that code.
+#   • Each project in workspace/ is an independent repo with its own CI (you can copy this file as a template).
+#   • This CI mainly validates the base itself + Semgrep scans whatever is tracked.
+# The Node steps are guarded by a condition: they only run when package.json exists.
+
+on:
+  push:
+    branches: [master, main, develop]
+  pull_request:
+    branches: [master, main, develop]
+
+jobs:
+  validate-skills:
+    name: Validate Agent Skills (SKILL.md)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate SKILL.md frontmatter (agentskills.io standard)
+        run: bash .agent/scripts/validate-skills.sh
+
+  self-validation:
+    name: Lint · Typecheck · Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect Node project
+        id: detect
+        run: |
+          if [ -f package.json ]; then echo "node=true" >> "$GITHUB_OUTPUT"; else echo "node=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Setup Node
+        if: steps.detect.outputs.node == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        if: steps.detect.outputs.node == 'true'
+        run: npm ci || npm install
+
+      - name: Lint
+        if: steps.detect.outputs.node == 'true'
+        run: npm run lint --if-present
+
+      - name: Typecheck
+        if: steps.detect.outputs.node == 'true'
+        run: npm run typecheck --if-present
+
+      - name: Unit tests
+        if: steps.detect.outputs.node == 'true'
+        run: npm test --if-present
+
+      - name: No stack yet
+        if: steps.detect.outputs.node == 'false'
+        run: echo "⚠️ No package.json yet — skipping lint/test. Update the workflow once a stack is chosen."
+
+  security-scan:
+    name: Semgrep (OWASP)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semgrep scan
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >-
+            p/owasp-top-ten
+            .semgrep.yml
+        continue-on-error: true

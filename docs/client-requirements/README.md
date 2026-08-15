@@ -1,24 +1,24 @@
-# THƯ MỤC TÀI LIỆU YÊU CẦU BAN ĐẦU TỪ KHÁCH HÀNG (docs/client-requirements/)
+# INITIAL CLIENT REQUIREMENTS DIRECTORY (docs/client-requirements/)
 
-Thư mục này chứa tất cả các **Tài liệu Yêu cầu Ban đầu (Raw Requirements / BRD - Business Requirement Documents)** do phía Khách hàng hoặc Product Owner (PO) cung cấp khi mới bắt đầu khởi tạo dự án.
-
----
-
-## 📌 ĐỊNH DẠNG FILE HỖ TRỢ
-Bạn có thể đưa vào thư mục này các định dạng file:
-- File Markdown (`.md`), Text (`.txt`)
-- File Word (`.docx`, `.doc`), PDF (`.pdf`)
-- File sơ đồ quy trình, tài liệu mô tả bài toán kinh doanh
+This directory holds all the **Initial Requirement Documents (Raw Requirements / BRD - Business Requirement Documents)** provided by the Client or Product Owner (PO) at the very start of project initialization.
 
 ---
 
-## ⚡ HƯỚNG DẪN KHỞI TẠO DỰ ÁN TỪ REQUIREMENTS GỐC
+## 📌 SUPPORTED FILE FORMATS
+You can place the following file formats into this directory:
+- Markdown (`.md`), Text (`.txt`) files
+- Word (`.docx`, `.doc`), PDF (`.pdf`) files
+- Process diagram files, business-problem description documents
 
-Khi mới init dự án và vừa đưa các file tài liệu của khách hàng vào thư mục này, bạn chỉ cần ra lệnh cho AI Agent:
-> *"AI Agent hãy đọc tài liệu yêu cầu ban đầu trong docs/client-requirements/ và khởi tạo các đặc tả tính năng trong docs/specs/ cùng bộ Jira tasks ban đầu trong tasks/backlog/"*
+---
 
-AI Agent sẽ tự động kích hoạt Skill [`.agent/skills/core/parse-client-requirements.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/parse-client-requirements.md) để:
-1. Đọc và phân tích toàn bộ tài liệu yêu cầu gốc.
-2. Trích xuất danh sách Actors, Modules, Functional Requirements và Business Rules.
-3. Sinh các file đặc tả Markdown chuẩn hóa trong `docs/specs/`.
-4. Khởi tạo bộ Jira Backlog Tasks ban đầu trong `tasks/backlog/`.
+## ⚡ GUIDE TO INITIALIZING A PROJECT FROM THE ORIGINAL REQUIREMENTS
+
+When you have just initialized the project and placed the client's documents into this directory, simply instruct the AI Agent:
+> *"AI Agent, read the initial requirement documents in docs/client-requirements/ and initialize the feature specs in docs/specs/ along with the initial Jira task set in tasks/backlog/"*
+
+The AI Agent will automatically activate the Skill [`.claude/skills/write-spec/SKILL.md`](.claude/skills/write-spec/SKILL.md) to:
+1. Read and analyze all the original requirement documents.
+2. Extract the list of Actors, Modules, Functional Requirements, and Business Rules.
+3. Generate standardized Markdown spec files in `docs/specs/`.
+4. Initialize the initial Jira Backlog Task set in `tasks/backlog/`.

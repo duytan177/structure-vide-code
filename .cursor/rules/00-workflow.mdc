@@ -1,0 +1,30 @@
+---
+description: Vide-Coder — the standardized 11-step workflow for every task
+globs:
+alwaysApply: true
+---
+
+# Vide-Coder Workflow (Cursor entry-point)
+
+The single source of truth: [`.agent/rules/00-ai-workflow.md`](../../.agent/rules/00-ai-workflow.md).
+This file is only a pointer — always read the source rule before working.
+
+## MANDATORY
+- Read & follow all 11 steps: Discovery → Impact → Architecture → Specification → Planning →
+  Task Breakdown → Implementation → Self Validation → AI Review → Human Review → Knowledge Update.
+- **Do not skip** Discovery, Impact Analysis, Self-Validation.
+- Each task = its own Git Worktree.
+- Branch `feature|fix|refactor|hotfix/PROJECT-XXX-desc`; commit Conventional Commits + Jira ID.
+- Before considering it Done: see `docs/DEFINITION-OF-DONE.md`.
+
+## Mandatory rule documents to read
+- `.agent/rules/01-code-style.md`
+- `.agent/rules/02-architecture-principles.md`
+- `.agent/rules/03-git-jira-workflow.md`
+- `.agent/rules/04-testing-qa.md`
+
+## Skills / Personas / Plugins
+- Skills (SKILL.md standard): `.claude/skills/` (Antigravity: `.agents/skills/`)
+- Personas: `.agent/agents/`
+- Plugins & token budgeting: `.agent/plugins/README.md`
+- MCP (Cursor): `.cursor/mcp.json`

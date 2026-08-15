@@ -1,23 +1,23 @@
-# QUY ĐỊNH WORKFLOW GIT VÀ JIRA INTEGRATION (03-git-jira-workflow.md)
+# GIT WORKFLOW AND JIRA INTEGRATION RULES (03-git-jira-workflow.md)
 
-Tài liệu này hướng dẫn AI Agent và lập trình viên quy trình làm việc với Git, tên branch, commit message và đồng bộ công việc với Jira Backlog.
-
----
-
-## 🌿 1. QUY TẮC ĐẶT TÊN BRANCH (GIT BRANCHING MODEL)
-
-Mọi branch làm việc phải gắn liền với **Jira Ticket ID**:
-
-- **Feature Branch**: `feature/PROJECT-XXX-short-description` (Thêm tính năng mới)
-- **Bugfix Branch**: `fix/PROJECT-XXX-short-description` (Sửa lỗi Bug)
-- **Refactor Branch**: `refactor/PROJECT-XXX-short-description` (Tái cấu trúc code)
-- **Hotfix Branch**: `hotfix/PROJECT-XXX-short-description` (Sửa lỗi khẩn cấp trên Production)
+This document guides AI Agents and developers through the workflow for Git, branch naming, commit messages, and syncing work with the Jira Backlog.
 
 ---
 
-## 📝 2. CHUẨN COMMIT MESSAGE (CONVENTIONAL COMMITS)
+## 🌿 1. BRANCH NAMING RULES (GIT BRANCHING MODEL)
 
-Cú pháp commit bắt buộc tuân theo:
+Every working branch must be tied to a **Jira Ticket ID**:
+
+- **Feature Branch**: `feature/PROJECT-XXX-short-description` (Adding a new feature)
+- **Bugfix Branch**: `fix/PROJECT-XXX-short-description` (Fixing a Bug)
+- **Refactor Branch**: `refactor/PROJECT-XXX-short-description` (Refactoring code)
+- **Hotfix Branch**: `hotfix/PROJECT-XXX-short-description` (Emergency fix on Production)
+
+---
+
+## 📝 2. COMMIT MESSAGE STANDARD (CONVENTIONAL COMMITS)
+
+The mandatory commit syntax is:
 
 ```text
 <type>(<scope>): <Jira Issue ID> - <Short Summary>
@@ -26,16 +26,16 @@ Cú pháp commit bắt buộc tuân theo:
 [Optional Footer]
 ```
 
-### Các loại Types:
-- `feat`: Thêm tính năng mới
-- `fix`: Sửa lỗi bug
-- `docs`: Sửa/thêm tài liệu
-- `style`: Định dạng code (whitespace, format - không đổi logic)
-- `refactor`: Sửa code không đổi tính năng, không sửa bug
-- `test`: Thêm hoặc sửa test case
-- `chore`: Thay đổi build script, package dependency
+### Types:
+- `feat`: Add a new feature
+- `fix`: Fix a bug
+- `docs`: Edit/add documentation
+- `style`: Code formatting (whitespace, format - no logic change)
+- `refactor`: Change code without changing features and without fixing a bug
+- `test`: Add or edit test cases
+- `chore`: Change build scripts, package dependencies
 
-### Ví dụ chuẩn:
+### Standard example:
 ```text
 feat(auth): PROJECT-102 - Implement JWT refresh token rotation mechanism
 
@@ -44,13 +44,17 @@ feat(auth): PROJECT-102 - Implement JWT refresh token rotation mechanism
 - Update auth service tests
 ```
 
+> 🤖 **Auto-render commits**: The AI Agent MUST use the skill [`semantic-commit-render.md`](.claude/skills/semantic-commit/SKILL.md)
+> (or `/commit`) to generate a title + description tied to the task/spec, without rambling.
+> SemVer mapping: `feat`→MINOR, `fix`/`perf`→PATCH, `!` or `BREAKING CHANGE:`→MAJOR.
+
 ---
 
-## 🔄 3. QUY TRÌNH ĐỒNG BỘ JIRA TASKS IN LOCAL REPOSITORY
+## 🔄 3. PROCESS FOR SYNCING JIRA TASKS IN THE LOCAL REPOSITORY
 
-1. Khi bắt đầu task mới trên Jira:
-   - Đọc file task tương ứng trong `tasks/backlog/PROJECT-XXX.md`.
-   - Di chuyển file sang `tasks/in-progress/PROJECT-XXX.md`.
-2. Khi hoàn thành và tạo PR:
-   - Sử dụng **GitHub MCP** để đẩy branch và mở PR.
-   - Di chuyển file sang `tasks/completed/PROJECT-XXX.md`.
+1. When starting a new task on Jira:
+   - Read the corresponding task file in `tasks/backlog/PROJECT-XXX.md`.
+   - Move the file to `tasks/in-progress/PROJECT-XXX.md`.
+2. When finished and creating a PR:
+   - Use the **GitHub MCP** to push the branch and open the PR.
+   - Move the file to `tasks/completed/PROJECT-XXX.md`.

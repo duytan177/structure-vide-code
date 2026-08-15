@@ -1,35 +1,41 @@
-# QUY TẮC CODE VÀ PHONG CÁCH LẬP TRÌNH DỰ ÁN (01-code-style.md)
+# CODE RULES AND PROGRAMMING STYLE (01-code-style.md)
 
-Tài liệu này quy định phong cách viết code (Code Style & Formatting Guidelines) của dự án. File này được tùy chỉnh linh hoạt (flex) tùy theo ngôn ngữ và framework được chọn cho `src/frontend` và `src/backend`.
+This document defines the code writing style (Code Style & Formatting Guidelines). This file flexes to the language/framework of the **target project**.
+
+> ℹ️ Vide-Coder is an **overlay** — the rules below apply to the source in `workspace/<project-name>/` (whether the layout is `src/frontend`, `src/backend`, or any pre-existing structure).
 
 ---
 
-## 🎨 Quy Tắc Chung Cho Mọi Ngôn Ngữ
+## 🎨 General Rules for Every Language
 
-1. **Rõ ràng > Ngắn gọn**: Tên biến, tên hàm phải tự giải thích ý nghĩa (self-describing). Tránh viết tắt không rõ nghĩa (dùng `userRegistrationDate` thay vì `usrRegDt`).
-2. **Kích thước Hàm/Method**: Mỗi hàm chỉ nên làm đúng 1 việc (Single Responsibility Principle). Độ dài tối đa ~30-50 dòng.
-3. **Clean Code & Don't Repeat Yourself (DRY)**: Đưa logic chung vào `src/shared/` hoặc `utils/`. Tránh copy-paste code.
-4. **Xử lý Lỗi (Error Handling)**: Luôn catch exception có chọn lọc, trả về error message rõ ràng và log lỗi với context đầy đủ.
-5. **Không Dùng Magic Numbers / Hardcoded Strings**: Đưa tất cả constant vào file config hoặc Enum.
+1. **Clear > Concise**: Variable and function names must be self-describing. Avoid unclear abbreviations (use `userRegistrationDate` instead of `usrRegDt`).
+2. **Function/Method Size**: Each function should do exactly one thing (Single Responsibility Principle). Maximum length ~30-50 lines.
+3. **Clean Code & Don't Repeat Yourself (DRY)**: Move shared logic into `src/shared/` or `utils/`. Avoid copy-pasting code.
+4. **Error Handling**: Always catch exceptions selectively, return clear error messages, and log errors with full context.
+5. **No Magic Numbers / Hardcoded Strings**: Move all constants into a config file or an Enum.
 
 ---
 
 ## 💻 Frontend Guidelines (`src/frontend`)
 
-- **Component Architecture**: Sử dụng Functional Components, Atomic Design Pattern hoặc Modular Feature Folders.
-- **State Management**: Phân định rõ Component Local State (UI state) và Global Application State (Redux, Zustand, Pinia...).
-- **CSS / Styling**: 
-  - Ưu tiên Vanilla CSS / CSS Modules hoặc Tailwind CSS (khi dự án yêu cầu).
-  - Sử dụng CSS Variables cho Theme, Color Palette, Spacing.
-  - Áp dụng hiệu ứng mượt mà (smooth transitions, hover states, micro-animations).
+> 🎨 Build beautiful/aesthetic, smooth, premium FE + resist "AI-slop" (design-to-code from Figma, motion, a11y):
+> skill [`ui-ux-promax`](.claude/skills/ui-ux-promax/SKILL.md) — command `/ui` (or `/fe`).
+> MCP: [`figma.md`](../plugins/figma.md) (Figma + shadcn/ui + Magic 21st.dev).
+
+- **Component Architecture**: Use Functional Components, the Atomic Design Pattern, or Modular Feature Folders.
+- **State Management**: Clearly distinguish Component Local State (UI state) from Global Application State (Redux, Zustand, Pinia, etc.).
+- **CSS / Styling**:
+  - Prefer Vanilla CSS / CSS Modules or Tailwind CSS (when the project requires it).
+  - Use CSS Variables for Theme, Color Palette, and Spacing.
+  - Apply smooth effects (smooth transitions, hover states, micro-animations).
 
 ---
 
 ## ⚙️ Backend Guidelines (`src/backend`)
 
-- **Layered Architecture**: Tách biệt rõ Controllers/Handlers -> Services/UseCases -> Repositories/Models.
-- **API Standards**: 
-  - RESTful API hoặc GraphQL chuẩn hóa format JSON response:
+- **Layered Architecture**: Clearly separate Controllers/Handlers -> Services/UseCases -> Repositories/Models.
+- **API Standards**:
+  - RESTful API or GraphQL with a standardized JSON response format:
     ```json
     {
       "success": true,
@@ -38,11 +44,11 @@ Tài liệu này quy định phong cách viết code (Code Style & Formatting Gu
       "errors": null
     }
     ```
-- **Database Querying**: Tránh N+1 query, dùng ORM/Query Builder có Indexing phù hợp.
+- **Database Querying**: Avoid N+1 queries, use an ORM/Query Builder with appropriate Indexing.
 
 ---
 
 ## 🔄 Shared Code Guidelines (`src/shared`)
 
-- Chứa các TypeScript Types/Interfaces, DTO Validation Schemas, Utility Functions dùng chung cho cả FE và BE.
-- Không chứa code có side-effect trực tiếp tới môi trường DOM (browser) hoặc Database driver.
+- Contains TypeScript Types/Interfaces, DTO Validation Schemas, and Utility Functions shared by both FE and BE.
+- Must not contain code with side-effects directly against the DOM (browser) or a Database driver.

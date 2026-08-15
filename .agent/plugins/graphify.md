@@ -1,16 +1,23 @@
 # GRAPHIFY PLUGIN GUIDE (graphify.md)
 
-**Mức ưu tiên**: ⭐⭐⭐⭐⭐  
-**Vai trò**: Xây dựng Knowledge Graph cho codebase, giúp AI hiểu sơ đồ mối quan hệ giữa các module, class, hàm và thành phần trong `src/`.
+**Priority level**: ⭐⭐⭐⭐⭐  
+**Role**: Builds a Knowledge Graph for the codebase, helping the AI understand the relationship diagram between modules, classes, functions, and components in `src/`.
 
 ---
 
-## 🎯 CÁC TÍNH NĂNG CHÍNH
-1. **Knowledge Graph Generation**: Tạo đồ thị liên kết tri thức giữa các file trong `src/frontend`, `src/backend` và `src/shared`.
-2. **Context Querying**: Tra cứu nhanh xem một entity (Model/Service/Component) được import và sử dụng ở những nơi nào trong toàn bộ dự án.
+## 🎯 KEY FEATURES
+1. **Knowledge Graph Generation**: Creates a knowledge-linkage graph between files in `src/frontend`, `src/backend`, and `src/shared`.
+2. **Context Querying**: Quickly looks up where an entity (Model/Service/Component) is imported and used across the entire project.
 
 ---
 
-## 📋 LỆNH HOẶC PROMPT MẪU DÀNH CHO AI AGENT
-- `graphify query "UserAuthenticationService"` -> Trả về tất cả các controller, middleware, UI component đang gọi service này.
-- `graphify rebuild` -> Cập nhật lại Knowledge Graph sau khi vừa tạo thêm nhiều file mới.
+## 📋 SAMPLE COMMANDS OR PROMPTS FOR THE AI AGENT
+- `graphify query "UserAuthenticationService"` -> Returns all controllers, middleware, and UI components calling this service.
+- `graphify rebuild` -> Rebuilds the Knowledge Graph after creating many new files.
+
+## 🛠️ INSTALL
+- PyPI package is **`graphifyy`**; the CLI command stays **`graphify`**:
+  ```bash
+  pip install graphifyy
+  ```
+- Works with Claude Code / Cursor / Antigravity (skill `/graphify`). Repo: https://github.com/Graphify-Labs/graphify

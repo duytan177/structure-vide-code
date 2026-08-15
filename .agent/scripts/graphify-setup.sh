@@ -29,8 +29,11 @@ WS="$ROOT/workspace"
 CFG_TEMPLATE="$ROOT/.agent/plugins/installer/graphify.config.json"
 
 GRAPHIFY_BIN="${GRAPHIFY_BIN:-graphify}"
-GRAPHIFY_INIT_CMD="${GRAPHIFY_INIT_CMD:-init}"
-GRAPHIFY_REBUILD_CMD="${GRAPHIFY_REBUILD_CMD:-rebuild}"
+# Real Graphify CLI (0.9.x) builds/updates the graph with:  graphify update <path>
+# (no LLM needed for extraction). Override if your build differs.
+GRAPHIFY_UPDATE_CMD="${GRAPHIFY_UPDATE_CMD:-update}"
+# Extra flags for the update command (e.g. --no-cluster to skip LLM community naming).
+GRAPHIFY_UPDATE_FLAGS="${GRAPHIFY_UPDATE_FLAGS:-}"
 
 info() { printf '  %s\n' "$*"; }
 step() { printf '\n▶ %s\n' "$*"; }
@@ -87,12 +90,14 @@ process_project() {
   ( cd "$d" || exit 1
     case "$ACTION" in
       setup)
-        "$GRAPHIFY_BIN" "$GRAPHIFY_INIT_CMD" . 2>&1 | sed 's/^/    /' \
-          && info "indexed." || warn "graphify $GRAPHIFY_INIT_CMD failed for $name"
+        # shellcheck disable=SC2086
+        "$GRAPHIFY_BIN" "$GRAPHIFY_UPDATE_CMD" . $GRAPHIFY_UPDATE_FLAGS 2>&1 | sed 's/^/    /' \
+          && info "indexed → graphify-out/graph.json" || warn "graphify $GRAPHIFY_UPDATE_CMD failed for $name"
         ;;
       rebuild)
-        "$GRAPHIFY_BIN" "$GRAPHIFY_REBUILD_CMD" 2>&1 | sed 's/^/    /' \
-          && info "rebuilt." || warn "graphify $GRAPHIFY_REBUILD_CMD failed for $name"
+        # shellcheck disable=SC2086
+        "$GRAPHIFY_BIN" "$GRAPHIFY_UPDATE_CMD" . --force $GRAPHIFY_UPDATE_FLAGS 2>&1 | sed 's/^/    /' \
+          && info "rebuilt (forced)." || warn "graphify $GRAPHIFY_UPDATE_CMD --force failed for $name"
         ;;
       sync)
         if [ -d "$d/.git" ]; then
@@ -101,8 +106,9 @@ process_project() {
         else
           info "not a git repo — skipping pull, rebuilding only"
         fi
-        "$GRAPHIFY_BIN" "$GRAPHIFY_REBUILD_CMD" 2>&1 | sed 's/^/    /' \
-          && info "graph synced." || warn "graphify $GRAPHIFY_REBUILD_CMD failed for $name"
+        # shellcheck disable=SC2086
+        "$GRAPHIFY_BIN" "$GRAPHIFY_UPDATE_CMD" . --force $GRAPHIFY_UPDATE_FLAGS 2>&1 | sed 's/^/    /' \
+          && info "graph synced." || warn "graphify $GRAPHIFY_UPDATE_CMD --force failed for $name"
         ;;
       *) warn "unknown action: $ACTION (use setup|rebuild|sync)"; exit 2 ;;
     esac

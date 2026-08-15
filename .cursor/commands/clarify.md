@@ -1,8 +1,8 @@
-# /clarify — Làm rõ yêu cầu mơ hồ (Bước 1.5)
+# /clarify — Clarify ambiguous requirements (Step 1.5)
 
-Bóc tách & hỏi làm rõ điểm mơ hồ trước khi viết Spec, theo `.claude/skills/clarify-requirements/SKILL.md`.
+Break down and ask clarifying questions about ambiguous points before writing the Spec, according to `.claude/skills/clarify-requirements/SKILL.md`.
 
-- Nguồn: `docs/discovery/`, `docs/client-requirements/`, `docs/specs/_baseline/` (brownfield).
-- Hỏi có cấu trúc, ưu tiên blocker; ghi kết quả vào `docs/discovery/<feature>-clarifications.md`.
-- Ràng buộc bất biến mới → `docs/CONSTITUTION.md`.
-- Vị trí: sau `/discovery`, trước `/spec`.
+- Sources: `docs/discovery/`, `docs/client-requirements/`, `docs/specs/_baseline/` (brownfield).
+- Ask structured questions, prioritize blockers; record results in `docs/discovery/<feature>-clarifications.md`.
+- New invariant constraints → `docs/CONSTITUTION.md`.
+- Position: after `/discovery`, before `/spec`.

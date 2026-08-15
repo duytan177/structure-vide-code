@@ -1,12 +1,12 @@
 ---
-description: Bước 4 — Specification (Functional + Technical Spec)
-argument-hint: [REQ-XXX hoặc màn hình/tính năng]
+description: Step 4 — Specification (Functional + Technical Spec)
+argument-hint: [REQ-XXX or screen/feature]
 ---
 
-Thực hiện **Bước 4 — SPECIFICATION** cho: $ARGUMENTS
+Perform **Step 4 — SPECIFICATION** for: $ARGUMENTS
 
-1. Áp dụng `.claude/skills/write-spec/SKILL.md` hoặc `.claude/skills/write-spec/SKILL.md`.
-2. Sinh `docs/specs/SPEC-XXX.md` theo `docs/specs/spec-template.md` (Functional + Technical + Acceptance Criteria).
-3. Cập nhật `docs/traceability-matrix.md`: gắn REQ → SPEC.
+1. Apply `.claude/skills/write-spec/SKILL.md` or `.claude/skills/write-spec/SKILL.md`.
+2. Generate `docs/specs/SPEC-XXX.md` following `docs/specs/spec-template.md` (Functional + Technical + Acceptance Criteria).
+3. Update `docs/traceability-matrix.md`: link REQ → SPEC.
 
-Kết thúc: `/plan`.
+Wrap-up: `/plan`.

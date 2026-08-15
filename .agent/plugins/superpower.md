@@ -1,16 +1,16 @@
 # SUPERPOWER CODE GRAPH GUIDE (superpower.md)
 
-**Mức ưu tiên**: ⭐⭐⭐⭐⭐  
-**Vai trò**: Quản lý indexing và xây dựng sơ đồ ngữ cảnh (Code Graph) tốc độ cao cho codebase vừa và lớn, hỗ trợ AI Agent truy vấn nhanh symbol, class và function context.
+**Priority level**: ⭐⭐⭐⭐⭐  
+**Role**: Manages high-speed indexing and building of the context diagram (Code Graph) for medium and large codebases, helping the AI Agent quickly query symbol, class, and function context.
 
 ---
 
-## 🎯 CÁC TÍNH NĂNG CHÍNH
-1. **Symbol Tracking**: Định vị nhanh mọi nơi định nghĩa và sử dụng function/class/variable trong `src/`.
-2. **Context Booster**: Cung cấp context chính xác cho AI Agent khi sinh code hoặc refactor module.
+## 🎯 KEY FEATURES
+1. **Symbol Tracking**: Quickly locates every place a function/class/variable is defined and used in `src/`.
+2. **Context Booster**: Provides accurate context to the AI Agent when generating code or refactoring a module.
 
 ---
 
-## 📋 LỆNH HOẶC PROMPT MẪU DÀNH CHO AI AGENT
-- `superpower index --path="./src"` -> Cập nhật lại Code Graph Indexing.
-- `superpower symbol "OrderRepository"` -> Truy vấn thông tin chi tiết về class OrderRepository.
+## 📋 SAMPLE COMMANDS OR PROMPTS FOR THE AI AGENT
+- `superpower index --path="./src"` -> Rebuilds the Code Graph Indexing.
+- `superpower symbol "OrderRepository"` -> Queries detailed information about the OrderRepository class.

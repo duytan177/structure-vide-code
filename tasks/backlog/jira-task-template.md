@@ -1,31 +1,31 @@
-# JIRA TASK: PROJECT-XXX - [TIÊU ĐỀ TASK CHUẨN JIRA BACKLOG] (jira-task-template.md)
+# JIRA TASK: PROJECT-XXX - [JIRA BACKLOG-STANDARD TASK TITLE] (jira-task-template.md)
 
 - **Jira Key**: `PROJECT-XXX`
 - **Issue Type**: [Story / Task / Bug]
 - **Component**: [Frontend / Backend / Shared]
-- **Trạng thái**: [Backlog / In-Progress / Completed]
+- **Status**: [Backlog / In-Progress / Completed]
 
 ---
 
-## 📌 1. TÓM TẮT CÔNG VIỆC (SUMMARY)
-[Mô tả công việc cần làm ngắn gọn nhưng đầy đủ context.]
+## 📌 1. SUMMARY
+[Describe the work to be done concisely but with full context.]
 
 ---
 
-## ✅ 2. TIÊU CHUẨN NGHIỆM THU (ACCEPTANCE CRITERIA - AC)
+## ✅ 2. ACCEPTANCE CRITERIA (AC)
 
-### Scenario 1: [Tên kịch bản 1]
-- **Given** [Điều kiện ban đầu]
-- **When** [Hành động kích hoạt]
-- **Then** [Kết quả mong đợi]
+### Scenario 1: [Scenario 1 name]
+- **Given** [Initial condition]
+- **When** [Triggering action]
+- **Then** [Expected result]
 
 ---
 
-## 🛠️ 3. DANH SÁCH CÔNG VIỆC THỰC THI (AI SUB-TASKS CHECKLIST)
+## 🛠️ 3. EXECUTION WORK LIST (AI SUB-TASKS CHECKLIST)
 
-- [ ] **[Data & Models]**: Thêm/sửa DB Migration hoặc Type DTO trong `src/shared/` hoặc `src/backend/`
-- [ ] **[Business Service]**: Viết Service logic xử lý nghiệp vụ
-- [ ] **[API Controller]**: Thêm route handler & validate request
-- [ ] **[Frontend UI]**: Dựng component UI & binding API service
-- [ ] **[Testing]**: Viết Unit Test & chạy E2E Playwright MCP test
+- [ ] **[Data & Models]**: Add/edit DB Migration or DTO Type in `src/shared/` or `src/backend/`
+- [ ] **[Business Service]**: Write the Service logic handling the business rules
+- [ ] **[API Controller]**: Add the route handler & validate the request
+- [ ] **[Frontend UI]**: Build the UI component & bind the API service
+- [ ] **[Testing]**: Write Unit Tests & run E2E Playwright MCP tests
 - [ ] **[Review & Security]**: Run Semgrep security scan & Linter

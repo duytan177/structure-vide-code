@@ -1,15 +1,15 @@
 ---
 name: architecture-decision
 description: >
-  Ra quyết định kiến trúc & viết ADR/RFC khi có thay đổi lớn (đổi DB, thêm caching, đổi auth, lib core).
-  Dùng KHI thiết kế/đánh giá kiến trúc, hoặc user nói "kiến trúc", "ADR", "RFC", "thiết kế hệ thống".
+  Make architecture decisions & write ADR/RFC for major changes (switching DB, adding caching, changing auth, core lib).
+  Use WHEN designing/reviewing architecture, or the user says "architecture", "ADR", "RFC", "system design".
 license: MIT
 metadata: { author: vide-coder, version: "1.0" }
 ---
 
-# Architecture Decision (Bước 3)
+# Architecture Decision (Step 3)
 
-Với thay đổi lớn: viết RFC (`docs/adr/rfc-template.md`) rồi chốt ADR (`docs/adr/adr-template.md`) gồm Context/Options/Decision/Consequences; đăng ký `.agent/memory/decision-log.md`.
-Đảm bảo tuân SOLID/Clean Architecture (rule 02) và không phá `docs/CONSTITUTION.md`.
+For a major change: write an RFC (`docs/adr/rfc-template.md`) then finalize an ADR (`docs/adr/adr-template.md`) covering Context/Options/Decision/Consequences; register it in `.agent/memory/decision-log.md`.
+Ensure compliance with SOLID/Clean Architecture (rule 02) and no breach of `docs/CONSTITUTION.md`.
 
 Persona: [`architect.md`](../../../.agent/agents/architect.md). Command `/architecture`.

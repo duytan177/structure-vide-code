@@ -1,7 +1,7 @@
-# /discovery — Bước 1: DISCOVERY
+# /discovery — Step 1: DISCOVERY
 
-Thực hiện **Bước 1 (DISCOVERY)** theo nguồn chân lý `.agent/rules/00-ai-workflow.md`.
+Perform **Step 1 (DISCOVERY)** according to the single source of truth `.agent/rules/00-ai-workflow.md`.
 
-- Skill/persona chính: `.claude/skills/discovery-brainstorm/SKILL.md`
-- Đầu ra / công cụ: `docs/discovery/`
-- Tuân thủ Definition of Done: `docs/DEFINITION-OF-DONE.md`.
+- Main skill/persona: `.claude/skills/discovery-brainstorm/SKILL.md`
+- Output / tools: `docs/discovery/`
+- Comply with the Definition of Done: `docs/DEFINITION-OF-DONE.md`.

@@ -1,14 +1,14 @@
 ---
 name: plan-implementation
 description: >
-  Lập Implementation Plan chi tiết (milestone/sprint, task 2-5 phút) dùng Superpowers writing-plans.
-  Dùng SAU Spec, TRƯỚC breakdown; hoặc khi user nói "lên plan", "kế hoạch", "planning", "milestone".
+  Draft a detailed Implementation Plan (milestone/sprint, 2-5 minute tasks) using Superpowers writing-plans.
+  Use AFTER Spec, BEFORE breakdown; or when the user says "make a plan", "plan", "planning", "milestone".
 license: MIT
 metadata: { author: vide-coder, version: "1.0" }
 ---
 
-# Planning (Bước 5)
+# Planning (Step 5)
 
-Dùng skill Superpowers `writing-plans` để chia việc thành task nhỏ, đặc tả rõ để "junior làm theo được"; lưu `plans/yyyy-mm-dd-<feature>.md` kèm milestone/sprint.
+Use the Superpowers `writing-plans` skill to break work into small tasks, specified clearly enough that "a junior can follow along"; save to `plans/yyyy-mm-dd-<feature>.md` with milestones/sprints.
 
 Persona: [`planner.md`](../../../.agent/agents/planner.md). Command `/plan`. Next: `/breakdown` → `/analyze`.

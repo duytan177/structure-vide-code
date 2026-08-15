@@ -1,13 +1,13 @@
 ---
-description: Làm rõ yêu cầu mơ hồ trước khi viết Spec (Bước 1.5)
+description: Clarify ambiguous requirements before writing the Spec (Step 1.5)
 argument-hint: [feature | REQ-XXX]
 ---
 
-Chạy **/clarify** cho: $ARGUMENTS theo skill `.claude/skills/clarify-requirements/SKILL.md`.
+Run **/clarify** for: $ARGUMENTS following the skill `.claude/skills/clarify-requirements/SKILL.md`.
 
-1. Đọc `docs/discovery/` + `docs/client-requirements/` (+ `docs/specs/_baseline/` nếu brownfield).
-2. Lập câu hỏi có cấu trúc, ưu tiên blocker; hỏi dạng trắc nghiệm/đề xuất mặc định.
-3. Ghi câu trả lời + giả định vào `docs/discovery/<feature>-clarifications.md`.
-4. Ràng buộc bất biến mới → cập nhật `docs/CONSTITUTION.md`.
+1. Read `docs/discovery/` + `docs/client-requirements/` (+ `docs/specs/_baseline/` if brownfield).
+2. Draft structured questions, prioritize blockers; ask as multiple-choice / with proposed defaults.
+3. Record answers + assumptions in `docs/discovery/<feature>-clarifications.md`.
+4. New invariant constraints → update `docs/CONSTITUTION.md`.
 
-Vị trí: sau `/discovery`, trước `/spec`. Exit khi hết câu hỏi blocker.
+Position: after `/discovery`, before `/spec`. Exit when there are no blocker questions left.

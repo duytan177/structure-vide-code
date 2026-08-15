@@ -1,24 +1,24 @@
-# ĐẶC TẢ TÍNH NĂNG: [TÊN TÍNH NĂNG] (spec-template.md)
+# FEATURE SPECIFICATION: [FEATURE NAME] (spec-template.md)
 
-- **Mã Đặc Tả**: `SPEC-XXX`
+- **Spec ID**: `SPEC-XXX`
 - **Jira Epic/Story**: `PROJECT-XXX`
-- **Trạng thái**: [Draft / In-Review / Approved]
-- **Tác giả**: [Tên tác giả / PO]
-- **Cập nhật lần cuối**: `YYYY-MM-DD`
+- **Status**: [Draft / In-Review / Approved]
+- **Author**: [Author name / PO]
+- **Last updated**: `YYYY-MM-DD`
 
 ---
 
-## 🎯 1. TỔNG QUAN VÀ MỤC TIÊU
-[Mô tả mục tiêu sản phẩm, bài toán nghiệp vụ cần giải quyết và giá trị mang lại cho người dùng.]
+## 🎯 1. OVERVIEW AND GOALS
+[Describe the product goal, the business problem to solve, and the value delivered to users.]
 
 ---
 
-## 👤 2. USER STORIES & LUỒNG NGƯỜI DÙNG (USER FLOW)
+## 👤 2. USER STORIES & USER FLOW
 
-### Story 1: [Tiêu đề User Story]
-As a [Loại người dùng]  
-I want to [Hành động]  
-So that [Giá trị nhận được]
+### Story 1: [User Story title]
+As a [User type]  
+I want to [Action]  
+So that [Value received]
 
 ### User Flow Diagram:
 ```mermaid
@@ -28,23 +28,23 @@ sequenceDiagram
     participant BE as Backend API
     participant DB as Database
 
-    User->>FE: Thực hiện hành động
-    FE->>BE: Gọi API Request
-    BE->>DB: Query dữ liệu
-    DB-->>BE: Trả về kết quả
+    User->>FE: Perform action
+    FE->>BE: Call API Request
+    BE->>DB: Query data
+    DB-->>BE: Return result
     BE-->>FE: HTTP 200 OK (JSON)
-    FE-->>User: Hiển thị giao diện thành công
+    FE-->>User: Display success UI
 ```
 
 ---
 
-## ⚙️ 3. YÊU CẦU NĂNG LỰC NGHIỆP VỤ (FUNCTIONAL REQUIREMENTS)
+## ⚙️ 3. FUNCTIONAL REQUIREMENTS
 
-1. **[FR-1]**: [Mô tả chi tiết yêu cầu 1]
-2. **[FR-2]**: [Mô tả chi tiết yêu cầu 2]
+1. **[FR-1]**: [Detailed description of requirement 1]
+2. **[FR-2]**: [Detailed description of requirement 2]
 
 ---
 
-## 🔒 4. YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)
-- Performance: Response time API < 200ms.
-- Security: Phải authenticate bằng JWT token Bearer.
+## 🔒 4. NON-FUNCTIONAL REQUIREMENTS
+- Performance: API response time < 200ms.
+- Security: Must authenticate with a JWT Bearer token.

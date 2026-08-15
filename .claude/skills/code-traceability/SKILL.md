@@ -1,19 +1,19 @@
 ---
 name: code-traceability
 description: >
-  Gắn liên kết truy vết REQ→SPEC→TASK→commit→PR trong code & cập nhật traceability matrix. Dùng KHI
-  đang implement/hoàn tất task; hoặc user nói "traceability", "truy vết", "liên kết task".
+  Attach traceability links REQ→SPEC→TASK→commit→PR in code & update the traceability matrix. Use WHEN
+  implementing/completing a task; or the user says "traceability", "trace", "link task".
 license: MIT
 metadata: { author: vide-coder, version: "1.0" }
 ---
 
 # Code Traceability
 
-Đảm bảo mọi code truy được về Jira + spec.
+Ensure all code can be traced back to Jira + spec.
 
-## Quy trình
-1. **Trích ID**: Jira Ticket (vd `PROJECT-102`) + mục spec tương ứng trong `docs/specs/`.
-2. **Comment traceability** ở module/function quan trọng:
+## Workflow
+1. **Extract IDs**: Jira Ticket (e.g. `PROJECT-102`) + the corresponding spec section in `docs/specs/`.
+2. **Traceability comment** on important modules/functions:
    ```ts
    /**
     * @JiraTicket PROJECT-102
@@ -21,5 +21,5 @@ metadata: { author: vide-coder, version: "1.0" }
     * @Description JWT tokens with refresh rotation
     */
    ```
-3. **Ghi vết trong task** `tasks/in-progress/PROJECT-XXX.md`: link file + line range khi xong sub-task.
-4. Giữ `docs/traceability-matrix.md` khớp (REQ→SPEC→PLAN→TASK→commit→PR).
+3. **Record traces in the task** `tasks/in-progress/PROJECT-XXX.md`: link file + line range when a sub-task is done.
+4. Keep `docs/traceability-matrix.md` in sync (REQ→SPEC→PLAN→TASK→commit→PR).

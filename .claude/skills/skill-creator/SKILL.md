@@ -1,36 +1,36 @@
 ---
 name: skill-creator
 description: >
-  Tạo/sửa skill mới đúng chuẩn Agent Skills (SKILL.md + frontmatter) cho base Vide-Coder. Dùng KHI
-  user muốn "tạo skill", "thêm skill", "viết skill", "skill mới", hoặc chuẩn hóa một quy trình lặp lại.
+  Create/edit new skills to the Agent Skills standard (SKILL.md + frontmatter) for the Vide-Coder base. Use WHEN
+  the user wants to "create a skill", "add a skill", "write a skill", "new skill", or standardize a repeated workflow.
 license: MIT
 metadata: { author: vide-coder, version: "1.0" }
 ---
 
-# Skill Creator — tạo skill chuẩn cho mọi agent
+# Skill Creator — create standards-compliant skills for any agent
 
-Học từ anthropics `skill-creator` + agentskills.io. Skill viết 1 lần chạy trên Claude/Cursor/Antigravity/Codex.
+Learned from anthropics `skill-creator` + agentskills.io. Write a skill once, run it on Claude/Cursor/Antigravity/Codex.
 
-## Quy trình
-1. **Hỏi làm rõ**: skill giải quyết việc gì? KHI NÀO nên dùng (trigger)? Input/Output? Bước chính?
-2. **Tạo folder** `.claude/skills/<name>/SKILL.md` (`name` kebab-case ≤64 ký tự, = tên folder, không `--`).
+## Workflow
+1. **Ask to clarify**: what problem does the skill solve? WHEN should it be used (trigger)? Input/Output? Main steps?
+2. **Create folder** `.claude/skills/<name>/SKILL.md` (`name` kebab-case ≤64 chars, = folder name, no `--`).
 3. **Frontmatter**:
    ```yaml
    ---
    name: <kebab-case>
    description: >
-     <làm GÌ> + <KHI NÀO dùng, kèm keyword người dùng hay gõ>.   # ≤1024 ký tự — quyết định auto-trigger
+     <what it DOES> + <WHEN to use, with keywords users often type>.   # ≤1024 chars — decides auto-trigger
    license: MIT
    metadata: { author: vide-coder, version: "1.0" }
    ---
    ```
-4. **Body** (<500 dòng, self-contained): mục tiêu · quy trình từng bước · ví dụ · HARD-GATE (nếu có) · anti-pattern. Tài nguyên nặng để `references/` `scripts/` `assets/`.
-5. **Đồng bộ**: `bash .agent/scripts/sync-skills.sh` (mirror sang `.agents/skills/`).
-6. **Validate**: `bash .agent/scripts/validate-skills.sh` (kiểm frontmatter). Cập nhật `CHANGELOG.md`.
+4. **Body** (<500 lines, self-contained): goal · step-by-step workflow · examples · HARD-GATE (if any) · anti-patterns. Put heavy resources in `references/` `scripts/` `assets/`.
+5. **Sync**: `bash .agent/scripts/sync-skills.sh` (mirror to `.agents/skills/`).
+6. **Validate**: `bash .agent/scripts/validate-skills.sh` (check frontmatter). Update `CHANGELOG.md`.
 
-## Mẹo viết `description` để trigger tốt
-- Nêu rõ **khi nào dùng** + **keyword** người dùng thường gõ (vd "commit", "review", "UI đẹp").
-- Tránh mơ hồ kiểu "Helps with X". Ví dụ tốt: "Extract PDF text... Use when user mentions PDFs/forms".
+## Tips for writing a `description` that triggers well
+- State clearly **when to use** + **keywords** users typically type (e.g. "commit", "review", "beautiful UI").
+- Avoid vague "Helps with X". Good example: "Extract PDF text... Use when user mentions PDFs/forms".
 
-## Anti-pattern
-- Không đặt logic chi tiết vào `description`. Không tạo skill trùng chức năng skill đã có. Không quên sync + validate.
+## Anti-patterns
+- Don't put detailed logic in the `description`. Don't create a skill that duplicates an existing one. Don't forget to sync + validate.

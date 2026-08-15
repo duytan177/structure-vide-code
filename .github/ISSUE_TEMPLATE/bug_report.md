@@ -1,25 +1,25 @@
 ---
 name: 🐛 Bug report
-about: Báo lỗi trong quy trình base hoặc dự án
-title: "fix: PROJECT-XXX - <mô tả ngắn>"
+about: Report a bug in the base workflow or the project
+title: "fix: PROJECT-XXX - <short description>"
 labels: bug
 ---
 
-## Mô tả lỗi
-<Cái gì sai, ngắn gọn>
+## Bug description
+<What is wrong, briefly>
 
-## Tái hiện
+## Reproduction
 1. ...
 2. ...
 
-## Kỳ vọng vs Thực tế
-- Kỳ vọng: ...
-- Thực tế: ...
+## Expected vs Actual
+- Expected: ...
+- Actual: ...
 
-## Ngữ cảnh
-- Dự án / workspace: ...
-- Spec/Task liên quan: SPEC-XXX / PROJECT-XXX
-- Agent dùng: Claude Code / Cursor / Codex / ...
+## Context
+- Project / workspace: ...
+- Related spec/task: SPEC-XXX / PROJECT-XXX
+- Agent used: Claude Code / Cursor / Codex / ...
 
-## Log / ảnh chụp
-<nếu có>
+## Logs / screenshots
+<if any>

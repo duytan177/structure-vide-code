@@ -1,12 +1,12 @@
 ---
-description: Bước 8 — Self Validation (Lint + Typecheck + Unit + E2E)
+description: Step 8 — Self Validation (Lint + Typecheck + Unit + E2E)
 ---
 
-Thực hiện **Bước 8 — SELF VALIDATION** cho thay đổi hiện tại.
+Perform **Step 8 — SELF VALIDATION** for the current change.
 
-1. Chạy Linter + Typecheck (theo stack trong `src/`).
-2. Chạy Unit Test theo `.claude/skills/tdd-workflow/SKILL.md` (coverage ≥ 80%).
-3. Chạy E2E Playwright qua subagent `.agent/agents/e2e-runner.md` (nếu có UI), cover đủ Acceptance Criteria.
-4. Nếu build lỗi → dùng `.agent/agents/build-error-resolver.md`.
+1. Run Linter + Typecheck (per the stack in `src/`).
+2. Run Unit Tests following `.claude/skills/tdd-workflow/SKILL.md` (coverage ≥ 80%).
+3. Run E2E Playwright via the subagent `.agent/agents/e2e-runner.md` (if there is UI), covering all Acceptance Criteria.
+4. If the build fails → use `.agent/agents/build-error-resolver.md`.
 
-Chỉ đi tiếp khi tất cả pass. Kết thúc: `/ai-review`.
+Only proceed when everything passes. Wrap-up: `/ai-review`.

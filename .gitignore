@@ -24,6 +24,6 @@ out/
 .agent/cache/
 *.tmp
 
-# Skill mirror cho Codex/Antigravity — sinh tự động từ .claude/skills bằng sync-skills.sh
-# (không track để tránh trùng lặp; chạy 'bash .agent/scripts/sync-skills.sh' hoặc init.sh sau khi clone)
+# Skill mirror for Codex/Antigravity — auto-generated from .claude/skills by sync-skills.sh
+# (not tracked to avoid duplication; run 'bash .agent/scripts/sync-skills.sh' or init.sh after cloning)
 .agents/

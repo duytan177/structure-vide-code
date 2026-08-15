@@ -1,122 +1,122 @@
-# VIDE-CODER — PLAN XÂY BASE QUY TRÌNH (Overlay, áp cho mọi dự án)
+# VIDE-CODER — WORKFLOW BASE BUILD PLAN (Overlay, applies to any project)
 
-> **Vide-Coder KHÔNG phải một app.** Nó là **BASE / overlay quy trình** dùng lại, thả vào bất kỳ repo nào
-> (dự án mới HOẶC dự án cũ đang maintain/phát triển tiếp) để **ép AI Agent làm việc theo 1 quy trình thống nhất**:
+> **Vide-Coder is NOT an app.** It is a reusable **workflow BASE / overlay** you drop into any repo
+> (a new project OR an existing project under maintenance/continued development) to **force AI Agents to work to one unified workflow**:
 > `requirement → spec → design → implement → review → test → release`.
 >
-> **Nguyên tắc:**
-> 1. Chỉ build **QUY TRÌNH** (bắt buộc). Skill/plugin dùng đồ **nổi tiếng có sẵn** (Superpowers, Graphify, GitNexus, Context7…) — **KHÔNG tự build lại**.
-> 2. Base là **overlay thuần** — **không có `src/`**, không đụng source của dự án đích.
-> 3. Skill/plugin tùy chỉnh riêng từng dự án → team tự add sau.
+> **Principles:**
+> 1. Build only the **WORKFLOW** (mandatory). For skills/plugins use **well-known off-the-shelf** tools (Superpowers, Graphify, GitNexus, Context7…) — **do NOT rebuild them**.
+> 2. The base is a **pure overlay** — **no `src/`**, does not touch the target project's source.
+> 3. Custom skills/plugins for each project → the team adds them later.
 >
-> Trạng thái: 🟡 Draft — chờ duyệt. Ngày: 2026-07-23. (Thay thế MIGRATION-PLAN.md đã xóa.)
+> Status: 🟡 Draft — pending approval. Date: 2026-07-23. (Replaces the deleted MIGRATION-PLAN.md.)
 
 ---
 
-## 1. ĐỊNH VỊ LẠI
+## 1. REPOSITIONING
 
-| | Trước (hiểu sai) | Sau (đúng) |
+| | Before (misunderstood) | After (correct) |
 |---|---|---|
-| Bản chất | 1 app có FE/BE | **Base overlay quy trình** |
-| `src/` | Có, ép cấu trúc | **Bỏ** — dự án đích tự có source |
-| Skill | Tự viết/rebuild theo superpowers | **Cài Superpowers** làm engine, không rebuild |
-| Vai trò Vide-Coder | Làm tất cả | Chỉ làm **tầng enterprise** + **ép quy trình** |
+| Nature | An app with FE/BE | **Workflow overlay base** |
+| `src/` | Present, forced structure | **Removed** — the target project has its own source |
+| Skills | Self-written/rebuilt in the superpowers style | **Install Superpowers** as the engine, no rebuild |
+| Vide-Coder's role | Do everything | Only the **enterprise layer** + **enforce the workflow** |
 
-## 2. KIẾN TRÚC BASE SAU CHỈNH (overlay)
+## 2. BASE ARCHITECTURE AFTER ADJUSTMENT (overlay)
 
 ```text
-<repo-bất-kỳ>/                      # dự án đích (mới hoặc cũ) — KHÔNG đụng source của họ
-├── .agent/                         # ★ TẦNG QUY TRÌNH (core của base)
-│   ├── rules/                      # 11 bước bắt buộc — SINGLE SOURCE OF TRUTH
-│   ├── plugins/                    # KHAI BÁO plugin ngoài + installer (Superpowers, Graphify, GitNexus, Context7, Semgrep, Playwright, GitHub MCP)
-│   ├── agents/                     # personas · skill chuẩn ở .claude/skills/
-│   ├── memory/                     # bộ nhớ theo dự án (khởi tạo rỗng)
+<any-repo>/                          # target project (new or old) — DON'T touch their source
+├── .agent/                         # ★ WORKFLOW LAYER (core of the base)
+│   ├── rules/                      # 11 mandatory steps — SINGLE SOURCE OF TRUTH
+│   ├── plugins/                    # DECLARE external plugins + installer (Superpowers, Graphify, GitNexus, Context7, Semgrep, Playwright, GitHub MCP)
+│   ├── agents/                     # personas · standard skills in .claude/skills/
+│   ├── memory/                     # per-project memory (initialized empty)
 │   └── scripts/                    # install / verify / setup-hooks / onboard
-├── docs/                           # ★ TẦNG TÀI LIỆU ENTERPRISE (templates + nơi chứa)
+├── docs/                           # ★ ENTERPRISE DOCUMENTATION LAYER (templates + storage)
 │   ├── client-requirements/ basic-design/ specs/ adr/ discovery/ spec-changes/
 │   ├── DEFINITION-OF-DONE.md  traceability-matrix.md
-├── plans/  tasks/                  # kế hoạch + Jira board
-├── workspace/                      # ★ NƠI CHỨA SOURCE dự án (clone vào) — gitignore toàn bộ nội dung
-│   └── <ten-du-an>/                # source thực tế (mới/cũ) — base KHÔNG track
-├── CLAUDE.md AGENTS.md GEMINI.md   # ★ entry-points đa agent (pointer)
-├── .cursor/ .windsurf/ .github/    # rules per-tool + CI + PR template + CODEOWNERS
+├── plans/  tasks/                  # plans + Jira board
+├── workspace/                      # ★ WHERE THE PROJECT SOURCE LIVES (cloned in) — entire contents gitignored
+│   └── <project-name>/             # the actual source (new/old) — the base does NOT track it
+├── CLAUDE.md AGENTS.md GEMINI.md   # ★ multi-agent entry-points (pointers)
+├── .cursor/ .windsurf/ .github/    # per-tool rules + CI + PR template + CODEOWNERS
 └── .githooks/  .mcp.json           # git hooks + MCP config
 ```
 
-**Việc cần làm:** **xóa `src/`** khỏi base; README nói rõ "base là overlay, source của dự án đích không bị đụng".
+**To do:** **delete `src/`** from the base; the README states clearly "the base is an overlay, the target project's source is untouched".
 
-## 3. PHÂN VAI: SUPERPOWERS (engine) vs VIDE-CODER (enterprise)
+## 3. ROLE SPLIT: SUPERPOWERS (engine) vs VIDE-CODER (enterprise)
 
-Cài Superpowers làm engine → nó lo phần "làm 1 dev giỏi". Vide-Coder bọc phần doanh nghiệp lên trên.
+Install Superpowers as the engine → it handles the "be a great dev" part. Vide-Coder wraps the enterprise part on top.
 
-| Bước Vide-Coder | Ai lo | Cơ chế |
+| Vide-Coder step | Who handles it | Mechanism |
 |---|---|---|
-| 1. Discovery | **Superpowers** `brainstorming` | + ghi vết `docs/discovery/` (Vide-Coder) |
-| 2. Impact Analysis | **Vide-Coder** | gọi **Graphify/GitNexus** (plugin ngoài) |
+| 1. Discovery | **Superpowers** `brainstorming` | + trace to `docs/discovery/` (Vide-Coder) |
+| 2. Impact Analysis | **Vide-Coder** | calls **Graphify/GitNexus** (external plugins) |
 | 3. Architecture (ADR/RFC) | **Vide-Coder** | template `docs/adr/` |
-| 4. Specification | **Vide-Coder** | template `docs/specs/` (+ Context7 tra tài liệu) |
+| 4. Specification | **Vide-Coder** | template `docs/specs/` (+ Context7 for docs lookup) |
 | 5. Planning | **Superpowers** `writing-plans` | + milestone/sprint |
 | 6. Task Breakdown (Jira) | **Vide-Coder** | `tasks/` + traceability |
 | 7. Implementation | **Superpowers** `using-git-worktrees` + `subagent-driven-development` | |
 | 8. Self Validation | **Superpowers** `test-driven-development` + `verification-before-completion` | + typecheck/E2E |
-| 9. AI Review | **Superpowers** `requesting/receiving-code-review` | + **Semgrep** + CodeRabbit (Vide-Coder gate bảo mật) |
+| 9. AI Review | **Superpowers** `requesting/receiving-code-review` | + **Semgrep** + CodeRabbit (Vide-Coder security gate) |
 | 10. Human Review | **Vide-Coder** | CODEOWNERS + PR template |
 | 11. Knowledge Update | **Vide-Coder** | ADR + memory + re-index graph + changelog |
 
-→ Vide-Coder **không viết lại** bước 1,5,7,8,9. Chỉ **điều phối** và **thêm** bước 2,3,4,6,10,11.
+→ Vide-Coder does **not rewrite** steps 1, 5, 7, 8, 9. It only **orchestrates** and **adds** steps 2, 3, 4, 6, 10, 11.
 
-## 4. CƠ CHẾ "ÁP LÊN DỰ ÁN" — 2 CHẾ ĐỘ
+## 4. "APPLY TO A PROJECT" MECHANISM — 2 MODES
 
-Base phải chạy được cả dự án mới lẫn cũ → cần **1 lệnh cài + phát hiện chế độ**.
+The base must work for both new and old projects → it needs **one install command + mode detection**.
 
-**Mode A — Dự án MỚI (greenfield):**
-1. Copy overlay vào repo trống.
-2. Chạy `install` → cài plugin (Superpowers/Graphify/…) + bật git hooks.
-3. Bỏ requirement vào `docs/client-requirements/` → chạy quy trình từ Bước 1.
+**Mode A — NEW project (greenfield):**
+1. Copy the overlay into an empty repo.
+2. Run `install` → install plugins (Superpowers/Graphify/…) + enable git hooks.
+3. Put requirements into `docs/client-requirements/` → run the workflow from Step 1.
 
-**Mode B — Dự án CŨ (brownfield / maintain):**
-1. Copy overlay vào repo có sẵn (**không đụng source**).
-2. Chạy `install` + **Bước 0 Onboarding**: index code cũ bằng **Graphify/GitNexus**, sinh **baseline** (spec/ADR tóm tắt hiện trạng vào `docs/specs/_baseline/`).
-3. Mỗi change (bug/feature) = điểm vào Bước 1 dạng *change request* → Impact Analysis trên đồ thị code cũ → tiếp quy trình.
+**Mode B — OLD project (brownfield / maintain):**
+1. Copy the overlay into an existing repo (**don't touch the source**).
+2. Run `install` + **Step 0 Onboarding**: index the old code with **Graphify/GitNexus**, generate a **baseline** (spec/ADR summarizing the current state into `docs/specs/_baseline/`).
+3. Each change (bug/feature) = an entry point at Step 1 as a *change request* → Impact Analysis on the old code graph → continue the workflow.
 
-**Việc cần làm:**
-- Thêm script `.agent/scripts/onboard-existing.sh` (index + sinh baseline).
-- Sửa Bước 1 trong `00-ai-workflow.md`: điểm vào linh hoạt (BRD mới **hoặc** change request).
-- Cập nhật `install-all-plugins.sh` để phát hiện repo mới/cũ.
+**To do:**
+- Add a script `.agent/scripts/onboard-existing.sh` (index + generate baseline).
+- Amend Step 1 in `00-ai-workflow.md`: flexible entry point (new BRD **or** change request).
+- Update `install-all-plugins.sh` to detect new/old repos.
 
-## 5. DANH MỤC PLUGIN NGOÀI (khai báo dependency, cài per-agent)
+## 5. EXTERNAL PLUGIN CATALOG (declare dependencies, install per-agent)
 
-| Plugin | Vai trò trong quy trình | Cách cài |
+| Plugin | Role in the workflow | How to install |
 |---|---|---|
-| **Superpowers** | Engine skill (brainstorm→plan→impl→test→review) | plugin marketplace / repo, cài **riêng từng agent** |
-| **Graphify** | Bước 2 impact + Bước 11 re-index | CLI/MCP |
-| **GitNexus** | Bước 2 blast radius / execution flow | CLI/MCP |
-| **Context7** | Bước 4 tra tài liệu framework đúng version | MCP |
-| **Semgrep** | Bước 9 security gate (OWASP) | CLI + CI |
-| **Playwright MCP** | Bước 8 E2E | MCP |
-| **GitHub MCP** | Bước 7/10 PR/branch | MCP |
+| **Superpowers** | Skill engine (brainstorm→plan→impl→test→review) | plugin marketplace / repo, install **per agent** |
+| **Graphify** | Step 2 impact + Step 11 re-index | CLI/MCP |
+| **GitNexus** | Step 2 blast radius / execution flow | CLI/MCP |
+| **Context7** | Step 4 version-correct framework docs lookup | MCP |
+| **Semgrep** | Step 9 security gate (OWASP) | CLI + CI |
+| **Playwright MCP** | Step 8 E2E | MCP |
+| **GitHub MCP** | Step 7/10 PR/branch | MCP |
 
-**Việc cần làm:**
-- `.agent/plugins/` chuyển từ "mô tả" → **khai báo dependency rõ ràng** (tên, cách cài cho từng agent, MCP config).
-- Thêm `superpowers.md` (hiện chưa có mục Superpowers — đang có "Superpower code-graph" là thứ khác, cần làm rõ/tách).
-- Token budgeting đã có — giữ.
+**To do:**
+- Move `.agent/plugins/` from "descriptions" → **clear dependency declarations** (name, per-agent install, MCP config).
+- Add `superpowers.md` (currently no Superpowers entry — there is a "Superpower code-graph" which is something else, needs clarifying/separating).
+- Token budgeting already exists — keep it.
 
-## 6. CHECKLIST CHỈNH SỬA CỤ THỂ (so với hiện trạng)
+## 6. CONCRETE EDIT CHECKLIST (vs. current state)
 
-- [ ] **Xóa `src/`** + sửa README (overlay, không đụng source dự án đích).
-- [ ] Sửa `00-ai-workflow.md`: điểm vào Bước 1 linh hoạt (mới/cũ); ghi rõ bước nào do Superpowers lo.
-- [ ] Thêm `.agent/scripts/onboard-existing.sh` (Mode B).
-- [ ] Nâng `install-all-plugins.sh`: cài **Superpowers per-agent** + phát hiện mode + verify plugin thật tồn tại.
-- [ ] Làm rõ danh mục plugin: tách/định danh **Superpowers** (methodology) vs "superpower code-graph".
-- [ ] `docs/specs/_baseline/` cho brownfield.
-- [ ] (Tùy chọn) 1 lệnh gọn `vide-coder apply` bọc toàn bộ install.
+- [ ] **Delete `src/`** + fix the README (overlay, doesn't touch the target project's source).
+- [ ] Amend `00-ai-workflow.md`: flexible Step 1 entry point (new/old); state clearly which steps Superpowers handles.
+- [ ] Add `.agent/scripts/onboard-existing.sh` (Mode B).
+- [ ] Upgrade `install-all-plugins.sh`: install **Superpowers per-agent** + detect mode + verify plugins actually exist.
+- [ ] Clarify the plugin catalog: separate/identify **Superpowers** (methodology) vs "superpower code-graph".
+- [ ] `docs/specs/_baseline/` for brownfield.
+- [ ] (Optional) one concise command `vide-coder apply` wrapping the whole install.
 
-## 7. KHÔNG LÀM (để tránh lệch hướng lần nữa)
-- ❌ Không rebuild skill theo format superpowers (dùng thẳng Superpowers).
-- ❌ Không tạo skill/plugin tùy chỉnh cho dự án cụ thể (team tự add sau).
-- ❌ Không ép cấu trúc `src/`.
+## 7. DO NOT DO (to avoid drifting off course again)
+- ❌ Don't rebuild skills in the superpowers format (use Superpowers directly).
+- ❌ Don't create custom skills/plugins for a specific project (the team adds them later).
+- ❌ Don't force a `src/` structure.
 
-## 8. RỦI RO / TREO
-- Xác nhận **cách cài Superpowers** cho từng agent (marketplace vs repo) — mỗi agent khác nhau.
-- Verify CLI `graphify`/`gitnexus` (+ package name thật) trước khi Bước 2 phụ thuộc.
-- Brownfield: sinh baseline spec có thể tốn token với repo lớn → cần giới hạn phạm vi index.
+## 8. RISKS / OPEN ITEMS
+- Confirm **how to install Superpowers** for each agent (marketplace vs repo) — differs per agent.
+- Verify the `graphify`/`gitnexus` CLIs (+ actual package names) before Step 2 depends on them.
+- Brownfield: generating baseline specs can be token-heavy on large repos → the index scope needs limiting.

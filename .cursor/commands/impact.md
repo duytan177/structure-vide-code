@@ -1,7 +1,7 @@
-# /impact — Bước 2: IMPACT ANALYSIS
+# /impact — Step 2: IMPACT ANALYSIS
 
-Thực hiện **Bước 2 (IMPACT ANALYSIS)** theo nguồn chân lý `.agent/rules/00-ai-workflow.md`.
+Perform **Step 2 (IMPACT ANALYSIS)** according to the single source of truth `.agent/rules/00-ai-workflow.md`.
 
-- Skill/persona chính: `.claude/skills/impact-analysis/SKILL.md`
-- Đầu ra / công cụ: `Graphify/GitNexus`
-- Tuân thủ Definition of Done: `docs/DEFINITION-OF-DONE.md`.
+- Main skill/persona: `.claude/skills/impact-analysis/SKILL.md`
+- Output / tools: `Graphify/GitNexus`
+- Comply with the Definition of Done: `docs/DEFINITION-OF-DONE.md`.

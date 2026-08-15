@@ -1,4 +1,4 @@
-# https://editorconfig.org — chuẩn format nhất quán giữa các editor & AI agent
+# https://editorconfig.org — consistent formatting standard across editors & AI agents
 root = true
 
 [*]

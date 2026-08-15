@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 📖 Quy trình 11 bước
+  - name: 📖 The 11-step workflow
     url: https://github.com/
-    about: Đọc .agent/rules/00-ai-workflow.md trước khi mở issue.
+    about: Read .agent/rules/00-ai-workflow.md before opening an issue.

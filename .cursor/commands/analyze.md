@@ -1,8 +1,8 @@
-# /analyze — Gate soát nhất quán chéo (trước Implementation)
+# /analyze — Cross-consistency gate (before Implementation)
 
-Kiểm tra nhất quán **REQ↔SPEC↔ADR↔PLAN↔TASK** theo `.claude/skills/analyze-consistency/SKILL.md`.
+Check **REQ↔SPEC↔ADR↔PLAN↔TASK** consistency according to `.claude/skills/analyze-consistency/SKILL.md`.
 
-- Nguồn: `docs/traceability-matrix.md` + các file REQ/SPEC/ADR/PLAN/TASK.
-- Kiểm: coverage (không sót), ID có thật, mâu thuẫn nội dung, vi phạm `docs/CONSTITUTION.md`.
-- GATE: còn 🔴 BLOCKER → DỪNG, không sang `/implement`.
-- Vị trí: sau `/breakdown`, trước `/implement`.
+- Sources: `docs/traceability-matrix.md` + the REQ/SPEC/ADR/PLAN/TASK files.
+- Checks: coverage (nothing missing), IDs actually exist, content contradictions, violations of `docs/CONSTITUTION.md`.
+- GATE: if any 🔴 BLOCKER remains → STOP, do not proceed to `/implement`.
+- Position: after `/breakdown`, before `/implement`.

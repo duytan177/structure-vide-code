@@ -1,23 +1,23 @@
-# NGUYÊN TẮC KIẾN TRÚC VÀ THIẾT KẾ (02-architecture-principles.md)
+# ARCHITECTURE AND DESIGN PRINCIPLES (02-architecture-principles.md)
 
-Tài liệu này quy định các nguyên tắc thiết kế kiến trúc hệ thống bắt buộc AI Agent và lập trình viên tuân thủ khi mở rộng mã nguồn trong `src/`.
-
----
-
-## 🏛️ 1. NGUYÊN TẮC CỐT LÕI (SOLID & CLEAN ARCHITECTURE)
-
-- **S - Single Responsibility**: Mỗi class/module chỉ đảm nhận một trách nhiệm duy nhất.
-- **O - Open/Closed**: Mở rộng tính năng bằng kế thừa/interface, hạn chế sửa đổi trực tiếp core logic đã ổn định.
-- **L - Liskov Substitution**: Class con phải thay thế được class cha mà không làm hỏng tính đúng đắn của chương trình.
-- **I - Interface Segregation**: Thà dùng nhiều interface nhỏ chuyên biệt còn hơn 1 interface lớn ôm đồm.
-- **D - Dependency Inversion**: Phụ thuộc vào Abstraction (Interface), không phụ thuộc vào Concretization (Class cụ thể).
+This document defines the system architecture design principles that AI Agents and developers are required to follow when extending the source code in `src/`.
 
 ---
 
-## 🏗️ 2. MÔ HÌNH PHÂN CẤP THƯ MỤC SOURCE CODE (`src/`)
+## 🏛️ 1. CORE PRINCIPLES (SOLID & CLEAN ARCHITECTURE)
 
-> ℹ️ Vide-Coder là **overlay** — source dự án nằm trong `workspace/<ten-du-an>/` (base không track). Sơ đồ dưới là
-> **guideline khuyến nghị** cho source đó; dự án cũ giữ nguyên layout hiện có, chỉ tham chiếu khi refactor/thêm mới.
+- **S - Single Responsibility**: Each class/module takes on exactly one responsibility.
+- **O - Open/Closed**: Extend features through inheritance/interfaces, and limit direct modification of stable core logic.
+- **L - Liskov Substitution**: A subclass must be substitutable for its parent class without breaking the program's correctness.
+- **I - Interface Segregation**: Prefer many small, specialized interfaces over one large, all-encompassing interface.
+- **D - Dependency Inversion**: Depend on Abstractions (Interfaces), not on Concretions (specific Classes).
+
+---
+
+## 🏗️ 2. SOURCE CODE DIRECTORY HIERARCHY MODEL (`src/`)
+
+> ℹ️ Vide-Coder is an **overlay** — the project source lives in `workspace/<project-name>/` (not tracked by the base). The diagram below is a
+> **recommended guideline** for that source; existing projects keep their current layout, and only reference this when refactoring/adding new code.
 
 ```text
 src/
@@ -41,9 +41,9 @@ src/
 
 ---
 
-## 🛡️ 3. QUY TRÌNH RA QUYẾT ĐỊNH KIẾN TRÚC (ADR - Architecture Decision Records)
+## 🛡️ 3. ARCHITECTURE DECISION PROCESS (ADR - Architecture Decision Records)
 
-Khi có bất kỳ thay đổi lớn nào về mặt kiến trúc (như thay đổi Database, thêm Caching Layer, thay đổi thư viện UI core, đổi Authentication Protocol):
-1. **BẮT BUỘC** tạo file ADR mới trong thư mục `docs/adr/yyyy-mm-dd-<decision-title>.md` theo mẫu `docs/adr/adr-template.md`.
-2. Ghi rõ: Ngữ cảnh (Context), Các lựa chọn xem xét (Options Considered), Quyết định được chọn (Decision), Hậu quả & Đánh đổi (Consequences).
-3. Đăng ký thông tin ADR vào `.agent/memory/decision-log.md`.
+Whenever there is any major architectural change (such as changing the Database, adding a Caching Layer, changing the core UI library, or changing the Authentication Protocol):
+1. **MANDATORY**: create a new ADR file in `docs/adr/yyyy-mm-dd-<decision-title>.md` following the `docs/adr/adr-template.md` template.
+2. State clearly: Context, Options Considered, Decision, and Consequences & Trade-offs.
+3. Register the ADR information in `.agent/memory/decision-log.md`.

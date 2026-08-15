@@ -1,12 +1,12 @@
 ---
-description: Bước 2 — Impact Analysis (blast radius, dependency graph)
-argument-hint: [module/tính năng bị ảnh hưởng]
+description: Step 2 — Impact Analysis (blast radius, dependency graph)
+argument-hint: [affected module/feature]
 ---
 
-Thực hiện **Bước 2 — IMPACT ANALYSIS** cho: $ARGUMENTS
+Perform **Step 2 — IMPACT ANALYSIS** for: $ARGUMENTS
 
-1. Áp dụng skill `.claude/skills/impact-analysis/SKILL.md`.
-2. Dùng Graphify / GitNexus / Superpower để xác định blast radius và module phụ thuộc.
-3. Liệt kê file/module bị ảnh hưởng, rủi ro breaking change, và cần test lại gì.
+1. Apply the skill `.claude/skills/impact-analysis/SKILL.md`.
+2. Use Graphify / GitNexus / Superpower to determine the blast radius and dependent modules.
+3. List the affected files/modules, breaking-change risks, and what needs to be re-tested.
 
-Kết thúc: nếu có thay đổi kiến trúc lớn → `/architecture`, ngược lại → `/spec`.
+Wrap-up: if there is a major architecture change → `/architecture`, otherwise → `/spec`.

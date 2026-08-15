@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Bước 8 (Self Validation) tối thiểu, chạy local trước commit.
-# Tự phát hiện toolchain — không fail nếu chưa cài (chỉ cảnh báo), fail khi tool có mà lỗi.
+# Minimal Step 8 (Self Validation), run locally before commit.
+# Auto-detects the toolchain — does not fail if not installed (only warns), fails when a present tool errors.
 set -u
 
 fail=0
@@ -12,17 +12,17 @@ if [ -f package.json ]; then
   fi
 fi
 
-# Chặn secret/hardcoded credential thô sơ trong file staged
+# Basic block for secrets/hardcoded credentials in staged files
 staged="$(git diff --cached --name-only --diff-filter=ACM)"
 if [ -n "$staged" ]; then
   if printf '%s\n' "$staged" | xargs -r grep -nEI '(AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|password\s*=\s*["'"'"'][^"'"'"']{6,})' 2>/dev/null; then
-    echo "❌ Phát hiện khả năng lộ secret/credential trong file staged. Vui lòng gỡ trước khi commit."
+    echo "❌ Potential secret/credential leak detected in staged files. Please remove it before committing."
     fail=1
   fi
 fi
 
 if [ "$fail" -ne 0 ]; then
-  echo "❌ pre-commit thất bại. Sửa lỗi rồi commit lại."
+  echo "❌ pre-commit failed. Fix the errors and commit again."
   exit 1
 fi
 exit 0

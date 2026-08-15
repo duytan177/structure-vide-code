@@ -1,7 +1,7 @@
-# /implement — Bước 7: IMPLEMENTATION
+# /implement — Step 7: IMPLEMENTATION
 
-Thực hiện **Bước 7 (IMPLEMENTATION)** theo nguồn chân lý `.agent/rules/00-ai-workflow.md`.
+Perform **Step 7 (IMPLEMENTATION)** according to the single source of truth `.agent/rules/00-ai-workflow.md`.
 
-- Skill/persona chính: `.claude/skills/git-worktree-flow/SKILL.md`
-- Đầu ra / công cụ: `workspace/<ten-du-an>/`
-- Tuân thủ Definition of Done: `docs/DEFINITION-OF-DONE.md`.
+- Main skill/persona: `.claude/skills/git-worktree-flow/SKILL.md`
+- Output / tools: `workspace/<ten-du-an>/`
+- Comply with the Definition of Done: `docs/DEFINITION-OF-DONE.md`.

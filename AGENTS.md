@@ -1,18 +1,18 @@
-# AGENTS.md — Entry-point chuẩn cho AI Agents (Codex, Antigravity, Windsurf, Gemini CLI, v.v.)
+# AGENTS.md — Standard entry point for AI Agents (Codex, Antigravity, Windsurf, Gemini CLI, etc.)
 
-> File này theo chuẩn [agents.md](https://agents.md). Nó là **pointer** — nguồn chân lý duy nhất
-> của quy trình là [`.agent/rules/00-ai-workflow.md`](.agent/rules/00-ai-workflow.md).
-> (Claude Code đọc `CLAUDE.md`; Cursor đọc `.cursor/rules/`; Windsurf đọc `.windsurf/rules/`. Tất cả cùng trỏ về đây.)
+> This file follows the [agents.md](https://agents.md) standard. It is a **pointer** — the single source of truth
+> for the workflow is [`.agent/rules/00-ai-workflow.md`](.agent/rules/00-ai-workflow.md).
+> (Claude Code reads `CLAUDE.md`; Cursor reads `.cursor/rules/`; Windsurf reads `.windsurf/rules/`. They all point back here.)
 
-## BẮT BUỘC ĐỌC TRƯỚC KHI CODE
+## MUST READ BEFORE CODING
 
-1. Quy trình 11 bước — **single source of truth**: [`.agent/rules/00-ai-workflow.md`](.agent/rules/00-ai-workflow.md)
+1. The 11-step workflow — **single source of truth**: [`.agent/rules/00-ai-workflow.md`](.agent/rules/00-ai-workflow.md)
 2. Code style: [`.agent/rules/01-code-style.md`](.agent/rules/01-code-style.md)
-3. Nguyên tắc kiến trúc: [`.agent/rules/02-architecture-principles.md`](.agent/rules/02-architecture-principles.md)
+3. Architecture principles: [`.agent/rules/02-architecture-principles.md`](.agent/rules/02-architecture-principles.md)
 4. Git/Jira workflow: [`.agent/rules/03-git-jira-workflow.md`](.agent/rules/03-git-jira-workflow.md)
 5. Testing/QA: [`.agent/rules/04-testing-qa.md`](.agent/rules/04-testing-qa.md)
 
-## QUY TRÌNH 11 BƯỚC (tóm tắt)
+## THE 11-STEP WORKFLOW (summary)
 
 ```
 REQUIREMENT
@@ -22,7 +22,7 @@ REQUIREMENT
   → 4. SPECIFICATION    (docs/specs/)
   → 5. PLANNING         (plans/)
   → 6. TASK BREAKDOWN   (tasks/backlog/)
-  → 7. IMPLEMENTATION   (Git Worktree + workspace/<ten-du-an>/)
+  → 7. IMPLEMENTATION   (Git Worktree + workspace/<project-name>/)
   → 8. SELF VALIDATION  (Lint + Typecheck + Unit + E2E)
   → 9. AI REVIEW        (Semgrep + CodeRabbit)
   → 10. HUMAN REVIEW    (PR Approval)
@@ -30,41 +30,41 @@ REQUIREMENT
   → MERGE / RELEASE
 ```
 
-## NGUYÊN TẮC VÀNG
+## GOLDEN RULES
 
-- **Không bỏ qua** Discovery, Impact Analysis, Self-Validation.
-- Mỗi task chạy trong **Git Worktree** riêng.
-- Branch: `feature|fix|refactor|hotfix/PROJECT-XXX-desc`. Commit: Conventional Commits + Jira ID (xem rule 03).
+- **Do not skip** Discovery, Impact Analysis, or Self-Validation.
+- Each task runs in its own **Git Worktree**.
+- Branch: `feature|fix|refactor|hotfix/PROJECT-XXX-desc`. Commit: Conventional Commits + Jira ID (see rule 03).
 - Definition of Done: [`docs/DEFINITION-OF-DONE.md`](docs/DEFINITION-OF-DONE.md).
-- Kết thúc luôn cập nhật [`.agent/memory/decision-log.md`](.agent/memory/decision-log.md) + [`docs/traceability-matrix.md`](docs/traceability-matrix.md).
+- Always update [`.agent/memory/decision-log.md`](.agent/memory/decision-log.md) + [`docs/traceability-matrix.md`](docs/traceability-matrix.md) at the end.
 
-## VỊ TRÍ SOURCE
+## SOURCE LOCATION
 
-Source dự án đích nằm trong **`workspace/<ten-du-an>/`** (gitignore toàn bộ — xem `workspace/README.md`).
-Đọc/sửa/test code TẠI ĐÂY, KHÔNG ở root base.
+The target project's source lives in **`workspace/<project-name>/`** (fully gitignored — see `workspace/README.md`).
+Read/edit/test code HERE, NOT in the base root.
 
 ## BUILD / TEST COMMANDS
 
-> Chạy trong `workspace/<ten-du-an>/` theo stack của dự án.
+> Run inside `workspace/<project-name>/` according to the project's stack.
 
 ```bash
-# Ví dụ (Node/TS) — cd vào project trong workspace trước:
-# (cd workspace/<ten-du-an> && npm run lint && npm run typecheck && npm test)
-bash .agent/scripts/verify-plugins.sh    # kiểm tra toolchain plugin (chạy ở root base)
+# Example (Node/TS) — cd into the project in the workspace first:
+# (cd workspace/<project-name> && npm run lint && npm run typecheck && npm test)
+bash .agent/scripts/verify-plugins.sh    # check the plugin toolchain (run at the base root)
 ```
 
-## SKILLS (Agent Skills open standard — chạy chung mọi agent)
+## SKILLS (Agent Skills open standard — shared by every agent)
 
-Skill viết **1 lần** theo chuẩn `SKILL.md` (folder + frontmatter), dùng chung Claude/Cursor/Antigravity/Codex.
-Chi tiết chuẩn hóa: [`docs/AGENT-STANDARD.md`](docs/AGENT-STANDARD.md).
+Skills are written **once** following the `SKILL.md` standard (folder + frontmatter), shared across Claude/Cursor/Antigravity/Codex.
+Standardization details: [`docs/AGENT-STANDARD.md`](docs/AGENT-STANDARD.md).
 
-- **Codex / Antigravity** quét skill ở **`.agents/skills/<name>/SKILL.md`**.
-- **Claude Code** đọc **`.claude/skills/<name>/SKILL.md`** (canonical).
-- Sau khi thêm/sửa skill canonical → chạy `bash .agent/scripts/sync-skills.sh` để đồng bộ.
-- Ví dụ có sẵn: `ui-ux-promax` (FE đẹp, chống AI-slop, design-to-code).
+- **Codex / Antigravity** scan skills at **`.agents/skills/<name>/SKILL.md`**.
+- **Claude Code** reads **`.claude/skills/<name>/SKILL.md`** (canonical).
+- After adding/editing a canonical skill → run `bash .agent/scripts/sync-skills.sh` to sync.
+- Example available: `ui-ux-promax` (beautiful FE, anti-AI-slop, design-to-code).
 
 ## MCP / PLUGINS
 
-- Ma trận plugin + token budgeting: [`.agent/plugins/README.md`](.agent/plugins/README.md).
-- Config MCP mẫu: [`.agent/plugins/installer/mcp-config.json.template`](.agent/plugins/installer/mcp-config.json.template).
+- Plugin matrix + token budgeting: [`.agent/plugins/README.md`](.agent/plugins/README.md).
+- Sample MCP config: [`.agent/plugins/installer/mcp-config.json.template`](.agent/plugins/installer/mcp-config.json.template).
 - Cursor: [`.cursor/mcp.json`](.cursor/mcp.json). Claude Code: [`.mcp.json`](.mcp.json).

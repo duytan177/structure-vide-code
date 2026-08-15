@@ -1,30 +1,30 @@
 ---
-description: Vide-Coder — quy trình 11 bước chuẩn hóa cho mọi task
+description: Vide-Coder — the standardized 11-step workflow for every task
 globs:
 alwaysApply: true
 ---
 
 # Vide-Coder Workflow (Cursor entry-point)
 
-Nguồn chân lý duy nhất: [`.agent/rules/00-ai-workflow.md`](../../.agent/rules/00-ai-workflow.md).
-File này chỉ là pointer — luôn đọc rule gốc trước khi làm.
+The single source of truth: [`.agent/rules/00-ai-workflow.md`](../../.agent/rules/00-ai-workflow.md).
+This file is only a pointer — always read the source rule before working.
 
-## BẮT BUỘC
-- Đọc & tuân thủ đủ 11 bước: Discovery → Impact → Architecture → Specification → Planning →
+## MANDATORY
+- Read & follow all 11 steps: Discovery → Impact → Architecture → Specification → Planning →
   Task Breakdown → Implementation → Self Validation → AI Review → Human Review → Knowledge Update.
-- **Không bỏ qua** Discovery, Impact Analysis, Self-Validation.
-- Mỗi task = 1 Git Worktree riêng.
+- **Do not skip** Discovery, Impact Analysis, Self-Validation.
+- Each task = its own Git Worktree.
 - Branch `feature|fix|refactor|hotfix/PROJECT-XXX-desc`; commit Conventional Commits + Jira ID.
-- Trước khi coi là Done: xem `docs/DEFINITION-OF-DONE.md`.
+- Before considering it Done: see `docs/DEFINITION-OF-DONE.md`.
 
-## Tài liệu quy tắc bắt buộc đọc
+## Mandatory rule documents to read
 - `.agent/rules/01-code-style.md`
 - `.agent/rules/02-architecture-principles.md`
 - `.agent/rules/03-git-jira-workflow.md`
 - `.agent/rules/04-testing-qa.md`
 
 ## Skills / Personas / Plugins
-- Skills (chuẩn SKILL.md): `.claude/skills/` (Codex/Antigravity: `.agents/skills/`)
+- Skills (SKILL.md standard): `.claude/skills/` (Codex/Antigravity: `.agents/skills/`)
 - Personas: `.agent/agents/`
-- Plugin & token budgeting: `.agent/plugins/README.md`
+- Plugins & token budgeting: `.agent/plugins/README.md`
 - MCP (Cursor): `.cursor/mcp.json`

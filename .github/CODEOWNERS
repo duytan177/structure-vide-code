@@ -1,18 +1,18 @@
-# CODEOWNERS — Bước 10 Human Review yêu cầu owner duyệt.
-# Thay <team-lead>, <fe-team>, <be-team> bằng GitHub username/team thật.
+# CODEOWNERS — Step 10 Human Review requires owner approval.
+# Replace <team-lead>, <fe-team>, <be-team> with real GitHub usernames/teams.
 
-# Mặc định: toàn repo
+# Default: the whole repo
 *                       @team-lead
 
-# Quy trình & rules AI Agent (thay đổi cần lead duyệt)
+# AI Agent workflow & rules (changes require lead approval)
 /.agent/                @team-lead
 /AGENTS.md              @team-lead
 /CLAUDE.md              @team-lead
 
-# Source theo tầng
+# Source by layer
 /src/frontend/          @fe-team
 /src/backend/           @be-team
 /src/shared/            @team-lead
 
-# Kiến trúc & quyết định
+# Architecture & decisions
 /docs/adr/              @team-lead

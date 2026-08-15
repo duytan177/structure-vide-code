@@ -1,56 +1,56 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# CÀI ĐẶT PLUGIN / MCP CHO BASE VIDE-CODER (overlay áp lên dự án đích)
+# INSTALL PLUGINS / MCP FOR THE VIDE-CODER BASE (overlay applied onto the target project)
 #   bash .agent/scripts/install-all-plugins.sh
-# Tự phát hiện dự án MỚI hay CŨ, cài plugin ngoài nổi tiếng (KHÔNG rebuild).
+# Auto-detects whether the project is NEW or EXISTING, installs well-known external plugins (does NOT rebuild).
 # ==============================================================================
 set -u
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$( git rev-parse --show-toplevel 2>/dev/null || cd "$SCRIPT_DIR/../../.." && pwd )"
 
-# --- Phát hiện chế độ (mới vs cũ) — quét source trong workspace/ -------------
-mode="mới (greenfield)"
+# --- Detect mode (new vs existing) — scan source in workspace/ ---------------
+mode="new (greenfield)"
 if [ -d "$PROJECT_ROOT/workspace" ] && find "$PROJECT_ROOT/workspace" -maxdepth 3 -type f \
      \( -name package.json -o -name composer.json -o -name pyproject.toml \
         -o -name go.mod -o -name pom.xml -o -name Cargo.toml \) \
      -not -path '*/node_modules/*' 2>/dev/null | grep -q .; then
-  mode="cũ (brownfield)"
+  mode="existing (brownfield)"
 fi
-echo "🚀 [1/6] Môi trường phát hiện: dự án $mode"
+echo "🚀 [1/6] Detected environment: $mode project"
 
-command -v node    &>/dev/null || echo "  ⚠️ Chưa có Node.js v18+."
-command -v python3 &>/dev/null || echo "  ⚠️ Chưa có Python3."
+command -v node    &>/dev/null || echo "  ⚠️ Node.js v18+ not found."
+command -v python3 &>/dev/null || echo "  ⚠️ Python3 not found."
 
-# --- Cài plugin CODE-GRAPH / SECURITY (best-effort) --------------------------
-echo "📦 [2/6] Cài Graphify, GitNexus, Superpower(code-graph) & Semgrep..."
-# LƯU Ý: xác nhận tên package thật trước khi phụ thuộc. Cài best-effort.
-npm install -g graphify-cli gitnexus-cli superpower-code-graph 2>/dev/null || echo "  ⚠️ Một số npm CLI chưa cài được — kiểm tra lại tên package."
-pip3 install semgrep 2>/dev/null || echo "  ⚠️ Semgrep chưa cài được."
+# --- Install CODE-GRAPH / SECURITY plugins (best-effort) ---------------------
+echo "📦 [2/6] Installing Graphify, GitNexus, Superpower(code-graph) & Semgrep..."
+# NOTE: confirm the real package names before depending on them. Best-effort install.
+npm install -g graphify-cli gitnexus-cli superpower-code-graph 2>/dev/null || echo "  ⚠️ Some npm CLIs could not be installed — double-check the package names."
+pip3 install semgrep 2>/dev/null || echo "  ⚠️ Semgrep could not be installed."
 
-# --- Cài SUPERPOWERS (methodology engine) — mỗi agent cài riêng ---------------
-echo "🦸 [3/6] SUPERPOWERS (engine skill) — cài THỦ CÔNG theo từng agent:"
+# --- Install SUPERPOWERS (methodology engine) — each agent installs separately ---------------
+echo "🦸 [3/6] SUPERPOWERS (skill engine) — install MANUALLY per agent:"
 cat <<'EOS'
   • Claude Code : /plugin marketplace add obra/superpowers  ->  /plugin install superpowers
-  • Cursor      : Marketplace plugin -> thêm repo obra/superpowers
-  • Codex/Antigravity/Copilot CLI : đăng ký repo github.com/obra/superpowers
-  (Plugin KHÔNG chuyển giữa các agent — phải cài riêng từng harness.)
-  Chi tiết: .agent/plugins/superpowers.md
+  • Cursor      : Marketplace plugin -> add the obra/superpowers repo
+  • Codex/Antigravity/Copilot CLI : register the github.com/obra/superpowers repo
+  (The plugin does NOT transfer between agents — it must be installed separately per harness.)
+  Details: .agent/plugins/superpowers.md
 EOS
 
-# --- Copy config templates vào root ------------------------------------------
-echo "⚙️ [4/6] Sao chép config mẫu vào root (không ghi đè nếu đã có)..."
+# --- Copy config templates into root ------------------------------------------
+echo "⚙️ [4/6] Copying sample configs into root (does not overwrite if already present)..."
 for f in .semgrep.yml .coderabbit.yaml graphify.config.json gitnexus.config.json superpower.config.json; do
   cp -n "$SCRIPT_DIR/$f" "$PROJECT_ROOT/$f" 2>/dev/null || true
 done
 
-# --- Onboarding cho dự án cũ --------------------------------------------------
+# --- Onboarding for existing projects -----------------------------------------
 echo "🧠 [5/6] Index / Onboarding..."
-if [ "$mode" = "cũ (brownfield)" ]; then
-  echo "  -> Dự án cũ: chạy 'bash .agent/scripts/onboard-existing.sh workspace/<ten-du-an>' để index + sinh baseline."
+if [ "$mode" = "existing (brownfield)" ]; then
+  echo "  -> Existing project: run 'bash .agent/scripts/onboard-existing.sh workspace/<project-name>' to index + generate a baseline."
 else
   command -v graphify &>/dev/null && graphify init "$PROJECT_ROOT/workspace" 2>/dev/null || true
 fi
 
-echo "🔌 [6/6] MCP: dùng .mcp.json (Claude) / .cursor/mcp.json (Cursor). Bật MCP theo phase (xem plugins/README.md)."
-echo "✅ HOÀN TẤT. Chạy 'bash .agent/scripts/verify-plugins.sh' để kiểm tra."
+echo "🔌 [6/6] MCP: use .mcp.json (Claude) / .cursor/mcp.json (Cursor). Enable MCPs per phase (see plugins/README.md)."
+echo "✅ DONE. Run 'bash .agent/scripts/verify-plugins.sh' to check."

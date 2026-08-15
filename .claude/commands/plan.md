@@ -1,12 +1,12 @@
 ---
-description: Bước 5 — Planning (Milestone / Sprint / Timeline)
-argument-hint: [tên feature]
+description: Step 5 — Planning (Milestone / Sprint / Timeline)
+argument-hint: [feature name]
 ---
 
-Thực hiện **Bước 5 — PLANNING** cho: $ARGUMENTS
+Perform **Step 5 — PLANNING** for: $ARGUMENTS
 
-1. Dùng subagent persona `.agent/agents/planner.md`.
-2. Lập Implementation Plan `plans/yyyy-mm-dd-<feature>.md` theo `plans/plan-template.md`.
-3. Chia milestone/sprint, xác định thứ tự phụ thuộc và tiêu chí hoàn thành.
+1. Use the persona subagent `.agent/agents/planner.md`.
+2. Draft an Implementation Plan `plans/yyyy-mm-dd-<feature>.md` following `plans/plan-template.md`.
+3. Break down milestones/sprints, determine dependency order and completion criteria.
 
-Kết thúc: `/breakdown`.
+Wrap-up: `/breakdown`.

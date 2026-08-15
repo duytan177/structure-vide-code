@@ -1,22 +1,22 @@
-# Đóng góp cho Base Vide-Coder
+# Contributing to the Vide-Coder Base
 
-Tài liệu này nói về việc **sửa/mở rộng chính base quy trình** (không phải code dự án đích trong `workspace/`).
+This document is about **editing/extending the workflow base itself** (not the target project's code in `workspace/`).
 
-## Nguồn chân lý
-- Quy trình: `.agent/rules/00-ai-workflow.md` là **single source of truth**. Sửa quy trình chỉ sửa ở đây; entry-points (`CLAUDE.md`, `AGENTS.md`, `.cursor/`, `.windsurf/`) là pointer, không chép nội dung.
+## Single source of truth
+- The workflow: `.agent/rules/00-ai-workflow.md` is the **single source of truth**. To change the workflow, edit only here; the entry points (`CLAUDE.md`, `AGENTS.md`, `.cursor/`, `.windsurf/`) are pointers and do not copy the content.
 
-## Khi thêm/sửa
-- **Skill mới** → `.claude/skills/<ten>/SKILL.md` (chuẩn Agent Skills), rồi `bash .agent/scripts/sync-skills.sh`. Xem `docs/AGENT-STANDARD.md`.
-- **Bước quy trình mới** → thêm skill + command (`.claude/commands/` và `.cursor/commands/`) + wire vào rule 00.
-- **Template** → sửa core trong `docs/…-template.md`; tùy biến per-project thì dùng `.agent/templates/overrides/`.
-- **Plugin** → khai báo trong `.agent/plugins/` + installer; xác nhận CLI/package tồn tại thật.
+## When adding/editing
+- **New skill** → `.claude/skills/<name>/SKILL.md` (Agent Skills standard), then `bash .agent/scripts/sync-skills.sh`. See `docs/AGENT-STANDARD.md`.
+- **New workflow step** → add a skill + command (`.claude/commands/` and `.cursor/commands/`) + wire it into rule 00.
+- **Template** → edit the core in `docs/…-template.md`; for per-project customization use `.agent/templates/overrides/`.
+- **Plugin** → declare it in `.agent/plugins/` + the installer; confirm the CLI/package actually exists.
 
 ## Commit & version
-- Commit theo `.claude/skills/semantic-commit/SKILL.md` (`/commit`).
-- Thay đổi base đáng chú ý → cập nhật `CHANGELOG.md` và `VERSION` (SemVer).
+- Commit per `.claude/skills/semantic-commit/SKILL.md` (`/commit`).
+- Notable base changes → update `CHANGELOG.md` and `VERSION` (SemVer).
 
-## Checklist PR
-- [ ] Cập nhật `CHANGELOG.md`.
-- [ ] Entry-points vẫn chỉ là pointer (không lệch nội dung với rule 00).
-- [ ] Command mới có cả bản Claude + Cursor.
-- [ ] `bash -n` pass cho script; JSON hợp lệ.
+## PR checklist
+- [ ] Updated `CHANGELOG.md`.
+- [ ] Entry points remain pointers only (no content drift from rule 00).
+- [ ] New commands have both a Claude and a Cursor version.
+- [ ] `bash -n` passes for scripts; JSON is valid.

@@ -1,12 +1,12 @@
-# TEMPLATE RESOLUTION — Ưu tiên override per-project
+# TEMPLATE RESOLUTION — Per-project overrides take priority
 
-Học từ cơ chế template priority của GitHub spec-kit. Cho phép **dự án tùy biến template mà KHÔNG sửa base**.
+Inspired by GitHub spec-kit's template priority mechanism. Lets **a project customize templates WITHOUT modifying the base**.
 
-## Thứ tự ưu tiên (cao → thấp)
+## Priority order (high → low)
 
-1. **`.agent/templates/overrides/`** — bản tùy biến của dự án hiện tại (thắng tất cả).
-2. **`.agent/templates/presets/`** — bộ preset theo domain/tổ chức (nếu có).
-3. **Core templates** (mặc định của base):
+1. **`.agent/templates/overrides/`** — the current project's customizations (beats everything).
+2. **`.agent/templates/presets/`** — preset bundles by domain/organization (if any).
+3. **Core templates** (base defaults):
    - `docs/specs/spec-template.md`
    - `docs/adr/adr-template.md`, `docs/adr/rfc-template.md`
    - `docs/discovery/discovery-template.md`
@@ -15,7 +15,7 @@ Học từ cơ chế template priority của GitHub spec-kit. Cho phép **dự �
    - `docs/spec-changes/change-log-template.md`
    - `docs/CONSTITUTION.md`
 
-## Quy tắc cho AI Agent
-- Trước khi sinh tài liệu theo template, **kiểm tra `overrides/` (rồi `presets/`) trước**; chỉ rơi về core nếu không có bản override.
-- Tên file override **trùng tên** core template để được nhận diện (vd `overrides/spec-template.md`).
-- Không sửa core template khi chỉ cần tùy biến cho 1 dự án → tạo bản trong `overrides/`.
+## Rules for the AI Agent
+- Before generating a document from a template, **check `overrides/` (then `presets/`) first**; only fall back to core if no override exists.
+- The override file name must **match** the core template's name to be recognized (e.g. `overrides/spec-template.md`).
+- Don't modify the core template when you only need to customize it for a single project → create a copy in `overrides/`.

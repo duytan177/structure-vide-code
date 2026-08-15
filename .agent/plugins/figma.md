@@ -1,17 +1,17 @@
 # FIGMA + SHADCN — FE DESIGN MCP (figma.md)
 
-**Mức ưu tiên**: ⭐⭐⭐⭐⭐ (pha FE/UI)
-**Vai trò**: Nguồn thiết kế cho **design-to-code** và registry component đẹp — phục vụ skill
-[`ui-ux-promax`](.claude/skills/ui-ux-promax/SKILL.md).
+**Priority level**: ⭐⭐⭐⭐⭐ (FE/UI phase)
+**Role**: Design source for **design-to-code** and a registry of beautiful components — serving the
+[`ui-ux-promax`](.claude/skills/ui-ux-promax/SKILL.md) skill.
 
 ---
 
-## 🧩 CÁC MCP
+## 🧩 THE MCPs
 
 ### 1. Figma MCP (design source)
-Trích design context, screenshot, variables, Code Connect từ file Figma.
+Extracts design context, screenshots, variables, and Code Connect from a Figma file.
 
-**Cách A — Framelink (headless, cần API key)** — đang cấu hình sẵn trong `.mcp.json`:
+**Option A — Framelink (headless, requires API key)** — already configured in `.mcp.json`:
 ```json
 "figma": {
   "command": "npx",
@@ -19,20 +19,20 @@ Trích design context, screenshot, variables, Code Connect từ file Figma.
   "env": { "FIGMA_API_KEY": "<YOUR_FIGMA_API_KEY>" }
 }
 ```
-Lấy API key: Figma → Settings → Security → Personal access tokens.
+Get an API key: Figma → Settings → Security → Personal access tokens.
 
-**Cách B — Figma Dev Mode MCP chính chủ (cần Figma Desktop chạy)**:
-Bật trong Figma Desktop (Preferences → Enable Dev Mode MCP Server), rồi trỏ MCP tới `http://127.0.0.1:3845/mcp`.
-Mạnh hơn (get_design_context, get_variable_defs, Code Connect) nhưng cần app desktop mở.
+**Option B — Official Figma Dev Mode MCP (requires Figma Desktop running)**:
+Enable it in Figma Desktop (Preferences → Enable Dev Mode MCP Server), then point the MCP to `http://127.0.0.1:3845/mcp`.
+More powerful (get_design_context, get_variable_defs, Code Connect) but requires the desktop app to be open.
 
-### 2. shadcn/ui MCP (component registry đẹp)
-Duyệt & thêm component chuẩn đẹp, a11y tốt vào dự án.
+### 2. shadcn/ui MCP (beautiful component registry)
+Browse and add standard, beautiful, accessible components to the project.
 ```json
 "shadcn": { "command": "npx", "args": ["-y", "shadcn@latest", "mcp"] }
 ```
 
-### 3. Magic MCP — 21st.dev (sinh UI đẹp bằng mô tả)
-Sinh nhanh component/section đẹp từ ngôn ngữ tự nhiên → nguồn cảm hứng cho skill `ui-ux-promax`.
+### 3. Magic MCP — 21st.dev (generate beautiful UI from a description)
+Quickly generates beautiful components/sections from natural language → a source of inspiration for the `ui-ux-promax` skill.
 ```json
 "magic": {
   "command": "npx",
@@ -40,21 +40,21 @@ Sinh nhanh component/section đẹp từ ngôn ngữ tự nhiên → nguồn c�
   "env": { "API_KEY": "<YOUR_21ST_DEV_API_KEY>" }
 }
 ```
-Lấy API key tại 21st.dev. ⚠️ Luôn **map component sinh ra về design tokens & a11y của dự án**, không dán nguyên.
+Get an API key at 21st.dev. ⚠️ Always **map generated components onto the project's design tokens & a11y**, do not paste them verbatim.
 
-## 🔧 TÍNH NĂNG CHÍNH (Figma MCP)
-- `get_design_context` / `get_metadata`: cấu trúc + thuộc tính node đang chọn.
-- `get_screenshot`: ảnh render để đối chiếu.
-- `get_variable_defs`: **design tokens** (màu/spacing/typography) → map sang Tailwind/CSS variables.
-- `get_code_connect_map`: component Figma ↔ component code có sẵn (tái dùng, không dựng lại).
+## 🔧 KEY FEATURES (Figma MCP)
+- `get_design_context` / `get_metadata`: structure + attributes of the selected node.
+- `get_screenshot`: a rendered image for comparison.
+- `get_variable_defs`: **design tokens** (color/spacing/typography) → map to Tailwind/CSS variables.
+- `get_code_connect_map`: Figma component ↔ existing code component (reuse, don't rebuild).
 
-## 🪄 PROMPT MẪU
-- "Lấy design context của frame [link Figma] rồi dựng component theo shadcn + Tailwind, map tokens từ Figma variables."
-- "So sánh screenshot Figma với trang đang render (Playwright) và sửa lệch spacing/màu."
+## 🪄 SAMPLE PROMPTS
+- "Get the design context of frame [Figma link] then build the component with shadcn + Tailwind, mapping tokens from Figma variables."
+- "Compare the Figma screenshot with the currently rendered page (Playwright) and fix spacing/color discrepancies."
 
-## ⚖️ TOKEN BUDGETING (theo plugins/README.md)
-- Figma + shadcn chỉ bật ở **pha FE/UI**; tắt khi làm BE để tiết kiệm context.
-- Không bật cùng lúc quá nhiều MCP (giữ < 10 active).
+## ⚖️ TOKEN BUDGETING (per plugins/README.md)
+- Figma + shadcn are only enabled in the **FE/UI phase**; disable them when working on BE to save context.
+- Don't enable too many MCPs at once (keep < 10 active).
 
-## 🔒 LƯU Ý
-- `FIGMA_API_KEY` để trong biến môi trường/secret, **không commit** giá trị thật (file config chỉ để placeholder).
+## 🔒 NOTES
+- Keep `FIGMA_API_KEY` in an environment variable/secret, **do not commit** the real value (the config file should only contain a placeholder).

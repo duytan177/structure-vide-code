@@ -1,13 +1,13 @@
 ---
-description: Gate soát nhất quán chéo REQ↔SPEC↔ADR↔PLAN↔TASK trước khi code
+description: Gate for cross-consistency checks REQ↔SPEC↔ADR↔PLAN↔TASK before coding
 argument-hint: [PROJECT-XXX | SPEC-XXX]
 ---
 
-Chạy **GATE /analyze** cho: $ARGUMENTS theo skill `.claude/skills/analyze-consistency/SKILL.md`.
+Run the **/analyze GATE** for: $ARGUMENTS following the skill `.claude/skills/analyze-consistency/SKILL.md`.
 
-1. Đọc `docs/traceability-matrix.md` + REQ/SPEC/ADR/PLAN/TASK liên quan.
-2. Kiểm tra: coverage (không sót), traceability (ID có thật), mâu thuẫn nội dung, vi phạm `docs/CONSTITUTION.md`.
-3. In bảng kết quả với mức 🔴 BLOCKER / 🟡 WARN + đề xuất vá.
-4. **GATE**: còn 🔴 → DỪNG, không sang `/implement`. Quay lại `/spec` hoặc `/breakdown` để vá.
+1. Read `docs/traceability-matrix.md` + the related REQ/SPEC/ADR/PLAN/TASK.
+2. Check: coverage (nothing missed), traceability (IDs are real), content contradictions, violations of `docs/CONSTITUTION.md`.
+3. Print a results table with 🔴 BLOCKER / 🟡 WARN levels + suggested fixes.
+4. **GATE**: if any 🔴 remain → STOP, do not proceed to `/implement`. Go back to `/spec` or `/breakdown` to fix.
 
-Chạy sau `/breakdown`, trước `/implement`.
+Run after `/breakdown`, before `/implement`.

@@ -1,16 +1,16 @@
 ---
-description: Render commit title + description theo Conventional/SemVer, bám task/spec
+description: Render commit title + description per Conventional/SemVer, tied to task/spec
 argument-hint: [PROJECT-XXX]
 ---
 
-Render commit cho thay đổi đang staged (task: $ARGUMENTS) theo skill
+Render a commit for the currently staged changes (task: $ARGUMENTS) following the skill
 `.claude/skills/semantic-commit/SKILL.md`.
 
-1. `git diff --staged --stat` → suy `<type>` + `<scope>` từ file/module thực tế.
-2. Lấy Jira ID + mục tiêu + AC từ `tasks/in-progress/PROJECT-XXX.md` và `docs/specs/SPEC-XXX.md`.
-3. Sinh commit đúng khuôn: `<type>(<scope>): PROJECT-XXX - <summary ≤72 ký tự, imperative>`
-   + body bullet bám AC/spec + footer `Refs/Closes/BREAKING CHANGE`.
-4. Đối chiếu regex hook `.githooks/commit-msg`. Cấm từ mơ hồ (stuff/things/misc/"update code").
-5. Nếu không map được task/spec hoặc thiếu Jira ID → DỪNG và hỏi, không tự bịa ID.
+1. `git diff --staged --stat` → infer `<type>` + `<scope>` from the actual files/modules.
+2. Get the Jira ID + goal + AC from `tasks/in-progress/PROJECT-XXX.md` and `docs/specs/SPEC-XXX.md`.
+3. Generate the commit in the exact format: `<type>(<scope>): PROJECT-XXX - <summary ≤72 chars, imperative>`
+   + a body with bullets tied to AC/spec + a footer `Refs/Closes/BREAKING CHANGE`.
+4. Cross-check against the `.githooks/commit-msg` hook regex. Forbid vague words (stuff/things/misc/"update code").
+5. If you cannot map to a task/spec or the Jira ID is missing → STOP and ask, do not invent an ID.
 
-Ánh xạ SemVer: `feat`→MINOR, `fix|perf`→PATCH, `!`/`BREAKING CHANGE`→MAJOR.
+SemVer mapping: `feat`→MINOR, `fix|perf`→PATCH, `!`/`BREAKING CHANGE`→MAJOR.

@@ -1,26 +1,26 @@
-# DISCOVERY-XXX: <Tên tính năng / yêu cầu>
+# DISCOVERY-XXX: <Feature / requirement name>
 
-> Bước 1 — Brainstorm / Q&A / Research. Ghi vết mọi câu hỏi làm rõ và giả định.
-> Liên quan: REQ-XXX
+> Step 1 — Brainstorm / Q&A / Research. Trace every clarifying question and assumption.
+> Related: REQ-XXX
 
-- **Ngày**: yyyy-mm-dd
-- **Người thực hiện**: <AI Agent / người>
+- **Date**: yyyy-mm-dd
+- **Performed by**: <AI Agent / person>
 
-## 1. Yêu cầu gốc (nguồn)
-<!-- Trích từ docs/client-requirements/ hoặc docs/basic-design/. -->
+## 1. Original requirement (source)
+<!-- Excerpt from docs/client-requirements/ or docs/basic-design/. -->
 
-## 2. Câu hỏi làm rõ (Clarifying Questions)
-| # | Câu hỏi | Trả lời / Người trả lời | Trạng thái |
+## 2. Clarifying Questions
+| # | Question | Answer / Answered by | Status |
 | - | ------- | ----------------------- | ---------- |
-| 1 |         |                         | ⬜ Chờ |
+| 1 |         |                         | ⬜ Pending |
 
-## 3. Giả định (Assumptions)
+## 3. Assumptions
 - ...
 
-## 4. Ràng buộc (Constraints: kỹ thuật, thời gian, bảo mật, pháp lý)
+## 4. Constraints (technical, time, security, legal)
 
-## 5. Nghiên cứu / tham khảo (Research & Prior Art)
+## 5. Research & Prior Art
 
-## 6. Rủi ro & điểm chưa rõ (Risks / Unknowns)
+## 6. Risks / Unknowns
 
-## 7. Kết luận → đầu vào cho Impact Analysis (Bước 2) & Spec (Bước 4)
+## 7. Conclusion → input for Impact Analysis (Step 2) & Spec (Step 4)

@@ -1,13 +1,13 @@
 ---
-description: Bước 6 — Task Breakdown (Epic → Story → Task → Subtask)
-argument-hint: [PLAN hoặc feature]
+description: Step 6 — Task Breakdown (Epic → Story → Task → Subtask)
+argument-hint: [PLAN or feature]
 ---
 
-Thực hiện **Bước 6 — TASK BREAKDOWN** cho: $ARGUMENTS
+Perform **Step 6 — TASK BREAKDOWN** for: $ARGUMENTS
 
-1. Áp dụng skill `.claude/skills/task-breakdown/SKILL.md`.
-2. Chia Epic → Story → Task → Subtask; tạo `tasks/backlog/PROJECT-XXX.md` theo `tasks/backlog/jira-task-template.md`.
-3. Mỗi task có Acceptance Criteria rõ ràng, ước lượng, và liên kết SPEC-XXX.
-4. Cập nhật `docs/traceability-matrix.md`: SPEC → TASK.
+1. Apply the skill `.claude/skills/task-breakdown/SKILL.md`.
+2. Break down Epic → Story → Task → Subtask; create `tasks/backlog/PROJECT-XXX.md` following `tasks/backlog/jira-task-template.md`.
+3. Each task has clear Acceptance Criteria, an estimate, and a link to SPEC-XXX.
+4. Update `docs/traceability-matrix.md`: SPEC → TASK.
 
-Kết thúc: `/implement`.
+Wrap-up: `/implement`.

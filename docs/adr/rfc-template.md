@@ -1,28 +1,28 @@
-# RFC-XXX: <Tiêu đề đề xuất>
+# RFC-XXX: <Proposal title>
 
-> RFC dùng cho đề xuất thay đổi lớn cần thảo luận **trước khi** chốt thành ADR.
-> Khi được duyệt → tạo ADR tương ứng trong `docs/adr/` theo `adr-template.md`.
+> An RFC is used for a major change proposal that needs discussion **before** being finalized into an ADR.
+> When approved → create a corresponding ADR in `docs/adr/` per `adr-template.md`.
 
-- **Trạng thái**: Draft | In Review | Accepted | Rejected | Superseded
-- **Tác giả**: <tên>
-- **Ngày**: yyyy-mm-dd
-- **Liên quan**: REQ-XXX / SPEC-XXX
+- **Status**: Draft | In Review | Accepted | Rejected | Superseded
+- **Author**: <name>
+- **Date**: yyyy-mm-dd
+- **Related**: REQ-XXX / SPEC-XXX
 
-## 1. Tóm tắt (Summary)
-<!-- 2-3 câu: đề xuất cái gì, giải quyết vấn đề gì. -->
+## 1. Summary
+<!-- 2-3 sentences: what is proposed, what problem it solves. -->
 
-## 2. Bối cảnh & Vấn đề (Context & Problem)
+## 2. Context & Problem
 
-## 3. Mục tiêu / Ngoài phạm vi (Goals / Non-Goals)
+## 3. Goals / Non-Goals
 
-## 4. Các phương án (Proposed Options)
-### Phương án A
-- Ưu điểm / Nhược điểm / Chi phí / Rủi ro
-### Phương án B
+## 4. Proposed Options
+### Option A
+- Pros / Cons / Cost / Risks
+### Option B
 
-## 5. Phương án đề xuất (Recommendation)
+## 5. Recommendation
 
-## 6. Ảnh hưởng (Impact)
+## 6. Impact
 <!-- Blast radius, migration, backward-compat, security, performance. -->
 
-## 7. Câu hỏi mở (Open Questions)
+## 7. Open Questions

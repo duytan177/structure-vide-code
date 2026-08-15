@@ -1,7 +1,7 @@
-# /spec — Bước 4: SPECIFICATION
+# /spec — Step 4: SPECIFICATION
 
-Thực hiện **Bước 4 (SPECIFICATION)** theo nguồn chân lý `.agent/rules/00-ai-workflow.md`.
+Perform **Step 4 (SPECIFICATION)** according to the single source of truth `.agent/rules/00-ai-workflow.md`.
 
-- Skill/persona chính: `.claude/skills/write-spec/SKILL.md`
-- Đầu ra / công cụ: `docs/specs/`
-- Tuân thủ Definition of Done: `docs/DEFINITION-OF-DONE.md`.
+- Main skill/persona: `.claude/skills/write-spec/SKILL.md`
+- Output / tools: `docs/specs/`
+- Comply with the Definition of Done: `docs/DEFINITION-OF-DONE.md`.

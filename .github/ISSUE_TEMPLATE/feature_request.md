@@ -1,17 +1,17 @@
 ---
 name: ✨ Feature request
-about: Đề xuất tính năng / thay đổi
-title: "feat: PROJECT-XXX - <mô tả ngắn>"
+about: Propose a feature / change
+title: "feat: PROJECT-XXX - <short description>"
 labels: enhancement
 ---
 
-## Vấn đề / nhu cầu
-<Muốn giải quyết điều gì, cho ai>
+## Problem / need
+<What you want to solve, and for whom>
 
-## Đề xuất giải pháp
-<Mô tả hành vi mong muốn>
+## Proposed solution
+<Describe the desired behavior>
 
-## Phạm vi
+## Scope
 - In-scope: ...
 - Out-of-scope: ...
 
@@ -19,5 +19,5 @@ labels: enhancement
 - [ ] AC-1: ...
 - [ ] AC-2: ...
 
-## Liên kết
+## Links
 - Discovery / SPEC / ADR: ...

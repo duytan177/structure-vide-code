@@ -4,17 +4,17 @@ trigger: always_on
 
 # Vide-Coder Workflow (Windsurf entry-point)
 
-Đây là pointer. Nguồn chân lý duy nhất: `.agent/rules/00-ai-workflow.md` — luôn đọc trước khi làm.
+This is a pointer. The single source of truth: `.agent/rules/00-ai-workflow.md` — always read it before working.
 
-## BẮT BUỘC (11 bước)
+## MANDATORY (11 steps)
 Discovery → Impact Analysis → Architecture → Specification → Planning → Task Breakdown →
 Implementation → Self Validation → AI Review → Human Review → Knowledge Update → Merge/Release.
 
-- Không bỏ qua Discovery, Impact Analysis, Self-Validation.
-- Mỗi task chạy trong Git Worktree riêng.
+- Do not skip Discovery, Impact Analysis, Self-Validation.
+- Each task runs in its own Git Worktree.
 - Branch: `feature|fix|refactor|hotfix/PROJECT-XXX-desc`. Commit: Conventional Commits + Jira ID.
 - Definition of Done: `docs/DEFINITION-OF-DONE.md`.
 
-## Đọc thêm
+## Further reading
 `.agent/rules/01-code-style.md`, `02-architecture-principles.md`, `03-git-jira-workflow.md`,
-`04-testing-qa.md`; skills tại `.claude/skills/` (chuẩn SKILL.md); plugin tại `.agent/plugins/README.md`.
+`04-testing-qa.md`; skills in `.claude/skills/` (SKILL.md standard); plugins in `.agent/plugins/README.md`.

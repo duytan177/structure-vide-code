@@ -1,4 +1,4 @@
-# Chuẩn hóa line-ending & phân loại file
+# Normalize line endings & classify files
 * text=auto eol=lf
 
 *.sh    text eol=lf
@@ -7,7 +7,7 @@
 *.yml   text
 *.yaml  text
 
-# Script luôn LF (tránh lỗi shebang trên Windows checkout)
+# Scripts always LF (avoid shebang errors on Windows checkout)
 .githooks/*   text eol=lf
 .agent/scripts/*.sh   text eol=lf
 

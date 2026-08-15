@@ -1,17 +1,18 @@
-# LỊCH SỬ CÁC QUYẾT ĐỊNH KIẾN TRÚC & LESSONS LEARNED (decision-log.md)
+# ARCHITECTURE DECISION HISTORY & LESSONS LEARNED (decision-log.md)
 
-File này ghi lại nhật ký ngắn các quyết định kiến trúc đã được thông qua và các bài học kinh nghiệm thu được trong quá trình phát triển.
+This file keeps a short log of the architecture decisions that have been approved and the lessons learned during development.
 
 ---
 
-## 📜 NHẬT KÝ QUYẾT ĐỊNH (DECISION LOG)
+## 📜 DECISION LOG
 
-| Ngày | Quyết định | Người duyệt / ADR | Ghi chú |
+| Date | Decision | Approver / ADR | Notes |
 | :--- | :--- | :--- | :--- |
-| 2026-07-23 | Khởi tạo cấu trúc dự án Vide-coder chuẩn AI Workflow | ADR-000 | Tách biệt `.agent/`, `docs/`, `plans/`, `tasks/` và `src/` |
+| 2026-07-23 | Initialize the Vide-coder project structure following the AI Workflow standard | ADR-000 | Separate `.agent/`, `docs/`, `plans/`, `tasks/`, and `src/` |
 
 ---
 
-## 💡 LESSONS LEARNED (BÀI HỌC KINH NGHIỆM)
-- Phải kiểm tra thư mục `docs/spec-changes/` trước khi làm task để tránh làm sai spec mới nhất từ họp hành/Jira Q&A.
-- Luôn gọi GitNexus phân tích Blast Radius trước khi refactor hàm core.
+## 💡 LESSONS LEARNED
+
+- Always check the `docs/spec-changes/` directory before working on a task to avoid violating the latest spec from meetings/Jira Q&A.
+- Always call GitNexus to analyze the Blast Radius before refactoring a core function.

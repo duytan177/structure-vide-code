@@ -1,19 +1,19 @@
 ---
 name: impact-analysis
 description: >
-  Phân tích blast radius & dependency trước khi sửa code (Graphify/GitNexus). Dùng KHI sắp sửa code
-  chạm module dùng chung, refactor, đổi dependency; hoặc user nói "ảnh hưởng", "impact", "blast radius".
+  Analyze blast radius & dependencies before modifying code (Graphify/GitNexus). Use WHEN about to modify code
+  that touches shared modules, refactor, change a dependency; or the user says "impact", "blast radius".
 license: MIT
 metadata: { author: vide-coder, version: "1.0" }
 ---
 
-# Impact Analysis (Bước 2)
+# Impact Analysis (Step 2)
 
-Ngăn "sửa một chỗ hỏng chỗ khác" trong hệ thống nhiều module.
+Prevent "fix one thing, break another" in a multi-module system.
 
-## Quy trình
-1. **Graphify — tra Knowledge Graph**: tìm module phụ thuộc trực tiếp & gián tiếp vào file/hàm sắp sửa.
-2. **GitNexus — blast radius**: phân tích execution flow (FE→BE→DB), liệt kê mọi hàm/class bị tác động.
-3. **Regression scope**: ghi vùng nguy cơ cao để bổ sung test (Playwright/Unit) ở Bước 8.
+## Workflow
+1. **Graphify — query the Knowledge Graph**: find modules that depend directly & indirectly on the file/function to be changed.
+2. **GitNexus — blast radius**: analyze the execution flow (FE→BE→DB), list every affected function/class.
+3. **Regression scope**: note high-risk areas to add tests (Playwright/Unit) in Step 8.
 
-**HARD-GATE**: chưa liệt kê đủ blast radius → không code. Command `/impact`.
+**HARD-GATE**: blast radius not fully listed → do not code. Command `/impact`.

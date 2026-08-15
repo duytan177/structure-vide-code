@@ -1,17 +1,17 @@
 ---
 name: clarify-requirements
 description: >
-  Làm rõ yêu cầu mơ hồ (edge case, phi chức năng, ranh giới scope) trước khi viết Spec. Dùng SAU
-  Discovery, TRƯỚC Spec; hoặc khi yêu cầu chưa rõ, user nói "làm rõ", "clarify", "hỏi lại".
+  Clarify ambiguous requirements (edge cases, non-functional, scope boundaries) before writing the Spec. Use AFTER
+  Discovery, BEFORE Spec; or when requirements are unclear, the user says "clarify", "clarification", "ask back".
 license: MIT
 metadata: { author: vide-coder, version: "1.0" }
 ---
 
-# Clarify — làm rõ yêu cầu (Bước 1.5)
+# Clarify — clarify requirements (Step 1.5)
 
-Bóc tách câu hỏi chặn (blocker) theo nhóm: chức năng mơ hồ, phi chức năng, dữ liệu, ranh giới scope, phụ thuộc.
-Hỏi user dạng trắc nghiệm/đề xuất mặc định; ghi kết quả `docs/discovery/<feature>-clarifications.md`; ràng buộc bất biến mới → `docs/CONSTITUTION.md`.
+Break out blocker questions by group: ambiguous functionality, non-functional, data, scope boundaries, dependencies.
+Ask the user in multiple-choice / default-proposal form; record results in `docs/discovery/<feature>-clarifications.md`; new invariant constraints → `docs/CONSTITUTION.md`.
 
-Nhóm câu hỏi: chức năng mơ hồ · phi chức năng (perf/security/i18n/mobile) · dữ liệu (format/validation/vòng đời) · ranh giới scope (out-of-scope) · phụ thuộc (API/quyền).
+Question groups: ambiguous functionality · non-functional (perf/security/i18n/mobile) · data (format/validation/lifecycle) · scope boundaries (out-of-scope) · dependencies (API/permissions).
 
-**Exit**: hết câu hỏi 🔴 blocker; giả định chưa xác nhận đánh dấu `[ASSUMPTION]`. Command `/clarify`.
+**Exit**: no 🔴 blocker questions remain; unconfirmed assumptions marked `[ASSUMPTION]`. Command `/clarify`.

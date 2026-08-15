@@ -14,3 +14,10 @@
 ## 📋 SAMPLE COMMANDS OR PROMPTS FOR THE AI AGENT
 - `graphify query "UserAuthenticationService"` -> Returns all controllers, middleware, and UI components calling this service.
 - `graphify rebuild` -> Rebuilds the Knowledge Graph after creating many new files.
+
+## 🛠️ INSTALL
+- PyPI package is **`graphifyy`**; the CLI command stays **`graphify`**:
+  ```bash
+  pip install graphifyy
+  ```
+- Works with Claude Code / Cursor / Antigravity (skill `/graphify`). Repo: https://github.com/Graphify-Labs/graphify

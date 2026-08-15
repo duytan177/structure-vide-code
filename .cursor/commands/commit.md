@@ -6,4 +6,4 @@ Generate a commit title + description for the currently staged changes according
 - Template: `<type>(<scope>): PROJECT-XXX - <summary ≤72 chars, imperative>` + body bullets tied to AC/spec.
 - Content sources (no fabrication): `tasks/in-progress/PROJECT-XXX.md` → `docs/specs/SPEC-XXX.md` → `git diff --staged`.
 - SemVer: `feat`→MINOR, `fix|perf`→PATCH, `!`/`BREAKING CHANGE:`→MAJOR.
-- Match the `.githooks/commit-msg` hook. Forbid vague words (stuff/things/misc/"fix bug"/"update code").
+- Follow Conventional Commits (rule 03). Forbid vague words (stuff/things/misc/"fix bug"/"update code").

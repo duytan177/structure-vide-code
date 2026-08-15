@@ -22,11 +22,14 @@ echo "🚀 [1/6] Detected environment: $mode project"
 command -v node    &>/dev/null || echo "  ⚠️ Node.js v18+ not found."
 command -v python3 &>/dev/null || echo "  ⚠️ Python3 not found."
 
-# --- Install CODE-GRAPH / SECURITY plugins (best-effort) ---------------------
-echo "📦 [2/6] Installing Graphify, GitNexus, Superpower(code-graph) & Semgrep..."
-# NOTE: confirm the real package names before depending on them. Best-effort install.
-npm install -g graphify-cli gitnexus-cli superpower-code-graph 2>/dev/null || echo "  ⚠️ Some npm CLIs could not be installed — double-check the package names."
-pip3 install semgrep 2>/dev/null || echo "  ⚠️ Semgrep could not be installed."
+# --- Install CODE-GRAPH / SECURITY plugins (best-effort, verified package names) ---
+echo "📦 [2/6] Installing Graphify (PyPI), GitNexus (npm) & Semgrep..."
+# Graphify: PyPI package is 'graphifyy'; the CLI command stays 'graphify'.
+pip3 install graphifyy 2>/dev/null && echo "  ✓ graphify (graphifyy)" || echo "  ⚠️ graphify (pip install graphifyy) failed."
+# GitNexus: npm package 'gitnexus'; usable via 'npx gitnexus analyze' or global install.
+npm install -g gitnexus 2>/dev/null && echo "  ✓ gitnexus" || echo "  ⚠️ gitnexus (npm i -g gitnexus) failed — you can also use 'npx gitnexus'."
+# Security scanner.
+pip3 install semgrep 2>/dev/null && echo "  ✓ semgrep" || echo "  ⚠️ Semgrep could not be installed."
 
 # --- Install SUPERPOWERS (methodology engine) — each agent installs separately ---------------
 echo "🦸 [3/6] SUPERPOWERS (skill engine) — install MANUALLY per agent:"

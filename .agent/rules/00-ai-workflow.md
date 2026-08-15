@@ -93,14 +93,14 @@ flowchart TD
 
 ### 4. SPECIFICATION (Functional + Technical Spec)
 - Generate `docs/specs/SPEC-XXX.md`; look up framework documentation with Context7 as needed.
-- Skill: [`parse-client-requirements.md`](.claude/skills/write-spec/SKILL.md) / [`parse-basic-design-excel.md`](.claude/skills/write-spec/SKILL.md).
+- Skill: [`write-spec`](.claude/skills/write-spec/SKILL.md) (parses client requirements + basic-design Excel). Command: `/spec`.
 
 ### 5. PLANNING (Milestone / Sprint / Timeline)
 - Use the Superpowers `writing-plans` skill; save to `plans/yyyy-mm-dd-<feature>.md`. Subagent: [`planner.md`](../agents/planner.md).
 
 ### 6. TASK BREAKDOWN (Epic → Story → Task → Subtask)
 - Create `tasks/backlog/PROJECT-XXX.md`; update `docs/traceability-matrix.md`.
-- Skill: [`jira-task-breakdown.md`](.claude/skills/task-breakdown/SKILL.md).
+- Skill: [`task-breakdown`](.claude/skills/task-breakdown/SKILL.md). Command: `/breakdown`.
 
 ### 6.5 ANALYZE (GATE — cross-consistency check before coding)
 - Check coverage + traceability + contradictions REQ↔SPEC↔ADR↔PLAN↔TASK and violations of `docs/CONSTITUTION.md`.
@@ -109,7 +109,7 @@ flowchart TD
 
 ### 7. IMPLEMENTATION (Git Worktree + Coding Agent)
 - Use the Superpowers `using-git-worktrees` + `subagent-driven-development` skills; code in **`workspace/<project-name>/`**.
-- Vide-Coder skills: [`git-worktree-flow.md`](.claude/skills/git-worktree-flow/SKILL.md), [`code-traceability-linkage.md`](.claude/skills/code-traceability/SKILL.md).
+- Vide-Coder skills: [`git-worktree-flow.md`](.claude/skills/git-worktree-flow/SKILL.md), [`code-traceability`](.claude/skills/code-traceability/SKILL.md).
 
 ### 8. SELF VALIDATION (Lint + Typecheck + Unit + E2E)
 - Use the Superpowers `test-driven-development` + `verification-before-completion` skills; run Semgrep-lint, typecheck, Playwright E2E.
@@ -124,4 +124,4 @@ flowchart TD
 
 ### 11. KNOWLEDGE UPDATE (ADR + Memory + Graph + Changelog)
 - Re-index Graphify/GitNexus; update `.agent/memory/decision-log.md`, `docs/traceability-matrix.md`, and the changelog `docs/spec-changes/`.
-- Skill: [`post-implementation-review.md`](.claude/skills/knowledge-update/SKILL.md).
+- Skill: [`knowledge-update`](.claude/skills/knowledge-update/SKILL.md). Command: `/knowledge-update`.

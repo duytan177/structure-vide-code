@@ -9,7 +9,7 @@ metadata: { author: vide-coder, version: "1.0" }
 
 # Semantic Commit — render standards-compliant commits, tied to task/spec
 
-Generate commits that match the `.githooks/commit-msg` hook: `<type>(<scope>): PROJECT-XXX - <summary ≤72, imperative>` + body bullets tied to AC/spec.
+Generate commits per Conventional Commits (rule 03; Jira ID optional): `<type>(<scope>): <summary ≤72, imperative>` + body bullets tied to AC/spec.
 
 - **SemVer**: `feat`→MINOR · `fix`/`perf`→PATCH · `!` or `BREAKING CHANGE:`→MAJOR.
 - **Sources (do not fabricate)**: `tasks/in-progress/PROJECT-XXX.md` → `docs/specs/SPEC-XXX.md` → `git diff --staged`. Missing Jira ID → STOP, ask.

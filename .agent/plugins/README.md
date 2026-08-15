@@ -25,7 +25,7 @@ This document consolidates the matrix of 10 extension Plugins/MCPs and the manda
 | ⭐⭐⭐⭐⭐ | **Superpowers** (methodology) | **Skill/workflow engine** (brainstorm→plan→impl→TDD→review). Vide-Coder uses it directly, does NOT rebuild it. | [`superpowers.md`](superpowers.md) |
 | ⭐⭐⭐⭐⭐ | **Graphify** | Builds a Knowledge Graph of the codebase, helping the AI understand the graph relationships between modules. | [`graphify.md`](graphify.md) |
 | ⭐⭐⭐⭐⭐ | **GitNexus** | Analyzes blast radius (impact scope), execution flow, and deep dependencies when refactoring. | [`gitnexus.md`](gitnexus.md) |
-| ⭐⭐⭐⭐☆ | **Superpower** (code-graph) | High-speed Code Graph indexing for medium and large codebases. ⚠️ DIFFERENT from *Superpowers* methodology above. | [`superpower.md`](superpower.md) |
+| ⭐⭐⭐⭐☆ | **Superpower** (code-graph) | High-speed Code Graph indexing (medium/large codebases). ⚠️ OPTIONAL — package name unverified; prefer Graphify/GitNexus. DIFFERENT from *Superpowers* methodology above. | [`superpower.md`](superpower.md) |
 | ⭐⭐⭐⭐⭐ | **Playwright MCP** | Automates E2E testing of web/mobile interfaces after a task is completed. | [`mcp-tools.md`](mcp-tools.md) |
 | ⭐⭐⭐⭐⭐ | **GitHub MCP** | Manages Git branches/worktrees, commits, opening PRs, code review, and automatic issue creation. | [`mcp-tools.md`](mcp-tools.md) |
 | ⭐⭐⭐⭐☆ | **Context7 MCP** | Looks up the standard documentation of a framework/library at the correct version, right inside the agent. | [`mcp-tools.md`](mcp-tools.md) |

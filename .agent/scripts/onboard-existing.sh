@@ -25,10 +25,13 @@ fi
 
 # 2. Index with GitNexus (if available)
 if command -v gitnexus &>/dev/null; then
-  echo "🧠 GitNexus index..."
-  gitnexus index "$SRC" || echo "  ⚠️ gitnexus index failed (skipping)."
+  echo "🧠 GitNexus analyze..."
+  ( cd "$SRC" && gitnexus analyze ) || echo "  ⚠️ gitnexus analyze failed (skipping)."
+elif command -v npx &>/dev/null; then
+  echo "🧠 GitNexus via npx analyze..."
+  ( cd "$SRC" && npx -y gitnexus analyze ) || echo "  ⚠️ npx gitnexus analyze failed (skipping)."
 else
-  echo "  ⚠️ 'gitnexus' CLI not found — skipping."
+  echo "  ⚠️ 'gitnexus' CLI / npx not found — skipping."
 fi
 
 # 3. Generate the current-state baseline (a skeleton for the AI Agent to fill in)

@@ -24,7 +24,7 @@ File này chỉ là pointer — luôn đọc rule gốc trước khi làm.
 - `.agent/rules/04-testing-qa.md`
 
 ## Skills / Personas / Plugins
-- Skills: `.agent/skills/core/`
+- Skills (chuẩn SKILL.md): `.claude/skills/` (Codex/Antigravity: `.agents/skills/`)
 - Personas: `.agent/agents/`
 - Plugin & token budgeting: `.agent/plugins/README.md`
 - MCP (Cursor): `.cursor/mcp.json`

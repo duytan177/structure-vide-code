@@ -12,7 +12,8 @@ Tài liệu này tổng hợp ma trận 10 Plugin/MCP mở rộng và **Quy tắ
 1. **Giới hạn số MCPs hoạt động**: Chỉ giữ tối đa **< 10 MCP Servers** được bật đồng thời trong một dự án.
 2. **Kích hoạt MCP theo Phase**:
    - **Pha Nghiên cứu**: Chỉ bật `Filesystem MCP`, `Context7 MCP`, `Database MCP`.
-   - **Pha Lập trình**: Chỉ bật `Filesystem MCP`, `Semgrep`.
+   - **Pha Lập trình (BE)**: Chỉ bật `Filesystem MCP`, `Semgrep`.
+   - **Pha FE/UI**: Chỉ bật `Figma MCP`, `shadcn/ui MCP`, `Magic MCP`, `Filesystem MCP` (tắt khi xong FE).
    - **Pha E2E Testing & PR**: Chỉ bật `Playwright MCP`, `GitHub MCP`.
 
 ---
@@ -32,3 +33,6 @@ Tài liệu này tổng hợp ma trận 10 Plugin/MCP mở rộng và **Quy tắ
 | ⭐⭐⭐⭐☆ | **Database MCP (PostgreSQL/MySQL)** | Phân tích DB schema, kiểm tra migrations, chạy truy vấn an toàn khi cần. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
 | ⭐⭐⭐⭐☆ | **Semgrep** | Security scan quét lỗ hổng bảo mật OWASP và bug theo ruleset tự định nghĩa. | [`static-analysis.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/static-analysis.md) |
 | ⭐⭐⭐⭐☆ | **CodeRabbit** | AI PR Reviewer tự động quét code smells, nhận xét PR và đề xuất tối ưu hóa. | [`static-analysis.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/static-analysis.md) |
+| ⭐⭐⭐⭐⭐ | **Figma MCP** | Design-to-code: trích design context, tokens (variables), screenshot, Code Connect cho FE đẹp. | [`figma.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/figma.md) |
+| ⭐⭐⭐⭐☆ | **shadcn/ui MCP** | Registry component đẹp, a11y tốt (Radix + Tailwind) để thêm/nhất quán UI. | [`figma.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/figma.md) |
+| ⭐⭐⭐⭐☆ | **Magic MCP (21st.dev)** | Sinh component/section UI đẹp từ mô tả → cảm hứng cho polish `ui-ux-promax`. | [`figma.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/figma.md) |

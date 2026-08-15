@@ -5,7 +5,7 @@ argument-hint: [PROJECT-XXX]
 
 Thực hiện **Bước 11 — KNOWLEDGE UPDATE** cho: $ARGUMENTS
 
-1. Áp dụng skill `.agent/skills/core/post-implementation-review.md`.
+1. Áp dụng skill `.claude/skills/knowledge-update/SKILL.md`.
 2. Re-index Graphify / GitNexus / Superpower Knowledge Graph.
 3. Cập nhật `.agent/memory/decision-log.md` và `.agent/memory/context.md`.
 4. Cập nhật `docs/traceability-matrix.md` (TASK → PR, trạng thái ✅).

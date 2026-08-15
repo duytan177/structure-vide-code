@@ -15,8 +15,9 @@ echo "════════════════════════�
 echo "▶ [1/3] Bật git hooks..."
 bash "$ROOT/.agent/scripts/setup-hooks.sh" || echo "  ⚠️ setup-hooks lỗi."
 
-echo "▶ [2/3] Cài plugin / MCP..."
+echo "▶ [2/3] Cài plugin / MCP + sync skill cho Codex/Antigravity..."
 bash "$ROOT/.agent/scripts/install-all-plugins.sh" || echo "  ⚠️ install lỗi (xem log)."
+bash "$ROOT/.agent/scripts/sync-skills.sh" || echo "  ⚠️ sync-skills lỗi."
 
 echo "▶ [3/3] Phát hiện mode & gợi ý..."
 if [ -d "$ROOT/workspace" ] && find "$ROOT/workspace" -maxdepth 3 -type f \

@@ -81,11 +81,11 @@ flowchart TD
 ### 1.5 CLARIFY (Làm rõ điểm mơ hồ)
 - Bóc tách câu hỏi chặn (edge case, phi chức năng, ranh giới scope) và **hỏi user** trước khi viết Spec.
 - Ghi kết quả vào `docs/discovery/<feature>-clarifications.md`; ràng buộc bất biến mới → `docs/CONSTITUTION.md`.
-- Skill: [`clarify-requirements.md`](../skills/core/clarify-requirements.md). Command: `/clarify`.
+- Skill: [`clarify-requirements.md`](.claude/skills/clarify-requirements/SKILL.md). Command: `/clarify`.
 
 ### 2. IMPACT ANALYSIS (Graphify / GitNexus / Dependency Graph)
 - Phân tích blast radius & module bị ảnh hưởng qua Graphify/GitNexus.
-- Skill: [`.agent/skills/core/impact-analysis.md`](../skills/core/impact-analysis.md).
+- Skill: [`.claude/skills/impact-analysis/SKILL.md`](.claude/skills/impact-analysis/SKILL.md).
 
 ### 3. ARCHITECTURE (ADR / RFC / Decisions)
 - Nếu thay đổi lớn: viết RFC (`docs/adr/rfc-template.md`) rồi chốt ADR (`docs/adr/adr-template.md`). Đăng ký `.agent/memory/decision-log.md`.
@@ -93,35 +93,35 @@ flowchart TD
 
 ### 4. SPECIFICATION (Functional + Technical Spec)
 - Sinh `docs/specs/SPEC-XXX.md`; tra tài liệu framework bằng Context7 khi cần.
-- Skill: [`parse-client-requirements.md`](../skills/core/parse-client-requirements.md) / [`parse-basic-design-excel.md`](../skills/core/parse-basic-design-excel.md).
+- Skill: [`parse-client-requirements.md`](.claude/skills/write-spec/SKILL.md) / [`parse-basic-design-excel.md`](.claude/skills/write-spec/SKILL.md).
 
 ### 5. PLANNING (Milestone / Sprint / Timeline)
 - Dùng skill Superpowers `writing-plans`; lưu `plans/yyyy-mm-dd-<feature>.md`. Subagent: [`planner.md`](../agents/planner.md).
 
 ### 6. TASK BREAKDOWN (Epic → Story → Task → Subtask)
 - Tạo `tasks/backlog/PROJECT-XXX.md`; cập nhật `docs/traceability-matrix.md`.
-- Skill: [`jira-task-breakdown.md`](../skills/core/jira-task-breakdown.md).
+- Skill: [`jira-task-breakdown.md`](.claude/skills/task-breakdown/SKILL.md).
 
 ### 6.5 ANALYZE (GATE — soát nhất quán chéo trước khi code)
 - Kiểm tra coverage + traceability + mâu thuẫn REQ↔SPEC↔ADR↔PLAN↔TASK và vi phạm `docs/CONSTITUTION.md`.
 - **Còn 🔴 BLOCKER → DỪNG**, quay lại Spec/Plan/Breakdown để vá; không sang Bước 7.
-- Skill: [`analyze-consistency.md`](../skills/core/analyze-consistency.md). Command: `/analyze`.
+- Skill: [`analyze-consistency.md`](.claude/skills/analyze-consistency/SKILL.md). Command: `/analyze`.
 
 ### 7. IMPLEMENTATION (Git Worktree + Coding Agent)
 - Dùng skill Superpowers `using-git-worktrees` + `subagent-driven-development`; code trong **`workspace/<ten-du-an>/`**.
-- Skill Vide-Coder: [`git-worktree-flow.md`](../skills/core/git-worktree-flow.md), [`code-traceability-linkage.md`](../skills/core/code-traceability-linkage.md).
+- Skill Vide-Coder: [`git-worktree-flow.md`](.claude/skills/git-worktree-flow/SKILL.md), [`code-traceability-linkage.md`](.claude/skills/code-traceability/SKILL.md).
 
 ### 8. SELF VALIDATION (Lint + Typecheck + Unit + E2E)
 - Dùng skill Superpowers `test-driven-development` + `verification-before-completion`; chạy Semgrep-lint, typecheck, Playwright E2E.
-- Skill: [`tdd-workflow.md`](../skills/core/tdd-workflow.md). Subagent: [`e2e-runner.md`](../agents/e2e-runner.md).
+- Skill: [`tdd-workflow.md`](.claude/skills/tdd-workflow/SKILL.md). Subagent: [`e2e-runner.md`](../agents/e2e-runner.md).
 
 ### 9. AI REVIEW (Code + Security + Performance)
 - Dùng skill Superpowers `requesting-code-review` / `receiving-code-review`; Semgrep (OWASP) + CodeRabbit.
-- Subagent: [`security-reviewer.md`](../agents/security-reviewer.md). Skill: [`code-review.md`](../skills/core/code-review.md).
+- Subagent: [`security-reviewer.md`](../agents/security-reviewer.md). Skill: [`code-review.md`](.claude/skills/code-review/SKILL.md).
 
 ### 10. HUMAN REVIEW (PR Approval & Merge Checklist)
 - Mở PR bằng GitHub MCP (dùng `.github/pull_request_template.md`), chờ CODEOWNER duyệt.
 
 ### 11. KNOWLEDGE UPDATE (ADR + Memory + Graph + Changelog)
 - Re-index Graphify/GitNexus; cập nhật `.agent/memory/decision-log.md`, `docs/traceability-matrix.md`, changelog `docs/spec-changes/`.
-- Skill: [`post-implementation-review.md`](../skills/core/post-implementation-review.md).
+- Skill: [`post-implementation-review.md`](.claude/skills/knowledge-update/SKILL.md).

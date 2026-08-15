@@ -14,4 +14,4 @@ Thư mục này chứa các tài liệu ghi chép thuộc **Bước 1: DISCOVERY
 ---
 
 ## ⚡ HƯỚNG DẪN KÍCH HOẠT SKILL DISCOVERY
-Sử dụng Skill [`.agent/skills/core/discovery-brainstorm.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/discovery-brainstorm.md) để AI Agent tự động hỗ trợ đặt câu hỏi làm rõ yêu cầu, tổng hợp ý kiến họp và chốt các điểm làm mờ trước khi chuyển sang Bước 2 (Impact Analysis) & Bước 3 (Architecture).
+Sử dụng Skill [`.claude/skills/discovery-brainstorm/SKILL.md`](file:.claude/skills/discovery-brainstorm/SKILL.md) để AI Agent tự động hỗ trợ đặt câu hỏi làm rõ yêu cầu, tổng hợp ý kiến họp và chốt các điểm làm mờ trước khi chuyển sang Bước 2 (Impact Analysis) & Bước 3 (Architecture).

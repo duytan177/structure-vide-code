@@ -3,7 +3,7 @@ description: Làm rõ yêu cầu mơ hồ trước khi viết Spec (Bước 1.5)
 argument-hint: [feature | REQ-XXX]
 ---
 
-Chạy **/clarify** cho: $ARGUMENTS theo skill `.agent/skills/core/clarify-requirements.md`.
+Chạy **/clarify** cho: $ARGUMENTS theo skill `.claude/skills/clarify-requirements/SKILL.md`.
 
 1. Đọc `docs/discovery/` + `docs/client-requirements/` (+ `docs/specs/_baseline/` nếu brownfield).
 2. Lập câu hỏi có cấu trúc, ưu tiên blocker; hỏi dạng trắc nghiệm/đề xuất mặc định.

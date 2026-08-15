@@ -22,7 +22,7 @@ REQUIREMENT
   → 4. SPECIFICATION    (docs/specs/)
   → 5. PLANNING         (plans/)
   → 6. TASK BREAKDOWN   (tasks/backlog/)
-  → 7. IMPLEMENTATION   (Git Worktree + src/)
+  → 7. IMPLEMENTATION   (Git Worktree + workspace/<ten-du-an>/)
   → 8. SELF VALIDATION  (Lint + Typecheck + Unit + E2E)
   → 9. AI REVIEW        (Semgrep + CodeRabbit)
   → 10. HUMAN REVIEW    (PR Approval)
@@ -52,6 +52,16 @@ Source dự án đích nằm trong **`workspace/<ten-du-an>/`** (gitignore toàn
 # (cd workspace/<ten-du-an> && npm run lint && npm run typecheck && npm test)
 bash .agent/scripts/verify-plugins.sh    # kiểm tra toolchain plugin (chạy ở root base)
 ```
+
+## SKILLS (Agent Skills open standard — chạy chung mọi agent)
+
+Skill viết **1 lần** theo chuẩn `SKILL.md` (folder + frontmatter), dùng chung Claude/Cursor/Antigravity/Codex.
+Chi tiết chuẩn hóa: [`docs/AGENT-STANDARD.md`](docs/AGENT-STANDARD.md).
+
+- **Codex / Antigravity** quét skill ở **`.agents/skills/<name>/SKILL.md`**.
+- **Claude Code** đọc **`.claude/skills/<name>/SKILL.md`** (canonical).
+- Sau khi thêm/sửa skill canonical → chạy `bash .agent/scripts/sync-skills.sh` để đồng bộ.
+- Ví dụ có sẵn: `ui-ux-promax` (FE đẹp, chống AI-slop, design-to-code).
 
 ## MCP / PLUGINS
 

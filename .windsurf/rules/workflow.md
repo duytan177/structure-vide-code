@@ -17,4 +17,4 @@ Implementation → Self Validation → AI Review → Human Review → Knowledge 
 
 ## Đọc thêm
 `.agent/rules/01-code-style.md`, `02-architecture-principles.md`, `03-git-jira-workflow.md`,
-`04-testing-qa.md`; skills tại `.agent/skills/core/`; plugin tại `.agent/plugins/README.md`.
+`04-testing-qa.md`; skills tại `.claude/skills/` (chuẩn SKILL.md); plugin tại `.agent/plugins/README.md`.

@@ -44,7 +44,7 @@ feat(auth): PROJECT-102 - Implement JWT refresh token rotation mechanism
 - Update auth service tests
 ```
 
-> 🤖 **Tự render commit**: AI Agent PHẢI dùng skill [`semantic-commit-render.md`](../skills/core/semantic-commit-render.md)
+> 🤖 **Tự render commit**: AI Agent PHẢI dùng skill [`semantic-commit-render.md`](.claude/skills/semantic-commit/SKILL.md)
 > (hoặc `/commit`) để sinh title + description bám task/spec, không viết lan man.
 > Ánh xạ SemVer: `feat`→MINOR, `fix`/`perf`→PATCH, `!` hoặc `BREAKING CHANGE:`→MAJOR.
 

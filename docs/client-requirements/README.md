@@ -17,7 +17,7 @@ Bạn có thể đưa vào thư mục này các định dạng file:
 Khi mới init dự án và vừa đưa các file tài liệu của khách hàng vào thư mục này, bạn chỉ cần ra lệnh cho AI Agent:
 > *"AI Agent hãy đọc tài liệu yêu cầu ban đầu trong docs/client-requirements/ và khởi tạo các đặc tả tính năng trong docs/specs/ cùng bộ Jira tasks ban đầu trong tasks/backlog/"*
 
-AI Agent sẽ tự động kích hoạt Skill [`.agent/skills/core/parse-client-requirements.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/parse-client-requirements.md) để:
+AI Agent sẽ tự động kích hoạt Skill [`.claude/skills/write-spec/SKILL.md`](file:.claude/skills/write-spec/SKILL.md) để:
 1. Đọc và phân tích toàn bộ tài liệu yêu cầu gốc.
 2. Trích xuất danh sách Actors, Modules, Functional Requirements và Business Rules.
 3. Sinh các file đặc tả Markdown chuẩn hóa trong `docs/specs/`.

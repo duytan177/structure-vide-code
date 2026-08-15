@@ -23,3 +23,7 @@ out/
 # AI Agent Temporary Artifacts / Cache
 .agent/cache/
 *.tmp
+
+# Skill mirror cho Codex/Antigravity — sinh tự động từ .claude/skills bằng sync-skills.sh
+# (không track để tránh trùng lặp; chạy 'bash .agent/scripts/sync-skills.sh' hoặc init.sh sau khi clone)
+.agents/

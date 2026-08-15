@@ -6,13 +6,13 @@ Tài liệu này nói về việc **sửa/mở rộng chính base quy trình** (
 - Quy trình: `.agent/rules/00-ai-workflow.md` là **single source of truth**. Sửa quy trình chỉ sửa ở đây; entry-points (`CLAUDE.md`, `AGENTS.md`, `.cursor/`, `.windsurf/`) là pointer, không chép nội dung.
 
 ## Khi thêm/sửa
-- **Skill mới** → `.agent/skills/core/<ten>.md` (dùng chung) hoặc `.agent/skills/custom/` (đặc thù dự án).
+- **Skill mới** → `.claude/skills/<ten>/SKILL.md` (chuẩn Agent Skills), rồi `bash .agent/scripts/sync-skills.sh`. Xem `docs/AGENT-STANDARD.md`.
 - **Bước quy trình mới** → thêm skill + command (`.claude/commands/` và `.cursor/commands/`) + wire vào rule 00.
 - **Template** → sửa core trong `docs/…-template.md`; tùy biến per-project thì dùng `.agent/templates/overrides/`.
 - **Plugin** → khai báo trong `.agent/plugins/` + installer; xác nhận CLI/package tồn tại thật.
 
 ## Commit & version
-- Commit theo `.agent/skills/core/semantic-commit-render.md` (`/commit`).
+- Commit theo `.claude/skills/semantic-commit/SKILL.md` (`/commit`).
 - Thay đổi base đáng chú ý → cập nhật `CHANGELOG.md` và `VERSION` (SemVer).
 
 ## Checklist PR

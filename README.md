@@ -15,14 +15,15 @@ Skill/plugin tùy chỉnh cho từng dự án → team **tự add sau**. Chi ti�
 
 ```text
 <repo-bất-kỳ>/                    # dự án đích (mới/cũ) — source của họ giữ nguyên
+├── .claude/skills/               # ★ SKILL chuẩn Agent Skills (SKILL.md) — canonical, dùng chung mọi agent
+│   └── <skill>/SKILL.md          #   (mirror sang .agents/skills/ cho Codex/Antigravity qua sync-skills.sh)
 ├── .agent/                       # ★ TẦNG QUY TRÌNH (core của base)
 │   ├── rules/                    # Quy tắc cốt lõi: 00-workflow (11 bước), code-style, git/jira, QA — SINGLE SOURCE OF TRUTH
 │   ├── agents/                   # 🎭 Subagent personas (Architect, Planner, Security Reviewer, Build Error Resolver, E2E Runner)
-│   ├── contexts/                 # ⚙️ Context modes (Dev / Review / Research)
-│   ├── skills/                   # Skill dùng chung (core) + custom (dự án tự thêm sau)
+│   ├── templates/                # Template override per-project (overrides/ thắng core)
 │   ├── memory/                   # Bộ nhớ ngữ cảnh & nhật ký quyết định (khởi tạo rỗng theo dự án)
 │   ├── plugins/                  # KHAI BÁO plugin ngoài + installer (Superpowers, Graphify, GitNexus, Context7, Semgrep, Playwright, GitHub MCP)
-│   └── scripts/                  # install / verify / setup-hooks / onboard-existing
+│   └── scripts/                  # init / install / verify / setup-hooks / onboard-existing / sync-skills
 ├── docs/                         # ★ TẦNG TÀI LIỆU ENTERPRISE (templates + nơi chứa)
 │   ├── client-requirements/      # 📂 Yêu cầu gốc từ khách hàng (BRD, PDF, Word, MD)
 │   ├── basic-design/             # 📂 File Excel (.xlsx) thiết kế cơ sở từ PO/BA

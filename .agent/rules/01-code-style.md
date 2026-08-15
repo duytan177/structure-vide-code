@@ -18,6 +18,10 @@ Tài liệu này quy định phong cách viết code (Code Style & Formatting Gu
 
 ## 💻 Frontend Guidelines (`src/frontend`)
 
+> 🎨 Dựng FE đẹp/thẩm mỹ, mượt, premium + chống "AI-slop" (design-to-code từ Figma, motion, a11y):
+> skill [`ui-ux-promax`](.claude/skills/ui-ux-promax/SKILL.md) — command `/ui` (hoặc `/fe`).
+> MCP: [`figma.md`](../plugins/figma.md) (Figma + shadcn/ui + Magic 21st.dev).
+
 - **Component Architecture**: Sử dụng Functional Components, Atomic Design Pattern hoặc Modular Feature Folders.
 - **State Management**: Phân định rõ Component Local State (UI state) và Global Application State (Redux, Zustand, Pinia...).
 - **CSS / Styling**: 

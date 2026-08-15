@@ -4,7 +4,7 @@ argument-hint: [PROJECT-XXX]
 ---
 
 Render commit cho thay đổi đang staged (task: $ARGUMENTS) theo skill
-`.agent/skills/core/semantic-commit-render.md`.
+`.claude/skills/semantic-commit/SKILL.md`.
 
 1. `git diff --staged --stat` → suy `<type>` + `<scope>` từ file/module thực tế.
 2. Lấy Jira ID + mục tiêu + AC từ `tasks/in-progress/PROJECT-XXX.md` và `docs/specs/SPEC-XXX.md`.

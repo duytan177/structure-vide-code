@@ -3,7 +3,7 @@ description: Gate soát nhất quán chéo REQ↔SPEC↔ADR↔PLAN↔TASK trư�
 argument-hint: [PROJECT-XXX | SPEC-XXX]
 ---
 
-Chạy **GATE /analyze** cho: $ARGUMENTS theo skill `.agent/skills/core/analyze-consistency.md`.
+Chạy **GATE /analyze** cho: $ARGUMENTS theo skill `.claude/skills/analyze-consistency/SKILL.md`.
 
 1. Đọc `docs/traceability-matrix.md` + REQ/SPEC/ADR/PLAN/TASK liên quan.
 2. Kiểm tra: coverage (không sót), traceability (ID có thật), mâu thuẫn nội dung, vi phạm `docs/CONSTITUTION.md`.

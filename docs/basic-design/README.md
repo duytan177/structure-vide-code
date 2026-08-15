@@ -19,7 +19,7 @@ Thư mục này chứa các file **Thiết kế cơ sở (Basic Design)** nguyê
 Khi bạn tải file Excel Basic Design vào thư mục này, chỉ cần ra lệnh cho AI Agent:
 > *"AI Agent hãy đọc file Basic Design Excel trong docs/basic-design/ và tạo các file đặc tả tính năng trong docs/specs/ cùng với các Jira tasks trong tasks/backlog/"*
 
-AI Agent sẽ tự động kích hoạt Skill [`.agent/skills/core/parse-basic-design-excel.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/skills/core/parse-basic-design-excel.md) để:
+AI Agent sẽ tự động kích hoạt Skill [`.claude/skills/write-spec/SKILL.md`](file:.claude/skills/write-spec/SKILL.md) để:
 1. Đọc tất cả các sheet trong file `.xlsx`.
 2. Tạo file đặc tả Markdown tương ứng: `docs/specs/SPEC-SCR001-login-screen.md`, `docs/specs/SPEC-SCR002-dashboard.md`...
 3. Tạo sẵn dàn khung task Jira chuẩn Backlog trong `tasks/backlog/PROJECT-SCR001.md`.

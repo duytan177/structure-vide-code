@@ -29,7 +29,7 @@
 ├── .agent/                         # ★ TẦNG QUY TRÌNH (core của base)
 │   ├── rules/                      # 11 bước bắt buộc — SINGLE SOURCE OF TRUTH
 │   ├── plugins/                    # KHAI BÁO plugin ngoài + installer (Superpowers, Graphify, GitNexus, Context7, Semgrep, Playwright, GitHub MCP)
-│   ├── agents/  contexts/          # personas + modes
+│   ├── agents/                     # personas · skill chuẩn ở .claude/skills/
 │   ├── memory/                     # bộ nhớ theo dự án (khởi tạo rỗng)
 │   └── scripts/                    # install / verify / setup-hooks / onboard
 ├── docs/                           # ★ TẦNG TÀI LIỆU ENTERPRISE (templates + nơi chứa)

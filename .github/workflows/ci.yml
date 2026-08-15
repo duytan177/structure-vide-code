@@ -13,6 +13,14 @@ on:
     branches: [master, main, develop]
 
 jobs:
+  validate-skills:
+    name: Validate Agent Skills (SKILL.md)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate SKILL.md frontmatter (chuẩn agentskills.io)
+        run: bash .agent/scripts/validate-skills.sh
+
   self-validation:
     name: Lint · Typecheck · Test
     runs-on: ubuntu-latest

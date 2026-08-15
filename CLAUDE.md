@@ -16,7 +16,7 @@
 `REQUIREMENT → 1.Discovery → 2.Impact Analysis → 3.Architecture → 4.Specification → 5.Planning → 6.Task Breakdown → 7.Implementation → 8.Self Validation → 9.AI Review → 10.Human Review → 11.Knowledge Update → MERGE/RELEASE`
 
 - **Không bao giờ bỏ qua** Discovery, Impact Analysis, Self-Validation.
-- Cô lập mỗi task bằng **Git Worktree** (xem [`.agent/skills/core/git-worktree-flow.md`](.agent/skills/core/git-worktree-flow.md)).
+- Cô lập mỗi task bằng **Git Worktree** (xem [`.claude/skills/git-worktree-flow/SKILL.md`](.claude/skills/git-worktree-flow/SKILL.md)).
 - Kết thúc luôn cập nhật tri thức: [`.agent/memory/decision-log.md`](.agent/memory/decision-log.md).
 
 ## SLASH COMMANDS
@@ -26,7 +26,7 @@ Mỗi bước có 1 command tương ứng trong [`.claude/commands/`](.claude/co
 ## SUBAGENTS & SKILLS
 
 - Personas: [`.agent/agents/`](.agent/agents/) (architect, planner, security-reviewer, e2e-runner, build-error-resolver).
-- Core skills: [`.agent/skills/core/`](.agent/skills/core/).
+- Core skills (chuẩn SKILL.md): [`.claude/skills/`](.claude/skills/) (mirror sang `.agents/skills/` cho Codex/Antigravity).
 - Plugin / MCP matrix + token budgeting: [`.agent/plugins/README.md`](.agent/plugins/README.md).
 
 ## VỊ TRÍ SOURCE

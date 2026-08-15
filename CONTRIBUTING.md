@@ -3,7 +3,7 @@
 This document is about **editing/extending the workflow base itself** (not the target project's code in `workspace/`).
 
 ## Single source of truth
-- The workflow: `.agent/rules/00-ai-workflow.md` is the **single source of truth**. To change the workflow, edit only here; the entry points (`CLAUDE.md`, `AGENTS.md`, `.cursor/`, `.windsurf/`) are pointers and do not copy the content.
+- The workflow: `.agent/rules/00-ai-workflow.md` is the **single source of truth**. To change the workflow, edit only here; the entry points (`CLAUDE.md`, `AGENTS.md`, `.cursor/`) are pointers and do not copy the content.
 
 ## When adding/editing
 - **New skill** → `.claude/skills/<name>/SKILL.md` (Agent Skills standard), then `bash .agent/scripts/sync-skills.sh`. See `docs/AGENT-STANDARD.md`.

@@ -1,4 +1,4 @@
-# AGENT STANDARD — Multi-agent standardization (Claude / Cursor / Antigravity / Codex)
+# AGENT STANDARD — Multi-agent standardization (Claude / Cursor / Antigravity)
 
 > Standardize the entire base on the **Agent Skills open standard** (agentskills.io) — well-starred community sources:
 > [everything-claude-code](https://github.com/alphachoi/everything-claude-code) (~100K★), [anthropics/skills](https://github.com/anthropics/skills),
@@ -28,12 +28,11 @@ metadata: { author: vide-coder, version: "1.0" }   # optional
 | Agent | Reads skills from | Entry-point |
 | :-- | :-- | :-- |
 | Claude Code | `.claude/skills/<name>/SKILL.md` | `CLAUDE.md` |
-| Codex | `.agents/skills/<name>/SKILL.md` (scans cwd→root) | `AGENTS.md` |
-| Antigravity | `.agents/skills/` (+ AGENTS.md) | `AGENTS.md` |
+| Antigravity | `.agents/skills/<name>/SKILL.md` (+ AGENTS.md) | `AGENTS.md` |
 | Cursor | `.cursor/rules` + AGENTS.md; commands `.cursor/commands/` | `AGENTS.md` |
 
 **Canonical**: write skills in **`.claude/skills/`**. Run `bash .agent/scripts/sync-skills.sh`
-to mirror them into **`.agents/skills/`** (Codex/Antigravity). Do not duplicate by hand.
+to mirror them into **`.agents/skills/`** (Antigravity). Do not duplicate by hand.
 
 ## 3. RESOURCE LAYERS (open standard: progressive disclosure)
 1. **Metadata** (~100 tokens): `name` + `description` — loaded at startup for EVERY skill.

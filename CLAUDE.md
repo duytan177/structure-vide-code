@@ -26,7 +26,7 @@ Each step has a corresponding command in [`.claude/commands/`](.claude/commands/
 ## SUBAGENTS & SKILLS
 
 - Personas: [`.agent/agents/`](.agent/agents/) (architect, planner, security-reviewer, e2e-runner, build-error-resolver).
-- Core skills (SKILL.md standard): [`.claude/skills/`](.claude/skills/) (mirrored to `.agents/skills/` for Codex/Antigravity).
+- Core skills (SKILL.md standard): [`.claude/skills/`](.claude/skills/) (mirrored to `.agents/skills/` for Antigravity).
 - Plugin / MCP matrix + token budgeting: [`.agent/plugins/README.md`](.agent/plugins/README.md).
 
 ## SOURCE LOCATION

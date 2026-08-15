@@ -2,7 +2,7 @@
 
 **Vide-Coder is NOT an app.** It is a reusable **workflow base / overlay** that you drop into **any repo**
 (a new project **or** an existing project under maintenance/continued development) to **force every AI Agent**
-(Claude Code / Cursor / Codex / Antigravity / Windsurf / Copilot) to work according to **one unified workflow**:
+(Claude Code / Cursor / Antigravity) to work according to **one unified workflow**:
 
 > `requirement → spec → design → implement → review → test → release`
 
@@ -16,14 +16,15 @@ Skills/plugins customized for each project → the team **adds them later**. Det
 ```text
 <any-repo>/                       # target project (new/existing) — their source stays untouched
 ├── .claude/skills/               # ★ Agent Skills standard (SKILL.md) — canonical, shared by every agent
-│   └── <skill>/SKILL.md          #   (mirrored to .agents/skills/ for Codex/Antigravity via sync-skills.sh)
+│   └── <skill>/SKILL.md          #   (mirrored to .agents/skills/ for Antigravity via sync-skills.sh)
 ├── .agent/                       # ★ WORKFLOW LAYER (the core of the base)
 │   ├── rules/                    # Core rules: 00-workflow (11 steps), code-style, git/jira, QA — SINGLE SOURCE OF TRUTH
 │   ├── agents/                   # 🎭 Subagent personas (Architect, Planner, Security Reviewer, Build Error Resolver, E2E Runner)
 │   ├── templates/                # Per-project override templates (overrides/ wins over core)
 │   ├── memory/                   # Context memory & decision log (initialized empty per project)
 │   ├── plugins/                  # DECLARES external plugins + installer (Superpowers, Graphify, GitNexus, Context7, Semgrep, Playwright, GitHub MCP)
-│   └── scripts/                  # init / install / verify / setup-hooks / onboard-existing / sync-skills
+│   ├── mcp/servers.json          # ★ ONE MCP source of truth → setup-mcp.sh syncs all agents
+│   └── scripts/                  # init / setup-mcp / workspace-setup / graphify-* / reference-snapshot / onboard-existing / sync-skills / setup-hooks / verify
 ├── docs/                         # ★ ENTERPRISE DOCUMENTATION LAYER (templates + storage)
 │   ├── client-requirements/      # 📂 Original requirements from the client (BRD, PDF, Word, MD)
 │   ├── basic-design/             # 📂 Excel (.xlsx) basic-design files from PO/BA
@@ -34,10 +35,12 @@ Skills/plugins customized for each project → the team **adds them later**. Det
 ├── tasks/                        # Jira board (backlog / in-progress / completed)
 ├── workspace/                    # ★ WHERE THE TARGET PROJECT SOURCE LIVES (clone it here) — entire content gitignored
 │   └── <project-name>/           # the actual source (new/existing) — the base does NOT track it
-├── CLAUDE.md AGENTS.md GEMINI.md # ★ Multi-agent entry points (pointers to .agent/rules)
-├── .cursor/ .windsurf/           # Per-tool rules + commands
-├── .github/                      # CI + PR template + CODEOWNERS + copilot-instructions
-└── .githooks/  .mcp.json         # Git hooks + MCP config
+├── reference/                    # ★ Read-only OLD-code snapshots for CUSTOMIZE projects (gitignored) — trace before changing
+├── CLAUDE.md  AGENTS.md          # ★ Multi-agent entry points — Claude Code, Antigravity (pointers to .agent/rules)
+├── .cursor/                      # Cursor rules + commands (+ .cursor/mcp.json)
+├── .github/                      # CI + PR template + CODEOWNERS
+├── .env.example                  # Single place for MCP keys (copy → .env, gitignored)
+└── .githooks/  .mcp.json         # Git hooks + generated MCP config (Claude)
 ```
 
 > ⚠️ The base **has no `src/` at the root**. The project's source lives in **`workspace/<project-name>/`** and is **fully gitignored** — the base only overlays the workflow + documentation layer on top (see [`workspace/README.md`](workspace/README.md)).
@@ -67,17 +70,23 @@ The workflow is written **once** in `.agent/`; each tool reads it through its ow
 | :--- | :--- | :--- |
 | Claude Code | `CLAUDE.md` + `.claude/commands/` | `.mcp.json` |
 | Cursor | `.cursor/rules/00-workflow.mdc` + `.cursor/commands/` | `.cursor/mcp.json` |
-| Codex / Antigravity / Gemini CLI | `AGENTS.md` (agents.md standard) | `AGENTS.md` |
-| Windsurf | `.windsurf/rules/workflow.md` | — |
-| GitHub Copilot | `.github/copilot-instructions.md` | — |
+| Antigravity | `AGENTS.md` (agents.md standard) + `.agents/skills/` | `.agents/mcp_config.json` |
 
 → To change the workflow, just edit `.agent/rules/`, and every tool updates accordingly.
+→ MCP is configured in **one place** — edit `.agent/mcp/servers.json` + `.env`, then run `bash .agent/scripts/setup-mcp.sh`.
 
 ## ⚙️ FIRST-TIME SETUP
 
 ```bash
 bash .agent/scripts/init.sh                            # ONE-SHOT BOOTSTRAP: hooks + plugins + detect mode
-# (or run each step manually:)
+cp .env.example .env                                   # then fill in your MCP keys (single place, gitignored)
+bash .agent/scripts/setup-mcp.sh                       # sync MCP to Claude + Cursor + Antigravity
+# Clone & auto-configure related projects into workspace/ (MCP/skills per repo; old-code snapshot for customize):
+# bash .agent/scripts/workspace-setup.sh <repo-url> [name] [branch]
+# bash .agent/scripts/workspace-setup.sh --manifest workspace/projects.txt
+# Code graph for all workspace projects:
+# bash .agent/scripts/graphify-setup.sh                # index all · graphify-rebuild.sh · graphify-sync.sh
+# (or run base steps manually:)
 # bash .agent/scripts/setup-hooks.sh
 # bash .agent/scripts/install-all-plugins.sh
 # bash .agent/scripts/onboard-existing.sh workspace/<project-name>   # EXISTING projects ONLY

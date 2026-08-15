@@ -15,9 +15,10 @@ echo "════════════════════════�
 echo "▶ [1/3] Enabling git hooks..."
 bash "$ROOT/.agent/scripts/setup-hooks.sh" || echo "  ⚠️ setup-hooks failed."
 
-echo "▶ [2/3] Installing plugins / MCP + syncing skills for Codex/Antigravity..."
+echo "▶ [2/3] Installing plugins + syncing skills (Antigravity) + wiring MCP (Claude/Cursor/Antigravity)..."
 bash "$ROOT/.agent/scripts/install-all-plugins.sh" || echo "  ⚠️ install failed (see log)."
 bash "$ROOT/.agent/scripts/sync-skills.sh" || echo "  ⚠️ sync-skills failed."
+bash "$ROOT/.agent/scripts/setup-mcp.sh" >/dev/null 2>&1 && echo "  ✓ MCP synced to all agents." || echo "  ⚠️ setup-mcp failed."
 
 echo "▶ [3/3] Detecting mode & suggesting next steps..."
 if [ -d "$ROOT/workspace" ] && find "$ROOT/workspace" -maxdepth 3 -type f \

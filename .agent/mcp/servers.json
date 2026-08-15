@@ -1,4 +1,7 @@
 {
+  "//": "CANONICAL MCP server definitions for Vide-Coder — the SINGLE source of truth.",
+  "//keys": "Secrets are NEVER written here. They come from .env via ${VAR} expansion (see .env.example).",
+  "//apply": "Run: bash .agent/scripts/setup-mcp.sh  → distributes to .mcp.json (Claude), .cursor/mcp.json (Cursor), .agents/mcp_config.json (Antigravity).",
   "mcpServers": {
     "playwright": {
       "command": "npx",

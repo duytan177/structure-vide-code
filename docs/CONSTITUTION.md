@@ -17,15 +17,16 @@
 - **Nature**: an AI Agent workflow base/overlay — NOT an app, NO `src/` at the root.
 - Document format: **Markdown** (rules, skills SKILL.md, docs, ADR/RFC).
 - Automation: **Bash** (`.agent/scripts/*.sh`) + Git hooks (`.githooks/`), running on Node ≥ 18 (npx for MCP).
-- Agent config: JSON (`.mcp.json`, `.cursor/mcp.json`, `.claude/settings.json`), `.mdc` (Cursor rules).
+- Supported agents (exactly three): **Claude Code · Cursor · Antigravity**. Do not add config for other agents.
+- MCP: one source of truth `.agent/mcp/servers.json` + keys in `.env`; `setup-mcp.sh` generates `.mcp.json` (Claude), `.cursor/mcp.json` (Cursor), `.agents/mcp_config.json` (Antigravity).
 - **Do not use**: a build system/bundler at the root; do not add app source into the base; do not hardcode secrets in tracked files.
 
 ## 2. ARCHITECTURE CONSTRAINTS (non-negotiable)
-- **Single source of truth** for the workflow = `.agent/rules/00-ai-workflow.md`. Entry-points (CLAUDE/AGENTS/GEMINI.md) only **point to it**, do NOT copy its content.
+- **Single source of truth** for the workflow = `.agent/rules/00-ai-workflow.md`. Entry-points (`CLAUDE.md` / `AGENTS.md`) only **point to it**, do NOT copy its content.
 - Canonical skills live at `.claude/skills/<skill>/SKILL.md`; mirror into `.agents/` **only** via `sync-skills.sh` (never edit the mirror by hand).
 - The target project's source lives **only** in `workspace/<project-name>/` and is gitignored — the base does NOT track/edit their source.
 - Adding a new plugin/MCP or changing the 11-step workflow ⇒ requires an **ADR** in `docs/adr/`.
-- The commands of the 3 tools (`.claude/`, `.cursor/`, `.windsurf/`) must be **semantically in sync** with each other.
+- The commands for Claude (`.claude/`) and Cursor (`.cursor/`) must stay **semantically in sync**; Antigravity reads `AGENTS.md` + `.agents/skills/`.
 
 ## 3. QUALITY & SECURITY (mandatory thresholds)
 - **Secrets**: every token/API key is read via `${ENV_VAR}` from `.env` (template in `.env.example`). Committing real values is forbidden.
@@ -35,7 +36,7 @@
 
 ## 4. BUSINESS / DOMAIN CONSTRAINTS
 - The base must run in both modes: **greenfield** (new project) and **brownfield** (`onboard-existing.sh` for old projects).
-- Don't hard-lock to one agent: stay compatible with Claude Code / Cursor / Codex / Windsurf / Copilot.
+- Don't hard-lock to one agent: stay compatible with Claude Code / Cursor / Antigravity.
 - Prefer **well-known off-the-shelf** tools (Superpowers, Graphify, GitNexus, Context7…) — the base does not rebuild features that already exist.
 
 ## 5. CONVENTIONS THAT MUST NOT BE BROKEN

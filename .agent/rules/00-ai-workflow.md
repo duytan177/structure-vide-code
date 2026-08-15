@@ -1,6 +1,6 @@
 # STANDARDIZED PROGRAMMING WORKFLOW FOR AI AGENTS (00-ai-workflow.md)
 
-This document is the **SINGLE SOURCE OF TRUTH** for the workflow. All AI Agents (Claude Code, Cursor, Codex, Antigravity, Windsurf, Copilot) **MUST comply 100%**.
+This document is the **SINGLE SOURCE OF TRUTH** for the workflow. All AI Agents (Claude Code, Cursor, Antigravity) **MUST comply 100%**.
 
 Vide-Coder is a **workflow overlay base** — it layers on top of any repo (new or existing) **without touching the target project's source**.
 

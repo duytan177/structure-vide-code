@@ -33,7 +33,7 @@ echo "🦸 [3/6] SUPERPOWERS (skill engine) — install MANUALLY per agent:"
 cat <<'EOS'
   • Claude Code : /plugin marketplace add obra/superpowers  ->  /plugin install superpowers
   • Cursor      : Marketplace plugin -> add the obra/superpowers repo
-  • Codex/Antigravity/Copilot CLI : register the github.com/obra/superpowers repo
+  • Antigravity : register the github.com/obra/superpowers repo
   (The plugin does NOT transfer between agents — it must be installed separately per harness.)
   Details: .agent/plugins/superpowers.md
 EOS
@@ -52,5 +52,6 @@ else
   command -v graphify &>/dev/null && graphify init "$PROJECT_ROOT/workspace" 2>/dev/null || true
 fi
 
-echo "🔌 [6/6] MCP: use .mcp.json (Claude) / .cursor/mcp.json (Cursor). Enable MCPs per phase (see plugins/README.md)."
+echo "🔌 [6/6] MCP: edit .agent/mcp/servers.json + keys in .env, then run 'bash .agent/scripts/setup-mcp.sh'"
+echo "        → syncs .mcp.json (Claude), .cursor/mcp.json (Cursor), .agents/mcp_config.json (Antigravity). Enable per phase (see plugins/README.md)."
 echo "✅ DONE. Run 'bash .agent/scripts/verify-plugins.sh' to check."

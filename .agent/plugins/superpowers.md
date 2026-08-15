@@ -33,9 +33,7 @@ Vide-Coder **does not rebuild** these skills. Superpowers handles **Steps 1, 5, 
 | :-- | :-- |
 | **Claude Code** | `/plugin marketplace add obra/superpowers` → `/plugin install superpowers` |
 | **Cursor** | Marketplace plugin → add the `obra/superpowers` repo |
-| **Codex (App/CLI), Kimi Code** | Internal marketplace plugin |
-| **Antigravity, Factory Droid, GitHub Copilot CLI** | Register the `github.com/obra/superpowers` repo |
-| **OpenCode, Pi** | Follow the repo's own installation docs |
+| **Antigravity** | Register the `github.com/obra/superpowers` repo |
 
 After installation, the skills **self-activate** (session-start hook + contextual detection) — no command needed.
 

@@ -19,7 +19,7 @@ So the AI Agent can automatically read and extract data accurately, Excel files 
 When you upload the Basic Design Excel files into this directory, simply instruct the AI Agent:
 > *"AI Agent, read the Basic Design Excel files in docs/basic-design/ and create the feature spec files in docs/specs/ along with the Jira tasks in tasks/backlog/"*
 
-The AI Agent will automatically activate the Skill [`.claude/skills/write-spec/SKILL.md`](file:.claude/skills/write-spec/SKILL.md) to:
+The AI Agent will automatically activate the Skill [`.claude/skills/write-spec/SKILL.md`](.claude/skills/write-spec/SKILL.md) to:
 1. Read all sheets in the `.xlsx` file.
 2. Create the corresponding Markdown spec files: `docs/specs/SPEC-SCR001-login-screen.md`, `docs/specs/SPEC-SCR002-dashboard.md`, etc.
 3. Pre-create the standard Backlog Jira task skeletons in `tasks/backlog/PROJECT-SCR001.md`.

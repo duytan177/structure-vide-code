@@ -1,26 +1,40 @@
-# WORKSPACE — Nơi chứa SOURCE của dự án đích
+# WORKSPACE — Where the TARGET project SOURCE lives
 
-> 📍 **AI Agent đọc source ở ĐÂY.** Toàn bộ code của dự án (mới hoặc cũ) nằm trong `workspace/`.
-> Nội dung bên trong bị **gitignore hoàn toàn** (xem `workspace/.gitignore`) — base Vide-Coder KHÔNG track source dự án.
+> 📍 **The AI Agent reads source code HERE.** All project code (new or existing) lives under `workspace/`.
+> Everything inside is **fully gitignored** (see `workspace/.gitignore`) — the Vide-Coder base does NOT track project source.
 
-## Cách dùng
+## Usage
 
-**Dự án cũ (clone về):**
+### Option A — Auto-setup (recommended)
+Clone one or many related projects and auto-configure MCP/skills per repo:
 ```bash
-git clone <repo-url> workspace/<ten-du-an>
+# Single repo
+bash .agent/scripts/workspace-setup.sh <repo-url> [name] [branch]
+
+# Many repos from a manifest (see workspace/projects.example.txt)
+cp workspace/projects.example.txt workspace/projects.txt   # edit it
+bash .agent/scripts/workspace-setup.sh --manifest workspace/projects.txt
+```
+The script clones into `workspace/<name>/`, detects the stack, and writes a per-project
+setup report to `docs/specs/<name>/SETUP.md` plus a tailored `workspace/<name>/.mcp.suggested.json`.
+
+### Option B — Manual
+**Existing project (clone):**
+```bash
+git clone <repo-url> workspace/<project-name>
+```
+**New project (create):**
+```bash
+mkdir -p workspace/<project-name>
+# initialize the source there (npm init, etc.)
 ```
 
-**Dự án mới (tạo mới):**
-```bash
-mkdir -p workspace/<ten-du-an>
-# khởi tạo source trong đó (npm init, v.v.)
-```
+## Conventions for the AI Agent
+- **Source code** → `workspace/<project-name>/` (NOT at the base root).
+- **Docs / workflow** → `docs/`, `.agent/`, `plans/`, `tasks/` at the base root (tracked).
+- During Impact Analysis / Implementation / Testing: operate inside `workspace/<project-name>/`.
+- The brownfield baseline is generated into `docs/specs/_baseline/` (tracked), not inside the workspace.
 
-## Quy ước cho AI Agent
-- **Source code** → `workspace/<ten-du-an>/` (KHÔNG nằm ở root base).
-- **Tài liệu/quy trình** → `docs/`, `.agent/`, `plans/`, `tasks/` ở root base (được track).
-- Khi Impact Analysis / Implementation / Test: thao tác trong `workspace/<ten-du-an>/`.
-- Baseline dự án cũ sinh ra ở `docs/specs/_baseline/` (được track), không phải trong workspace.
-
-## Nhiều dự án
-Có thể chứa nhiều dự án song song: `workspace/project-a/`, `workspace/project-b/`. Mỗi dự án là một git repo độc lập bên trong (nested), base chỉ đóng vai overlay quy trình phủ lên trên.
+## Multiple projects
+Can hold several projects side by side: `workspace/project-a/`, `workspace/project-b/`. Each is an
+independent (nested) git repo; the base only acts as a workflow overlay on top.

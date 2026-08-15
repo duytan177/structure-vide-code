@@ -38,8 +38,8 @@
 ├── plans/  tasks/                  # plans + Jira board
 ├── workspace/                      # ★ WHERE THE PROJECT SOURCE LIVES (cloned in) — entire contents gitignored
 │   └── <project-name>/             # the actual source (new/old) — the base does NOT track it
-├── CLAUDE.md AGENTS.md GEMINI.md   # ★ multi-agent entry-points (pointers)
-├── .cursor/ .windsurf/ .github/    # per-tool rules + CI + PR template + CODEOWNERS
+├── CLAUDE.md AGENTS.md             # ★ multi-agent entry-points (pointers)
+├── .cursor/ .github/               # per-tool rules + CI + PR template + CODEOWNERS
 └── .githooks/  .mcp.json           # git hooks + MCP config
 ```
 

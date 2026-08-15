@@ -1,0 +1,8 @@
+# =============================================================================
+# REFERENCE — read-only snapshots of OLD source code for customize projects.
+# Ignore ALL snapshots (the base does not track project source),
+# keeping only this file and README.md.
+# =============================================================================
+*
+!.gitignore
+!README.md

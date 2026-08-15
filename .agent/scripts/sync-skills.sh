@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # SYNC SKILLS — mirror the canonical skills (.claude/skills) to where other agents read them.
-# Agent Skills is an open standard: the same SKILL.md runs on Claude/Cursor/Antigravity/Codex.
+# Agent Skills is an open standard: the same SKILL.md runs on Claude Code, Cursor, and Antigravity.
 #   bash .agent/scripts/sync-skills.sh
 # ==============================================================================
 set -u
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 SRC="$ROOT/.claude/skills"          # canonical (Claude Code)
-DST="$ROOT/.agents/skills"          # Codex + Antigravity scan here
+DST="$ROOT/.agents/skills"          # Antigravity scans here
 
 [ -d "$SRC" ] || { echo "⚠️ $SRC not found — create the canonical skills first."; exit 0; }
 
@@ -24,4 +24,4 @@ for dir in "$SRC"/*/; do
 done
 
 echo "✅ Synced $count skills: $SRC  ->  $DST"
-echo "   Claude reads .claude/skills · Codex/Antigravity read .agents/skills · Cursor via AGENTS.md."
+echo "   Claude reads .claude/skills · Antigravity reads .agents/skills · Cursor via AGENTS.md."

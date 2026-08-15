@@ -22,17 +22,17 @@ This document consolidates the matrix of 10 extension Plugins/MCPs and the manda
 
 | Priority Level | Plugin / MCP | Role & Core Function | Detailed Guide File |
 | :---: | :--- | :--- | :--- |
-| ⭐⭐⭐⭐⭐ | **Superpowers** (methodology) | **Skill/workflow engine** (brainstorm→plan→impl→TDD→review). Vide-Coder uses it directly, does NOT rebuild it. | [`superpowers.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/superpowers.md) |
-| ⭐⭐⭐⭐⭐ | **Graphify** | Builds a Knowledge Graph of the codebase, helping the AI understand the graph relationships between modules. | [`graphify.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/graphify.md) |
-| ⭐⭐⭐⭐⭐ | **GitNexus** | Analyzes blast radius (impact scope), execution flow, and deep dependencies when refactoring. | [`gitnexus.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/gitnexus.md) |
-| ⭐⭐⭐⭐☆ | **Superpower** (code-graph) | High-speed Code Graph indexing for medium and large codebases. ⚠️ DIFFERENT from *Superpowers* methodology above. | [`superpower.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/superpower.md) |
-| ⭐⭐⭐⭐⭐ | **Playwright MCP** | Automates E2E testing of web/mobile interfaces after a task is completed. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐⭐ | **GitHub MCP** | Manages Git branches/worktrees, commits, opening PRs, code review, and automatic issue creation. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Context7 MCP** | Looks up the standard documentation of a framework/library at the correct version, right inside the agent. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Filesystem MCP** | Reads/writes files safely with a clear permission structure. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Database MCP (PostgreSQL/MySQL)** | Analyzes the DB schema, checks migrations, and runs safe queries when needed. | [`mcp-tools.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/mcp-tools.md) |
-| ⭐⭐⭐⭐☆ | **Semgrep** | Security scan that detects OWASP vulnerabilities and bugs based on a custom ruleset. | [`static-analysis.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/static-analysis.md) |
-| ⭐⭐⭐⭐☆ | **CodeRabbit** | AI PR Reviewer that automatically scans for code smells, comments on PRs, and suggests optimizations. | [`static-analysis.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/static-analysis.md) |
-| ⭐⭐⭐⭐⭐ | **Figma MCP** | Design-to-code: extracts design context, tokens (variables), screenshots, and Code Connect for beautiful FE. | [`figma.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/figma.md) |
-| ⭐⭐⭐⭐☆ | **shadcn/ui MCP** | Registry of beautiful, accessible components (Radix + Tailwind) for adding/keeping UI consistent. | [`figma.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/figma.md) |
-| ⭐⭐⭐⭐☆ | **Magic MCP (21st.dev)** | Generates beautiful UI components/sections from a description → inspiration for the `ui-ux-promax` polish. | [`figma.md`](file:///home/duytan/Tan/Coder/Vide-code/.agent/plugins/figma.md) |
+| ⭐⭐⭐⭐⭐ | **Superpowers** (methodology) | **Skill/workflow engine** (brainstorm→plan→impl→TDD→review). Vide-Coder uses it directly, does NOT rebuild it. | [`superpowers.md`](superpowers.md) |
+| ⭐⭐⭐⭐⭐ | **Graphify** | Builds a Knowledge Graph of the codebase, helping the AI understand the graph relationships between modules. | [`graphify.md`](graphify.md) |
+| ⭐⭐⭐⭐⭐ | **GitNexus** | Analyzes blast radius (impact scope), execution flow, and deep dependencies when refactoring. | [`gitnexus.md`](gitnexus.md) |
+| ⭐⭐⭐⭐☆ | **Superpower** (code-graph) | High-speed Code Graph indexing for medium and large codebases. ⚠️ DIFFERENT from *Superpowers* methodology above. | [`superpower.md`](superpower.md) |
+| ⭐⭐⭐⭐⭐ | **Playwright MCP** | Automates E2E testing of web/mobile interfaces after a task is completed. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐⭐ | **GitHub MCP** | Manages Git branches/worktrees, commits, opening PRs, code review, and automatic issue creation. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Context7 MCP** | Looks up the standard documentation of a framework/library at the correct version, right inside the agent. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Filesystem MCP** | Reads/writes files safely with a clear permission structure. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Database MCP (PostgreSQL/MySQL)** | Analyzes the DB schema, checks migrations, and runs safe queries when needed. | [`mcp-tools.md`](mcp-tools.md) |
+| ⭐⭐⭐⭐☆ | **Semgrep** | Security scan that detects OWASP vulnerabilities and bugs based on a custom ruleset. | [`static-analysis.md`](static-analysis.md) |
+| ⭐⭐⭐⭐☆ | **CodeRabbit** | AI PR Reviewer that automatically scans for code smells, comments on PRs, and suggests optimizations. | [`static-analysis.md`](static-analysis.md) |
+| ⭐⭐⭐⭐⭐ | **Figma MCP** | Design-to-code: extracts design context, tokens (variables), screenshots, and Code Connect for beautiful FE. | [`figma.md`](figma.md) |
+| ⭐⭐⭐⭐☆ | **shadcn/ui MCP** | Registry of beautiful, accessible components (Radix + Tailwind) for adding/keeping UI consistent. | [`figma.md`](figma.md) |
+| ⭐⭐⭐⭐☆ | **Magic MCP (21st.dev)** | Generates beautiful UI components/sections from a description → inspiration for the `ui-ux-promax` polish. | [`figma.md`](figma.md) |

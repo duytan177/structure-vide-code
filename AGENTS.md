@@ -1,8 +1,8 @@
-# AGENTS.md — Standard entry point for AI Agents (Codex, Antigravity, Windsurf, Gemini CLI, etc.)
+# AGENTS.md — Standard entry point for AI Agents (Antigravity + agents.md-compatible tools)
 
 > This file follows the [agents.md](https://agents.md) standard. It is a **pointer** — the single source of truth
 > for the workflow is [`.agent/rules/00-ai-workflow.md`](.agent/rules/00-ai-workflow.md).
-> (Claude Code reads `CLAUDE.md`; Cursor reads `.cursor/rules/`; Windsurf reads `.windsurf/rules/`. They all point back here.)
+> (Claude Code reads `CLAUDE.md`; Cursor reads `.cursor/rules/`; Antigravity reads this file. They all point back here.)
 
 ## MUST READ BEFORE CODING
 
@@ -55,10 +55,10 @@ bash .agent/scripts/verify-plugins.sh    # check the plugin toolchain (run at th
 
 ## SKILLS (Agent Skills open standard — shared by every agent)
 
-Skills are written **once** following the `SKILL.md` standard (folder + frontmatter), shared across Claude/Cursor/Antigravity/Codex.
+Skills are written **once** following the `SKILL.md` standard (folder + frontmatter), shared across Claude Code, Cursor, and Antigravity.
 Standardization details: [`docs/AGENT-STANDARD.md`](docs/AGENT-STANDARD.md).
 
-- **Codex / Antigravity** scan skills at **`.agents/skills/<name>/SKILL.md`**.
+- **Antigravity** scans skills at **`.agents/skills/<name>/SKILL.md`**.
 - **Claude Code** reads **`.claude/skills/<name>/SKILL.md`** (canonical).
 - After adding/editing a canonical skill → run `bash .agent/scripts/sync-skills.sh` to sync.
 - Example available: `ui-ux-promax` (beautiful FE, anti-AI-slop, design-to-code).
@@ -66,5 +66,6 @@ Standardization details: [`docs/AGENT-STANDARD.md`](docs/AGENT-STANDARD.md).
 ## MCP / PLUGINS
 
 - Plugin matrix + token budgeting: [`.agent/plugins/README.md`](.agent/plugins/README.md).
-- Sample MCP config: [`.agent/plugins/installer/mcp-config.json.template`](.agent/plugins/installer/mcp-config.json.template).
-- Cursor: [`.cursor/mcp.json`](.cursor/mcp.json). Claude Code: [`.mcp.json`](.mcp.json).
+- **One MCP setup**: edit servers in [`.agent/mcp/servers.json`](.agent/mcp/servers.json), keys in `.env`, then run
+  `bash .agent/scripts/setup-mcp.sh` to sync all agents.
+- Generated per-agent configs: `.mcp.json` (Claude Code) · `.cursor/mcp.json` (Cursor) · `.agents/mcp_config.json` (Antigravity).

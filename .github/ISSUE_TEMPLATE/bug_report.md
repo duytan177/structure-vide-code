@@ -19,7 +19,7 @@ labels: bug
 ## Context
 - Project / workspace: ...
 - Related spec/task: SPEC-XXX / PROJECT-XXX
-- Agent used: Claude Code / Cursor / Codex / ...
+- Agent used: Claude Code / Cursor / Antigravity
 
 ## Logs / screenshots
 <if any>

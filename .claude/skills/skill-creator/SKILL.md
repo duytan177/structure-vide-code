@@ -9,7 +9,7 @@ metadata: { author: vide-coder, version: "1.0" }
 
 # Skill Creator — create standards-compliant skills for any agent
 
-Learned from anthropics `skill-creator` + agentskills.io. Write a skill once, run it on Claude/Cursor/Antigravity/Codex.
+Learned from anthropics `skill-creator` + agentskills.io. Write a skill once, run it on Claude/Cursor/Antigravity.
 
 ## Workflow
 1. **Ask to clarify**: what problem does the skill solve? WHEN should it be used (trigger)? Input/Output? Main steps?

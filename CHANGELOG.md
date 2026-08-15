@@ -8,7 +8,20 @@ Follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic V
 ## [Unreleased]
 
 ### Added
-- **Multi-agent standardization per the Agent Skills open standard** (`docs/AGENT-STANDARD.md`): 15 skills moved to `.claude/skills/*/SKILL.md` (standard frontmatter), synced to `.agents/skills/` for Codex/Antigravity via `sync-skills.sh`; AGENTS.md declares the discovery location. Supports Claude/Cursor/Antigravity/Codex from a single skill source.
+- **One MCP setup, keys in one place**: canonical `.agent/mcp/servers.json` + secrets in `.env`; `setup-mcp.sh` generates `.mcp.json` (Claude Code), `.cursor/mcp.json` (Cursor), `.agents/mcp_config.json` (Antigravity).
+- `workspace-setup.sh` — clone related repos into `workspace/`, auto-detect stack, and configure recommended MCP/skills per repo (writes `docs/specs/<name>/SETUP.md` + `.mcp.suggested.json`).
+- Graphify code-graph scripts for all workspace projects: `graphify-setup.sh` (index), `graphify-rebuild.sh`, `graphify-sync.sh`.
+- `reference/` folder + `reference-snapshot.sh` — read-only OLD-code snapshots for **customize/brownfield** projects (trace before changing); auto-created by `workspace-setup.sh` for existing-git projects.
+
+### Changed
+- **Scoped supported agents to exactly three: Claude Code · Cursor · Antigravity.** Entire base translated to English.
+- Fixed broken links in docs (absolute `file:///` paths and malformed `file:` prefixes); `setup-hooks.sh` no longer marks `README.md` executable.
+
+### Removed
+- Dropped support/config for **Windsurf, GitHub Copilot, Gemini, Codex**: deleted `.windsurf/`, `GEMINI.md`, `.github/copilot-instructions.md`, and the redundant `mcp-config.json.template`.
+
+### Added (earlier)
+- **Multi-agent standardization per the Agent Skills open standard** (`docs/AGENT-STANDARD.md`): 15 skills moved to `.claude/skills/*/SKILL.md` (standard frontmatter), synced to `.agents/skills/` for Antigravity via `sync-skills.sh`; AGENTS.md declares the discovery location. Supports Claude/Cursor/Antigravity from a single skill source.
 - `ui-ux-promax` skill (SKILL.md standard) infused with the anti-"AI-slop" philosophy of frontend-design (Anthropic) + MCP Magic (21st.dev).
 - `fe-ui-craft` skill + `/fe` command (build beautiful/aesthetic FE, design-to-code) + MCP Figma & shadcn/ui (`.agent/plugins/figma.md`).
 - `semantic-commit-render` skill + `/commit` command (render commits per Conventional/SemVer, tied to task/spec).

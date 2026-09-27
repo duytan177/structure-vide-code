@@ -1,6 +1,6 @@
 # PLUGIN MATRIX AND CONTEXT WINDOW BUDGETING MANAGEMENT (README.md)
 
-This document consolidates the matrix of 10 extension Plugins/MCPs and the mandatory **Context Window Management Rules (Token Budgeting)** for the AI Agent.
+This document consolidates the matrix of 14 extension Plugins/MCPs and the mandatory **Context Window Management Rules (Token Budgeting)** for the AI Agent.
 
 ---
 
@@ -18,7 +18,7 @@ This document consolidates the matrix of 10 extension Plugins/MCPs and the manda
 
 ---
 
-## 📊 THE 10 STRATEGIC PLUGIN MATRIX
+## 📊 THE 14 STRATEGIC PLUGIN MATRIX
 
 | Priority Level | Plugin / MCP | Role & Core Function | Detailed Guide File |
 | :---: | :--- | :--- | :--- |

@@ -1,5 +1,6 @@
 {
-  "targetDirectory": "./src",
+  "//": "Root-level default only — the real project source lives under workspace/<project-name>/, not ./src.",
+  "targetDirectory": "./workspace",
   "blastRadiusDepth": 3,
   "executionFlowTracing": true,
   "ignorePatterns": [

@@ -4,7 +4,7 @@ description: Step 9 — AI Review (Code + Security + Performance + Architecture)
 
 Perform **Step 9 — AI REVIEW** for the current change.
 
-1. Security scan: subagent `.agent/agents/security-reviewer.md` + Semgrep (OWASP Top 10). No High/Critical findings may remain.
+1. Security scan: dispatch persona `security-reviewer` — Claude Code: Task/Agent tool subagent_type `security-reviewer` (`.claude/agents/security-reviewer.md`); Cursor/Antigravity: read `.agent/agents/security-reviewer.md` — + Semgrep (OWASP Top 10). No High/Critical findings may remain.
 2. Code review: skill `.claude/skills/code-review/SKILL.md` (+ CodeRabbit on the PR).
 3. Review performance & architecture compliance (`02-architecture-principles.md`).
 4. Resolve every important finding before opening the PR.

@@ -15,12 +15,12 @@ mkdir -p "$BASELINE_DIR"
 
 echo "🔎 [Step 0] Onboarding existing project. Source: $SRC"
 
-# 1. Index with Graphify (if available)
+# 1. Index with Graphify (if available) — real CLI verb is 'update <path>'
 if command -v graphify &>/dev/null; then
-  echo "🧠 Graphify index..."
-  graphify init "$SRC" || echo "  ⚠️ graphify init failed (skipping)."
+  echo "🧠 Graphify index (graphify update)..."
+  ( cd "$SRC" && graphify update . --no-cluster ) || echo "  ⚠️ graphify update failed (skipping)."
 else
-  echo "  ⚠️ 'graphify' CLI not found — skipping index. Run install-all-plugins.sh first."
+  echo "  ⚠️ 'graphify' CLI not found — skipping index. Run install-all-plugins.sh (pip install graphifyy)."
 fi
 
 # 2. Index with GitNexus (if available)

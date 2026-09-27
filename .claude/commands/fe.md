@@ -1,5 +1,5 @@
 ---
-description: Build beautiful/aesthetic FE, design-to-code from Figma (skill fe-ui-craft)
+description: Build beautiful/aesthetic FE, design-to-code from Figma (skill ui-ux-promax)
 argument-hint: [figma-link | component | screen]
 ---
 

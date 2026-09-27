@@ -19,7 +19,7 @@ This document defines the process for automated testing, security scanning, and 
 
 ## 🛡️ 2. SECURITY SCAN & STATIC ANALYSIS (STATIC ANALYSIS & SECURITY SCAN)
 
-Before considering a task `completed`, the AI Agent must run the static tools:
+Before considering a task `completed`, the AI Agent must run the static tools (these are external CLIs, not bundled with the base — verify they're actually installed with `bash .agent/scripts/verify-plugins.sh` before trusting a "0 findings" result):
 - **Semgrep**: Scan for OWASP Top 10 security vulnerabilities (SQL Injection, XSS, Hardcoded Credentials, Insecure Deserialization).
 - **Language linter**:
   - JavaScript/TypeScript: `eslint .`

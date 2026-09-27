@@ -52,7 +52,7 @@ echo "🧠 [5/6] Index / Onboarding..."
 if [ "$mode" = "existing (brownfield)" ]; then
   echo "  -> Existing project: run 'bash .agent/scripts/onboard-existing.sh workspace/<project-name>' to index + generate a baseline."
 else
-  command -v graphify &>/dev/null && graphify init "$PROJECT_ROOT/workspace" 2>/dev/null || true
+  command -v graphify &>/dev/null && graphify update "$PROJECT_ROOT/workspace" 2>/dev/null || true
 fi
 
 echo "🔌 [6/6] MCP: edit .agent/mcp/servers.json + keys in .env, then run 'bash .agent/scripts/setup-mcp.sh'"

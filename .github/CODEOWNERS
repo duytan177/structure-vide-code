@@ -1,18 +1,22 @@
 # CODEOWNERS — Step 10 Human Review requires owner approval.
-# Replace <team-lead>, <fe-team>, <be-team> with real GitHub usernames/teams.
+# Replace <team-lead>, <fe-team> with real GitHub usernames/teams.
+#
+# NOTE: this file governs the BASE overlay repo only. Under the overlay model, real
+# project source lives in workspace/<project-name>/ (gitignored), typically its own
+# separate git repository — CODEOWNERS for that code belongs in THAT repo, not here.
 
 # Default: the whole repo
 *                       @team-lead
 
 # AI Agent workflow & rules (changes require lead approval)
 /.agent/                @team-lead
+/.claude/               @team-lead
 /AGENTS.md              @team-lead
 /CLAUDE.md              @team-lead
 
-# Source by layer
-/src/frontend/          @fe-team
-/src/backend/           @be-team
-/src/shared/            @team-lead
-
-# Architecture & decisions
+# Enterprise documentation layer
 /docs/adr/              @team-lead
+/docs/CONSTITUTION.md   @team-lead
+
+# FE-facing skill surface (Figma/shadcn/Magic wiring, aesthetics checklist)
+/.claude/skills/ui-ux-promax/   @fe-team

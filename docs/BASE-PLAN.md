@@ -9,7 +9,7 @@
 > 2. The base is a **pure overlay** — **no `src/`**, does not touch the target project's source.
 > 3. Custom skills/plugins for each project → the team adds them later.
 >
-> Status: 🟡 Draft — pending approval. Date: 2026-07-23. (Replaces the deleted MIGRATION-PLAN.md.)
+> Status: 🟢 Implemented — the checklist in §6 reflects the repo state as of 2026-09-27 (item 7 is still optional/open). Originally drafted 2026-07-23. (Replaces the deleted MIGRATION-PLAN.md.)
 
 ---
 
@@ -43,7 +43,7 @@
 └── .githooks/  .mcp.json           # git hooks + MCP config
 ```
 
-**To do:** **delete `src/`** from the base; the README states clearly "the base is an overlay, the target project's source is untouched".
+**Done**: `src/` was removed from the base; the README states clearly "the base is an overlay, the target project's source is untouched".
 
 ## 3. ROLE SPLIT: SUPERPOWERS (engine) vs VIDE-CODER (enterprise)
 
@@ -79,10 +79,10 @@ The base must work for both new and old projects → it needs **one install comm
 2. Run `install` + **Step 0 Onboarding**: index the old code with **Graphify/GitNexus**, generate a **baseline** (spec/ADR summarizing the current state into `docs/specs/_baseline/`).
 3. Each change (bug/feature) = an entry point at Step 1 as a *change request* → Impact Analysis on the old code graph → continue the workflow.
 
-**To do:**
-- Add a script `.agent/scripts/onboard-existing.sh` (index + generate baseline).
-- Amend Step 1 in `00-ai-workflow.md`: flexible entry point (new BRD **or** change request).
-- Update `install-all-plugins.sh` to detect new/old repos.
+**Done:**
+- ✅ `.agent/scripts/onboard-existing.sh` exists (index + generate baseline).
+- ✅ Step 1 in `00-ai-workflow.md` has the flexible entry point (new BRD **or** change request).
+- ✅ `install-all-plugins.sh` detects new/old repos.
 
 ## 5. EXTERNAL PLUGIN CATALOG (declare dependencies, install per-agent)
 
@@ -96,19 +96,19 @@ The base must work for both new and old projects → it needs **one install comm
 | **Playwright MCP** | Step 8 E2E | MCP |
 | **GitHub MCP** | Step 7/10 PR/branch | MCP |
 
-**To do:**
-- Move `.agent/plugins/` from "descriptions" → **clear dependency declarations** (name, per-agent install, MCP config).
-- Add `superpowers.md` (currently no Superpowers entry — there is a "Superpower code-graph" which is something else, needs clarifying/separating).
+**Done:**
+- ✅ `.agent/plugins/` moved from "descriptions" → clear dependency declarations (name, per-agent install, MCP config) — see the per-plugin `.md` files + `.agent/plugins/installer/`.
+- ✅ `superpowers.md` added, clearly separated from the unrelated "Superpower (code-graph)" entry.
 - Token budgeting already exists — keep it.
 
 ## 6. CONCRETE EDIT CHECKLIST (vs. current state)
 
-- [ ] **Delete `src/`** + fix the README (overlay, doesn't touch the target project's source).
-- [ ] Amend `00-ai-workflow.md`: flexible Step 1 entry point (new/old); state clearly which steps Superpowers handles.
-- [ ] Add `.agent/scripts/onboard-existing.sh` (Mode B).
-- [ ] Upgrade `install-all-plugins.sh`: install **Superpowers per-agent** + detect mode + verify plugins actually exist.
-- [ ] Clarify the plugin catalog: separate/identify **Superpowers** (methodology) vs "superpower code-graph".
-- [ ] `docs/specs/_baseline/` for brownfield.
+- [x] **Delete `src/`** + fix the README (overlay, doesn't touch the target project's source).
+- [x] Amend `00-ai-workflow.md`: flexible Step 1 entry point (new/old); state clearly which steps Superpowers handles.
+- [x] Add `.agent/scripts/onboard-existing.sh` (Mode B).
+- [x] Upgrade `install-all-plugins.sh`: install **Superpowers per-agent** + detect mode; `verify-plugins.sh` checks plugins actually exist.
+- [x] Clarify the plugin catalog: separate/identify **Superpowers** (methodology) vs "superpower code-graph".
+- [x] `docs/specs/_baseline/` for brownfield (destination scaffolded; `onboard-existing.sh` populates it per-project on demand).
 - [ ] (Optional) one concise command `vide-coder apply` wrapping the whole install.
 
 ## 7. DO NOT DO (to avoid drifting off course again)

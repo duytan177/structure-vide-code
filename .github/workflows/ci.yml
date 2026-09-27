@@ -60,14 +60,11 @@ jobs:
         run: echo "⚠️ No package.json yet — skipping lint/test. Update the workflow once a stack is chosen."
 
   security-scan:
-    name: Semgrep (OWASP)
+    name: Semgrep (OWASP) — blocks the build on ERROR-severity findings
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Semgrep scan
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: >-
-            p/owasp-top-ten
-            .semgrep.yml
-        continue-on-error: true
+      - name: Install Semgrep
+        run: pip install semgrep
+      - name: Semgrep scan (ERROR severity = High/Critical-equivalent; fails the build)
+        run: semgrep scan --config p/owasp-top-ten --config .semgrep.yml --severity ERROR --error

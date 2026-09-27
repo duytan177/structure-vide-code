@@ -1,0 +1,12 @@
+rules:
+  - id: hardcoded-secret-detection
+    pattern-regex: '(?i)(api_key|secret_key|private_key|password)\s*=\s*["''][A-Za-z0-9/\+=]{12,}["'']'
+    message: "Detected a hardcoded Secret Key or Password in the source code!"
+    severity: ERROR
+    languages: [js, ts, python, php, ruby, go]
+
+  - id: no-console-log-in-prod
+    pattern: console.log(...)
+    message: "console.log() should not be used in production source code. Use a dedicated Logger."
+    severity: WARNING
+    languages: [js, ts]

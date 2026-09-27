@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Enforces the Conventional-Commit shape from .agent/rules/03-git-jira-workflow.md:
+#   <type>(<scope>): [PROJECT-XXX - ]<Short Summary>
+# The Jira ticket token is required for target-project work but optional for commits
+# made in THIS base repo itself (base maintenance has no Jira ticket) — see CONTRIBUTING.md.
+set -u
+
+MSG_FILE="$1"
+[ -f "$MSG_FILE" ] || exit 0
+
+# First non-comment, non-empty line = the subject.
+subject="$(grep -vE '^\s*#' "$MSG_FILE" | grep -vE '^\s*$' | head -n1)"
+[ -n "$subject" ] || { echo "❌ commit-msg: empty commit message."; exit 1; }
+
+# Merge commits are exempt.
+case "$subject" in "Merge "*) exit 0 ;; esac
+
+TYPES='feat|fix|docs|style|refactor|test|chore|perf'
+if ! printf '%s' "$subject" | grep -qE "^($TYPES)(\([a-zA-Z0-9_.-]+\))?!?: .+"; then
+  echo "❌ commit-msg: subject must match '<type>(<scope>): <summary>'."
+  echo "   type ∈ {feat,fix,docs,style,refactor,test,chore,perf} — see .agent/rules/03-git-jira-workflow.md"
+  echo "   got: $subject"
+  exit 1
+fi
+
+# If a Jira-style ticket token (PROJECT-123) appears anywhere, it must be correctly placed.
+if printf '%s' "$subject" | grep -qE '[A-Z][A-Z0-9]*-[0-9]+'; then
+  if ! printf '%s' "$subject" | grep -qE "^($TYPES)(\([a-zA-Z0-9_.-]+\))?!?: [A-Z][A-Z0-9]*-[0-9]+ - .+"; then
+    echo "❌ commit-msg: a Jira ticket ID looks present but misplaced/misformatted."
+    echo "   expected: <type>(<scope>): PROJECT-XXX - <Short Summary>"
+    echo "   got: $subject"
+    exit 1
+  fi
+fi
+
+exit 0

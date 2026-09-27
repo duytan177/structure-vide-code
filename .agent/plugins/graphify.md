@@ -13,7 +13,8 @@
 
 ## 📋 SAMPLE COMMANDS OR PROMPTS FOR THE AI AGENT
 - `graphify query "UserAuthenticationService"` -> Returns all controllers, middleware, and UI components calling this service.
-- `graphify rebuild` -> Rebuilds the Knowledge Graph after creating many new files.
+- `graphify update . --force` -> Rebuilds the Knowledge Graph after creating many new files (the real 0.9.x CLI has no separate `rebuild` verb — `update` both creates and refreshes the graph; `--force` forces a full rebuild).
+- Prefer the base's own wrapper over calling the CLI by hand: `bash .agent/scripts/graphify-setup.sh` (first index), `--action rebuild` (force full rebuild), `--action sync` (git pull + rebuild) — see that script for the exact verbs it invokes (override via `GRAPHIFY_UPDATE_CMD` if your build differs).
 
 ## 🛠️ INSTALL
 - PyPI package is **`graphifyy`**; the CLI command stays **`graphify`**:

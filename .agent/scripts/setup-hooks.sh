@@ -6,4 +6,5 @@ cd "$ROOT"
 git config core.hooksPath .githooks
 # Only the actual hooks are made executable (not README.md and other docs).
 chmod +x .githooks/pre-commit 2>/dev/null || true
-echo "✅ Git hooks enabled at .githooks (pre-commit)."
+chmod +x .githooks/commit-msg 2>/dev/null || true
+echo "✅ Git hooks enabled at .githooks (pre-commit, commit-msg)."

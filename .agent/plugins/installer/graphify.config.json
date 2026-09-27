@@ -1,5 +1,6 @@
 {
-  "projectRoot": "./src",
+  "//": "Root-level default only. graphify-setup.sh writes a corrected per-project copy into workspace/<name>/graphify.config.json automatically.",
+  "projectRoot": "./workspace",
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.php", "**/*.py", "**/*.rb", "**/*.go"],
   "exclude": ["**/node_modules/**", "**/vendor/**", "**/dist/**", "**/*.test.*"],
   "graphSettings": {

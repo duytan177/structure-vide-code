@@ -3,7 +3,7 @@
     "codeGraph": {
       "enabled": true,
       "autoIndex": true,
-      "indexTarget": "./src",
+      "indexTarget": "./workspace",
       "trackSymbols": true
     },
     "aiContextEnhancer": {

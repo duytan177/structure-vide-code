@@ -40,6 +40,8 @@ Install Superpowers as the engine → it handles the "one skilled developer" par
 
 > Vide-Coder **does not rewrite** steps 1, 5, 7, 8, 9 — it uses the Superpowers skills directly. It only **adds** steps 0, 2, 3, 4, 6, 10, 11.
 
+> **Personas / subagents** (steps 3/5/8/9 — architect, planner, e2e-runner, security-reviewer — plus build-error-resolver for build failures): **Claude Code** dispatches them as real, context-isolated subagents via the Task/Agent tool, defined in `.claude/agents/<name>.md`. **Cursor / Antigravity** have no equivalent native mechanism yet — for them, read the mirrored persona text in `.agent/agents/<name>.md` and role-play it in-session.
+
 ---
 
 ## 🔄 STANDARD EXECUTION WORKFLOW
@@ -89,14 +91,14 @@ flowchart TD
 
 ### 3. ARCHITECTURE (ADR / RFC / Decisions)
 - For major changes: write an RFC (`docs/adr/rfc-template.md`), then finalize an ADR (`docs/adr/adr-template.md`). Register it in `.agent/memory/decision-log.md`.
-- Subagent: [`architect.md`](../agents/architect.md).
+- Persona `architect` — Claude Code: Task/Agent tool (`.claude/agents/architect.md`); others: [`architect.md`](../agents/architect.md).
 
 ### 4. SPECIFICATION (Functional + Technical Spec)
 - Generate `docs/specs/SPEC-XXX.md`; look up framework documentation with Context7 as needed.
 - Skill: [`write-spec`](.claude/skills/write-spec/SKILL.md) (parses client requirements + basic-design Excel). Command: `/spec`.
 
 ### 5. PLANNING (Milestone / Sprint / Timeline)
-- Use the Superpowers `writing-plans` skill; save to `plans/yyyy-mm-dd-<feature>.md`. Subagent: [`planner.md`](../agents/planner.md).
+- Use the Superpowers `writing-plans` skill; save to `plans/yyyy-mm-dd-<feature>.md`. Persona `planner` — Claude Code: Task/Agent tool (`.claude/agents/planner.md`); others: [`planner.md`](../agents/planner.md).
 
 ### 6. TASK BREAKDOWN (Epic → Story → Task → Subtask)
 - Create `tasks/backlog/PROJECT-XXX.md`; update `docs/traceability-matrix.md`.
@@ -113,11 +115,11 @@ flowchart TD
 
 ### 8. SELF VALIDATION (Lint + Typecheck + Unit + E2E)
 - Use the Superpowers `test-driven-development` + `verification-before-completion` skills; run Semgrep-lint, typecheck, Playwright E2E.
-- Skill: [`tdd-workflow.md`](.claude/skills/tdd-workflow/SKILL.md). Subagent: [`e2e-runner.md`](../agents/e2e-runner.md).
+- Skill: [`tdd-workflow.md`](.claude/skills/tdd-workflow/SKILL.md). Persona `e2e-runner` — Claude Code: Task/Agent tool (`.claude/agents/e2e-runner.md`); others: [`e2e-runner.md`](../agents/e2e-runner.md).
 
 ### 9. AI REVIEW (Code + Security + Performance)
 - Use the Superpowers `requesting-code-review` / `receiving-code-review` skills; Semgrep (OWASP) + CodeRabbit.
-- Subagent: [`security-reviewer.md`](../agents/security-reviewer.md). Skill: [`code-review.md`](.claude/skills/code-review/SKILL.md).
+- Persona `security-reviewer` — Claude Code: Task/Agent tool (`.claude/agents/security-reviewer.md`); others: [`security-reviewer.md`](../agents/security-reviewer.md). Skill: [`code-review.md`](.claude/skills/code-review/SKILL.md).
 
 ### 10. HUMAN REVIEW (PR Approval & Merge Checklist)
 - Open a PR via GitHub MCP (using `.github/pull_request_template.md`), and wait for CODEOWNER approval.

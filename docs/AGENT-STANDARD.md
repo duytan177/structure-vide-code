@@ -53,11 +53,12 @@ to mirror them into **`.agents/skills/`** (Antigravity). Do not duplicate by han
 
 Flat skills (formerly in `.agent/skills/core`) have all been moved to `.claude/skills/<name>/SKILL.md`:
 
-**✅ 15 SKILLS STANDARDIZED into `.claude/skills/*/SKILL.md`** (frontmatter valid 15/15, `.agents/skills/` synced):
+**✅ 16 SKILLS STANDARDIZED into `.claude/skills/*/SKILL.md`** (frontmatter valid 16/16, `.agents/skills/` synced):
 
 `ui-ux-promax` (FE, merges fe-ui-craft) · `discovery-brainstorm` · `clarify-requirements` · `impact-analysis` ·
 `architecture-decision` · `write-spec` · `plan-implementation` · `task-breakdown` · `analyze-consistency` ·
-`git-worktree-flow` · `code-traceability` · `tdd-workflow` · `code-review` · `knowledge-update` · `semantic-commit`.
+`git-worktree-flow` · `code-traceability` · `tdd-workflow` · `code-review` · `knowledge-update` · `semantic-commit` ·
+`skill-creator`.
 
 > The SKILL.md files are **self-contained**; the flat `.agent/skills/core/` has been **DELETED**. References in rules/commands now all point to `.claude/skills/`.
 

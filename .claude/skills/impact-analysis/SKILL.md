@@ -12,6 +12,8 @@ metadata: { author: vide-coder, version: "1.0" }
 Prevent "fix one thing, break another" in a multi-module system.
 
 ## Workflow
+> Before relying on Graphify/GitNexus, confirm they're actually installed: `bash .agent/scripts/verify-plugins.sh`. If either is missing, say so explicitly and fall back to manual tracing (`grep`/an Explore agent) instead of silently skipping this step.
+
 1. **Graphify — query the Knowledge Graph**: find modules that depend directly & indirectly on the file/function to be changed.
 2. **GitNexus — blast radius**: analyze the execution flow (FE→BE→DB), list every affected function/class.
 3. **Regression scope**: note high-risk areas to add tests (Playwright/Unit) in Step 8.
